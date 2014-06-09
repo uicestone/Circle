@@ -1,0 +1,49 @@
+body {
+  color: #0aa291;
+}
+.content-inner {
+  padding-top: 14px;
+  height: calc(100% - 14px);
+  background-image: url("../img/tile.png");
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  background-size: contain;
+}
+.orders {
+  background-color: #232323;
+  font-size: 16px;
+  height: 100%;
+  overflow: scroll;
+  font-size: 100;
+}
+.order {
+  padding: 15px 7px;
+  border-bottom: 1px dashed #333;
+}
+.order .pic {
+  float: left;
+  width: 88px;
+  height: 88px;
+  margin-right: 10px;
+}
+.order .info {
+  line-height: 1.5;
+}
+.order .info .pay {
+  zoom: 1;
+  margin-top: 20px;
+}
+.order .info .pay:before,
+.order .info .pay:after {
+  content: "";
+  display: table;
+}
+.order .info .pay:after {
+  clear: both;
+}
+.order .info .pay .price {
+  float: left;
+}
+.order .info .pay .status {
+  float: right;
+}

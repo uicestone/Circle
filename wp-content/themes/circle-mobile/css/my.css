@@ -1,0 +1,47 @@
+.content-inner {
+  padding-top: 14px;
+  height: calc(100% - 14px);
+  background-image: url("../img/tile.png");
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  background-size: contain;
+}
+.orders {
+  background-color: #232323;
+  font-size: 16px;
+  height: 100%;
+  overflow: scroll;
+  font-weight: 100;
+}
+.order .product {
+  zoom: 1;
+  border-bottom: 1px dashed #333;
+}
+.order .product:before,
+.order .product:after {
+  content: "";
+  display: table;
+}
+.order .product:after {
+  clear: both;
+}
+.order .product .pic {
+  float: left;
+  width: 88px;
+  height: 88px;
+  padding: 8px;
+  margin-right: 5px;
+}
+.order .product .info {
+  line-height: 1.5;
+  margin-top: 20px;
+  font-size: 14px;
+}
+.order .order-detail {
+  border-bottom: 1px dashed #333;
+  padding: 12px 10px;
+}
+.order .order-detail .row {
+  font-size: 14px;
+  margin-bottom: 8px;
+}

@@ -1,0 +1,46 @@
+.list {
+  zoom: 1;
+  padding-bottom: 34px;
+}
+.list:before,
+.list:after {
+  content: "";
+  display: table;
+}
+.list:after {
+  clear: both;
+}
+.list .item {
+  background-color: #fff;
+  width: 160px;
+  float: left;
+  border: 1px solid #2c2c2b;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.list .item .pic {
+  height: 220px;
+}
+.list .item .txt {
+  height: 74px;
+}
+.list .item .txt .title {
+  text-align: center;
+  margin-top: 12px;
+  font-size: 12px;
+  color: #2c2c2b;
+}
+.list .item .txt .price {
+  color: #fff;
+  background-color: #2c2c2b;
+  -webkit-border-radius: 9px;
+  border-radius: 9px;
+  height: 18px;
+  line-height: 18px;
+  text-align: center;
+  margin: 15px auto 0 auto;
+  width: 58px;
+  font-size: 12px;
+}

@@ -1,0 +1,23 @@
+.content {
+  top: 32px;
+  background-image: url("/img/tile.png");
+  background-position: -60px -63px;
+}
+.content .content-inner {
+  margin-top: 3px;
+  background-color: #2c2c2c;
+  padding: 19px 9px;
+  padding-bottom: 100px;
+}
+.content .content-inner h2,
+.content .content-inner h3 {
+  font-size: 13px;
+}
+.content .content-inner p {
+  font-size: 12px;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+.content .content-inner section {
+  margin-top: 32px;
+}

@@ -1,0 +1,136 @@
+.content {
+  background-image: url("../img/tile.png");
+}
+.content-inner {
+  padding: 15px 12px;
+  height: calc(100% - 33px);
+}
+.panel {
+  background-color: rgba(255,255,255,0.3);
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  height: 100%;
+}
+.panel .links {
+  zoom: 1;
+  margin: -16px 28px 0 28px;
+}
+.panel .links:before,
+.panel .links:after {
+  content: "";
+  display: table;
+}
+.panel .links:after {
+  clear: both;
+}
+.panel .links .left {
+  float: left;
+}
+.panel .links .right {
+  float: right;
+}
+.panel .links a {
+  color: #fff;
+}
+.panel .row {
+  position: relative;
+  margin: 0 26px;
+}
+.panel .row input {
+  padding-left: 35px;
+  font-size: 17px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  display: block;
+  height: 38px;
+  border: 1px solid #4fb49c;
+  color: #4fb49c;
+  width: 100%;
+}
+.panel .row input::-webkit-input-placeholder {
+  color: #4fb49c;
+}
+.panel .row .btn {
+  background-color: #4fb49c;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  border: 1px solid #fff;
+  -webkit-background-size: 100%;
+  -moz-background-size: 100%;
+  background-size: 100%;
+  display: block;
+  border: none;
+  width: 120px;
+  height: 44px;
+  margin: 0 auto;
+  padding: 0;
+  text-indent: -999px;
+  cursor: pointer;
+}
+.panel .login-btn,
+.panel .reg-btn {
+  margin-top: 65px;
+}
+.icon-user,
+.icon-lock,
+.icon-confirm,
+.icon-email,
+.icon-phone {
+  background: url("/img/icons.png") no-repeat;
+  background-position-y: -24px;
+  -webkit-background-size: 120px 48px;
+  -moz-background-size: 120px 48px;
+  background-size: 120px 48px;
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 6px;
+  left: 8px;
+}
+.row.active i {
+  background-position-y: 0px;
+}
+.row.active input {
+  background-color: #4fb49c;
+  border-color: #fff;
+  color: #fff;
+}
+.row.active input::-webkit-input-placeholder {
+  color: #fff;
+}
+.reg .row {
+  margin-bottom: 10px;
+}
+.reg .row .btn {
+  margin-top: 25px;
+  background-image: url("../img/btn-reg.png");
+}
+.reg .panel-inner {
+  padding-top: 29px;
+}
+.login .row {
+  margin-bottom: 27px;
+}
+.login .row .btn {
+  margin-top: 65px;
+  background-image: url("../img/btn-login.png");
+}
+.login .panel-inner {
+  padding-top: 75px;
+}
+.icon-user {
+  background-position-x: 0px;
+}
+.icon-lock {
+  background-position-x: -24px;
+}
+.icon-confirm {
+  background-position-x: -48px;
+}
+.icon-email {
+  background-position-x: -72px;
+}
+.icon-phone {
+  background-position-x: -96px;
+}

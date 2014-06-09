@@ -1,0 +1,117 @@
+.content{
+    background-color: #303030;
+}
+.aside .inner .title{
+    color: #787878;
+}
+.aside .inner a{
+    color: #787878;
+}
+.aside .inner .active a{
+    color: #fff;
+}
+
+.info{
+    width: 75%;
+    float: right
+}
+.info:after{
+    content:"";
+    display:block;
+    clear:both
+}
+.info .pic{
+    float: left;
+    width: 50%
+}
+
+.info .pic .inner{
+    padding: 0 60px
+} 
+.info .pic .inner img{
+    width: 100%
+}
+.info .detail{
+    float: left;
+    width: 50%;
+    font-size: 12px;
+    color: #fff
+}
+
+.info .detail .head .price{
+    margin-top: 28px
+}
+
+.info .detail .price{
+    margin-top: 20px
+}
+
+.info .detail .dblock{
+    width: 206px;
+    overflow: visible;
+    padding: 15px 0;
+    border-bottom: 1px solid #555;
+}
+
+.info .detail .dblock.last{
+    border-bottom: none;
+}
+
+.info .detail .dblock .inner{
+    width: 390px
+}
+
+.info .meta .tips {
+    padding-bottom: 15px;
+    margin-left: -9px
+}
+
+.info .meta .tips:after{
+    content: "";
+    display: block;
+    clear: both;
+}
+.info .meta .tips li{
+    float: left;
+    padding: 0 9px;
+    border-right: 1px solid #fff;
+    line-height: 1;
+}
+
+.info .meta .tips li.last{
+    border-right: none;
+}
+.info .meta .tips li a{
+    color: #fff;
+}
+
+.info .meta .thumbs img{
+    border: 1px solid #717171;
+}
+
+.info .select .choices{
+    margin-left: -5px;
+}
+.info .select .choices li{
+    padding: 3px 5px;
+    width: 80px;
+}
+.info .select .choices .active{
+    border: 1px solid #717171;
+    background-color: #1b1b1b;
+}
+
+.info .select .howto{
+    color: #fff;
+    font-weight: bold
+}
+
+.info .buy .submit{
+  width: 200px;
+  padding: 15px 0;
+  text-align: center;
+  color: #000;
+  display: block;
+  background-color: #fff;
+  margin-bottom: 35px;
+}

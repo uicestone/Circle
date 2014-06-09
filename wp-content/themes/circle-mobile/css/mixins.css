@@ -1,0 +1,34 @@
+@-webkit-keyframes bling {
+  0% {
+    background: -webkit-linear-gradient(left, #fff, #34a68c);
+    background: -moz-linear-gradient(left, #fff, #34a68c);
+    background: -o-linear-gradient(left, #fff, #34a68c);
+    background: -ms-linear-gradient(left, #fff, #34a68c);
+    background: linear-gradient(to right, #fff, #34a68c);
+  }
+
+  100% {
+    background: -webkit-linear-gradient(left, #34a68c, #fff);
+    background: -moz-linear-gradient(left, #34a68c, #fff);
+    background: -o-linear-gradient(left, #34a68c, #fff);
+    background: -ms-linear-gradient(left, #34a68c, #fff);
+    background: linear-gradient(to right, #34a68c, #fff);
+  }
+}
+@-webkit-keyframes bling {
+  0% {
+    background: -webkit-linear-gradient(left, #fff, #34a68c);
+    background: -moz-linear-gradient(left, #fff, #34a68c);
+    background: -o-linear-gradient(left, #fff, #34a68c);
+    background: -ms-linear-gradient(left, #fff, #34a68c);
+    background: linear-gradient(to right, #fff, #34a68c);
+  }
+
+  100% {
+    background: -webkit-linear-gradient(left, #34a68c, #fff);
+    background: -moz-linear-gradient(left, #34a68c, #fff);
+    background: -o-linear-gradient(left, #34a68c, #fff);
+    background: -ms-linear-gradient(left, #34a68c, #fff);
+    background: linear-gradient(to right, #34a68c, #fff);
+  }
+}

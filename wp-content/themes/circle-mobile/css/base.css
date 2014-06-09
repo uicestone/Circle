@@ -1,0 +1,138 @@
+body {
+  color: #25a58e;
+  font-family: sans-serif;
+  background: url("../img/bg.png");
+}
+body,
+ul,
+li,
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+  padding: 0;
+}
+p {
+  line-height: 1.5;
+}
+li {
+  list-style-type: none;
+}
+a {
+  color: #25a58e;
+  text-decoration: none;
+}
+.head {
+  text-align: center;
+  height: 90px;
+}
+.head .logo {
+  height: 90px;
+}
+.content {
+  top: 90px;
+  bottom: 40px;
+  width: 100%;
+  position: absolute;
+}
+.nohead .content {
+  top: 0;
+}
+.nonav .content {
+  bottom: 10px;
+}
+.nav {
+  background: url("../img/bg.png");
+  position: fixed;
+  width: 100%;
+  padding: 10px 0;
+  bottom: 0;
+  z-index: 99;
+}
+.nav li {
+  width: 25%;
+  text-align: center;
+  color: #25a58e;
+  font-size: 12px;
+  float: left;
+}
+.center {
+  text-align: center;
+}
+.right {
+  text-align: right;
+}
+.android .btn .text {
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  -webkit-text-fill-color: #25a58e !important;
+}
+.slide {
+  border-bottom: 2px solid #25a58e;
+}
+.slide .swiper-container,
+.slide .swiper-slide {
+  width: 100%;
+  height: 210px;
+}
+.slide .swiper-container img,
+.slide .swiper-slide img {
+  display: block;
+  width: 100%;
+}
+.slide .pagination {
+  display: none;
+}
+.slide .arrows {
+  z-index: 9;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+.slide .arrows .prev,
+.slide .arrows .next {
+  padding: 92px 15px;
+  width: 14px;
+  height: 25px;
+  position: absolute;
+}
+.slide .arrows .prev {
+  left: 0;
+}
+.slide .arrows .next {
+  right: 0;
+}
+@-moz-keyframes bling {
+  0% {
+    background-position: 90px 0;
+  }
+  40% {
+    background-position: 0 0;
+  }
+}
+@-webkit-keyframes bling {
+  0% {
+    background-position: 90px 0;
+  }
+  40% {
+    background-position: 0 0;
+  }
+}
+@-o-keyframes bling {
+  0% {
+    background-position: 90px 0;
+  }
+  40% {
+    background-position: 0 0;
+  }
+}
+@keyframes bling {
+  0% {
+    background-position: 90px 0;
+  }
+  40% {
+    background-position: 0 0;
+  }
+}

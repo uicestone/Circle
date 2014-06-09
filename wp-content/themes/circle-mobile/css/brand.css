@@ -1,0 +1,33 @@
+.head {
+  padding-bottom: 12px;
+}
+.content {
+  position: static;
+}
+.content .content-inner {
+  margin: 0 10px;
+  border-top: 1px dashed #333;
+  padding-top: 48px;
+  padding-bottom: 50px;
+}
+.content .content-inner .banner {
+  margin-bottom: 40px;
+}
+.content .content-inner .title {
+  padding-bottom: 30px;
+  font-weight: normal;
+  font-size: 18px;
+}
+.content .content-inner p {
+  font-size: 15px;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+.content .content-inner img {
+  width: 100%;
+  margin: 30px 0;
+  display: block;
+}
+.content .content-inner .footer {
+  padding: 15px 0;
+}

@@ -1,0 +1,94 @@
+body {
+  color: #333;
+  background: #fff;
+}
+.content {
+  position: static;
+  padding-bottom: 34px;
+}
+.product {
+  position: relative;
+  zoom: 1;
+}
+.product:before,
+.product:after {
+  content: "";
+  display: table;
+}
+.product:after {
+  clear: both;
+}
+.table {
+  font-size: 12px;
+  padding: 40px 22px 35px 22px;
+}
+.table td {
+  vertical-align: top;
+}
+.table td.fname {
+  width: 50px;
+  padding-right: 15px;
+}
+.table td.w4 {
+  word-spacing: -3px;
+}
+.table td.w3 {
+  word-spacing: 3px;
+}
+.table td.w2 {
+  word-spacing: 21px;
+}
+.buy {
+  zoom: 1;
+  display: block;
+  margin: 0 5px;
+  border-bottom: 2px solid #25a58e;
+}
+.buy:before,
+.buy:after {
+  content: "";
+  display: table;
+}
+.buy:after {
+  clear: both;
+}
+.buy .btn {
+  float: right;
+  margin-bottom: 12px;
+  width: 186px;
+}
+.detail .quote {
+  font-size: 12px;
+  padding: 25px 22px 20px 22px;
+}
+.detail p {
+  font-size: 12px;
+}
+.detail img {
+  display: block;
+  width: 100%;
+}
+.manufacturing {
+  border-top: 1px solid #25a58e;
+  margin: 24px 5px 0 5px;
+}
+.manufacturing .title {
+  border-left: 2px solid #25a58e;
+  margin: 15px 0 10px 0;
+  padding: 0 5px;
+}
+.manufacturing .title .cn {
+  font-size: 14px;
+}
+.manufacturing .title .en {
+  font-size: 12px;
+}
+.manufacturing .pic {
+  width: 100%;
+  display: block;
+  margin-bottom: 12px;
+}
+.manufacturing .content {
+  font-size: 12px;
+  line-height: 1.5;
+}
