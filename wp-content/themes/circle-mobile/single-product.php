@@ -12,22 +12,21 @@ add_filter('body_class', function($class){
 });
 
 get_header();
-
+$product = get_product();
 ?>
 <div class="content">
 	<div class="product">
 		<div class="slide">
 			<div class="swiper-container">
 				<div class="swiper-wrapper">
+					<?php
+					$gallery_image_ids = $product->get_gallery_attachment_ids();
+					foreach($gallery_image_ids as $gallery_image_id):
+					?>
 					<div class="swiper-slide">
-						<img src="<?=get_template_directory_uri()?>/img/detail-slide-1.jpg" />
+						<img src="<?=wp_get_attachment_url($gallery_image_id)?>" />
 					</div>
-					<div class="swiper-slide">
-						<img src="<?=get_template_directory_uri()?>/img/detail-2.jpg" />
-					</div>
-					<div class="swiper-slide">
-						<img src="<?=get_template_directory_uri()?>/img/detail-3.jpg" />
-					</div>
+					<?php endforeach; ?>
 				</div>
 			</div>
 			<div class="pagination"></div>
@@ -40,7 +39,7 @@ get_header();
 	<table class="table">
 		<tr>
 			<td class="fname w4">商 品 名 称</td>
-			<td>心形天然红宝石镶嵌钻石18K铂金项链</td>
+			<td><?php the_title(); ?></td>
 		</tr>
 		<tr>
 			<td class="fname w4">基 本 参 数</td>
@@ -52,7 +51,7 @@ get_header();
 		</tr>
 		<tr>
 			<td class="fname w2">价 格</td>
-			<td>2980</td>
+			<td>¥<?=$product->price?></td>
 		</tr>
 	</table>
 	<a href="#" class="buy">
