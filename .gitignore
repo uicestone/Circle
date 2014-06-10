@@ -5,3 +5,7 @@
 /wp-content/backup
 /wp-config.php
 
+/wp-content/plugins/woocommerce/i18n/languages
+!/wp-content/plugins/woocommerce/i18n/languages/*zh_CN*
+!/wp-content/plugins/woocommerce/i18n/languages/*.pot
+
