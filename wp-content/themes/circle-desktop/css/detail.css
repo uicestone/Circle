@@ -115,3 +115,20 @@
   background-color: #fff;
   margin-bottom: 35px;
 }
+
+
+#modal-upkeep h2{
+  font-weight: bold;
+  font-size: 13px;
+  margin-bottom: 55px;
+}
+#modal-upkeep h3{
+  font-weight: bold;
+  font-size: 12px;
+  margin-bottom: 13px;
+}
+#modal-upkeep p{
+  font-size:12px;
+  line-height: 2;
+  margin-bottom: 17px;
+}

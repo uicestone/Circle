@@ -33,11 +33,11 @@ get_header();
 			</div>
 			<div class="meta dblock">
 				<ul class="tips">
-					<li><a href="#">如何保养</a>
+					<li><a href="javascript:;" data-toggle="modal" data-target="#modal-upkeep">如何保养</a>
 					</li>
-					<li><a href="#">品牌服务</a>
+					<li><a href="javascript:;" data-toggle="modal" data-target="#modal-brand-service">品牌服务</a>
 					</li>
-					<li class="last"><a href="#">查看证书</a>
+					<li class="last"><a href="javascript:;" data-toggle="modal" data-target="#modal-certificate">查看证书</a>
 					</li>
 				</ul>
 				<ul class="thumbs">
@@ -78,4 +78,7 @@ get_header();
 		</div>
 	</div>
 </div>
+<?php get_template_part('modal','upkeep') ?>
+<?php get_template_part('modal','brand-service') ?>
+<?php get_template_part('modal','certificate') ?>
 <?php get_footer(); ?>		

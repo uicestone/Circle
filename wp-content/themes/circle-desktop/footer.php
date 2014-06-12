@@ -10,7 +10,7 @@
 			</div>
 		</div>
 		<?php get_template_part('modal','login') ?>
-		<?php get_template_part('modal','mine') ?>
+    <?php get_template_part('modal','mine') ?>
 		<script>
 			// 弹层tab切换
 			(function($){
@@ -28,35 +28,6 @@
           $(".tabbody").hide();
           $("#order-detail").show();
       });
-
-      //  // 地址
-      //  // 创建地址
-      // $("#address .btn-create").click(function() {
-      //     $(".tabbody").hide();
-      //     $("#address-update").show();
-      // });
-      //  // 修改地址
-      // $("#address .btn-edit").click(function() {
-      //     $(".tabbody").hide();
-      //     $("#address-update").show();
-      // });
-      //  // 删除地址
-      // $("#address .btn-remove").click(function() {
-      //     $(".tabbody").hide();
-      //     $("#address-removed").show();
-      // });
-      //  // 更新地址
-      // $("#address-update .btn-update").click(function() {
-      //     // check form
-      //     // submit ajax
-      //     $(".tabbody").hide();
-      //     $("#address-updated").show();
-      // });
-      //  // 查看我的地址收藏
-      // $("#address-updated .btn-check, #address-removed .btn-check").click(function() {
-      //     $(".tabbody").hide();
-      //     $("#address").show();
-      // });
 
       // 个人资料
       // 表单验证
