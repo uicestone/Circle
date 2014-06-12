@@ -116,7 +116,7 @@
   margin-bottom: 35px;
 }
 
-
+/* 如何保养 */
 #modal-upkeep h2{
   font-weight: bold;
   font-size: 13px;
@@ -131,4 +131,22 @@
   font-size:12px;
   line-height: 2;
   margin-bottom: 17px;
+}
+
+/* 品牌服务 */
+#modal-brand-service h2{
+  font-weight: bold;
+  font-size: 13px;
+}
+
+#modal-brand-service h3{
+  margin-top: 50px;
+  font-weight: bold;
+  font-size: 12px;
+  margin-bottom: 15px;
+}
+
+#modal-brand-service p{
+  font-size:12px;
+  line-height: 2;
 }
