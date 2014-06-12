@@ -1,0 +1,13 @@
+#product_images_container .image {
+	width: 80px;
+	float: left;
+	margin-right: 4px;
+}
+
+#product_images_container .image img {
+	width: 100%;
+}
+
+#product_images_container .product_images {
+	display: table;
+}

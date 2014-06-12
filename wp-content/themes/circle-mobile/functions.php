@@ -2,11 +2,6 @@
 
 add_action('init', function(){
 	
-	show_admin_bar(false);
-	
-	register_nav_menu('mobile-foot', '移动版底部固定菜单');
-	register_nav_menu('desktop-head', '桌面版顶部固定菜单');
-	
 	$scripts = array(
 		'script'=>array('swiper', 'zepto'),
 		'style'=>array('base', 'brand', 'collection', 'detail', 'login', 'mixins', 'my', 'order', 'pay', 'swiper', 'variables'),
