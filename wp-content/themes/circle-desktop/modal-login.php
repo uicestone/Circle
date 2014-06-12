@@ -8,28 +8,13 @@
         <div class="modal-body">
           <div class="left">
             <div class="inner">
-              <h2>我已经是 circle 的用户</h2>
-              <p style="margin-bottom:40px">请输入您的电子邮箱地址和密码来登录。</p>
-              <div class="field">
-                <div class="label">电子邮箱地址</div>
-                <input class="form-control">
-              </div>
-              <div class="field">
-                <div class="label">密码</div>
-                <input class="form-control">
-              </div>
-              <div class="field"><a href="#">忘记密码？</a>
-              </div>
-              <div class="btn">登录</div>
+              <p>请使用<strong>?手机微信扫一扫功能</strong>，</p>
+              <p>扫一下右边的二维码，进行登录。</p>
+              <i class="cursor"></i>
             </div>
           </div>
           <div class="right">
-            <div class="inner">
-              <h2>我想成为 circle 的用户</h2>
-              <p>如果您还不时 circle 的用户，亲在此注册。</p>
-              <p>请您给我们提供一些必要信息，这将是您再 circle 有个更快更方便的购买过程。</p>
-              <div class="btn">创建新用户</div>
-            </div>
+            <img src="<?=get_template_directory_uri()?>/img/login-qr.png" alt="">
           </div>
         </div>
       </div>
