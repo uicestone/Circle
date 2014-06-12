@@ -60,6 +60,10 @@ a {
   background-color: #191f1f;
   margin-top: 10px;
 }
+.header .dropdown-menu .menu-item{
+  padding: 0;
+  float: none;
+}
 .header .dropdown-menu:after {
   content: "";
   border-width: 10px;
