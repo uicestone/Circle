@@ -19,12 +19,13 @@ get_header();
 		<div class="swiper-container">
 			<div class="swiper-wrapper">
 				<?php
-				$category_intro = get_posts(array('name'=>get_queried_object()->name))[0];
-				$children = get_children(array('post_parent'=>$category_intro->ID));
-				foreach($children as $child):
+				$category_intro = get_posts(array('name'=>get_queried_object()->slug))[0];
+				$gallery = get_post_meta($category_intro->ID, 'product_image_gallery', true);
+				$image_ids = $gallery ? explode(',', $gallery) : array();
+				foreach($image_ids as $image_id):
 				?>
 				<div class="swiper-slide">
-					<img src="<?=wp_get_attachment_url($child->ID)?>" />
+					<img src="<?=wp_get_attachment_url($image_id)?>" />
 				</div>
 				<?php endforeach; ?>
 			</div>
@@ -36,14 +37,14 @@ get_header();
 		</div>
 	</div>
 	<ul class="list">
-		<?php while(have_posts()): the_post(); $product = get_product(get_the_ID()); ?>
+		<?php while(have_posts()): the_post(); ?>
 		<li class="item">
 			<a href="<?php the_permalink(); ?>">
 				<?php the_post_thumbnail(); ?>
 				<div style="background-color:rgba(209,203,191,0.3)" class="txt">
 					<div class="txt-inner">
 						<div class="title"><?php the_title(); ?></div>
-						<div class="price">￥<?=$product->price?></div>
+						<div class="price">￥<?=get_post_meta(get_the_ID(), 'price', true)?></div>
 						<img src="<?=get_template_directory_uri()?>/img/right-arr-circle.png" class="arr" />
 					</div>
 				</div>

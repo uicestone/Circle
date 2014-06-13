@@ -11,8 +11,9 @@ add_filter('body_class', function($class){
 	return $class;
 });
 
+$wx = new WeixinAPI();
+
 get_header();
-$product = get_product();
 ?>
 <div class="content">
 	<div class="product">
@@ -20,7 +21,8 @@ $product = get_product();
 			<div class="swiper-container">
 				<div class="swiper-wrapper">
 					<?php
-					$gallery_image_ids = $product->get_gallery_attachment_ids();
+					$product_image_gallery = get_post_meta(get_the_ID(), 'product_image_gallery', true);
+					$gallery_image_ids = $product_image_gallery ? explode(',', $product_image_gallery) : array();
 					foreach($gallery_image_ids as $gallery_image_id):
 					?>
 					<div class="swiper-slide">
@@ -38,38 +40,36 @@ $product = get_product();
 	</div>
 	<table class="table">
 		<tr>
-			<td class="fname w4">商 品 名 称</td>
+			<td class="fname w4">商品名称</td>
 			<td><?php the_title(); ?></td>
 		</tr>
 		<tr>
-			<td class="fname w4">基 本 参 数</td>
-			<td>缅甸产天然红宝石0.30ct / 钻石0.05ct / 18K铂金 吊坠10mm*8mm / 项链长400mm</td>
+			<td class="fname w4">材质</td>
+			<td><?=get_post_meta(get_the_ID(), 'material', true)?></td>
 		</tr>
 		<tr>
-			<td class="fname w3">制 造 地</td>
-			<td>日本</td>
+			<td class="fname w3">制造地</td>
+			<td><?=get_post_meta(get_the_ID(), 'origin', true)?></td>
 		</tr>
 		<tr>
-			<td class="fname w2">价 格</td>
-			<td>¥<?=$product->price?></td>
+			<td class="fname w2">价格</td>
+			<td>¥<?=get_post_meta(get_the_ID(), 'price', true)?></td>
 		</tr>
 	</table>
-	<a href="#" class="buy">
+	<a href="" class="buy">
 		<img src="<?=get_template_directory_uri()?>/img/detail-buy.png" class="btn">
 	</a>
 	<div class="detail">
-		<img src="<?=get_template_directory_uri()?>/img/detail-1.jpg">
-		<img src="<?=get_template_directory_uri()?>/img/detail-2.jpg">
-		<img src="<?=get_template_directory_uri()?>/img/detail-3.jpg">
+		<?php the_excerpt(); ?>
 	</div>
-	<div class="manufacturing">
+<!--	<div class="manufacturing">
 		<div class="title">
 			<div class="cn">制作过程</div>
 			<div class="en">Manufacturing operation</div>
 		</div>
 		<img src="<?=get_template_directory_uri()?>/img/detail-manufacturing.jpg" class="pic">
 		<p class="content">Love Talk红宝石镶钻项链由日本设计师青沼知行先生设计并在日本制造加工而成。珍贵天然红宝石产自缅甸,青沼家族在日本从事高级珠宝设计与制作的历史80余年历史，在日本久负盛名。此款红宝石项链是CIRCLE与青沼达成在中国的独家售卖权,有日本专业机构珠宝鉴定证书。</p>
-	</div>
+	</div>-->
 </div>
 <script>
 	jQuery(function($){
