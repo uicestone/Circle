@@ -2,12 +2,15 @@
 GET /login-qrcode/
 {"url":""}
 
-登录 /login-polling/
-{"logged_in":false}
+//登录 /login-polling/ (已被下面的个人资料API取代)
+//{"logged_in":false}
 
 //个人资料
 GET | POST /user-profile/
+若用户未登录，则响应内容为空
+若用户已登录，响应内容为
 {
+	"nickname":"",
 	"province":"",//省市信息
 	"address":"",//详细地址
 	"zipcode":"",
