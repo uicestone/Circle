@@ -19,46 +19,16 @@ get_header();
 	</div>
 	<div class="info">
 		<ul class="list">
+			<?php while(have_posts()): the_post(); ?>
 			<li>
-				<a href="<?= site_url() ?>/detail/">
-					<img src="<?= get_template_directory_uri() ?>/img/photos/list1.jpg">
+				<a href="<?php the_permalink(); ?>">
+					<?php the_post_thumbnail('desktop-list-thumbnail'); ?>
 				</a>
 			</li>
-			<li>
-				<a href="<?= site_url() ?>/detail/">
-					<img src="<?= get_template_directory_uri() ?>/img/photos/list2.jpg">
-				</a>
-			</li>
-			<li>
-				<a href="<?= site_url() ?>/detail/">
-					<img src="<?= get_template_directory_uri() ?>/img/photos/list1.jpg">
-				</a>
-			</li>
-			<li>
-				<a href="<?= site_url() ?>/detail/">
-					<img src="<?= get_template_directory_uri() ?>/img/photos/list2.jpg">
-				</a>
-			</li>
-			<li>
-				<a href="<?= site_url() ?>/detail/">
-					<img src="<?= get_template_directory_uri() ?>/img/photos/list1.jpg">
-				</a>
-			</li>
-			<li>
-				<a href="<?= site_url() ?>/detail/">
-					<img src="<?= get_template_directory_uri() ?>/img/photos/list2.jpg">
-				</a>
-			</li>
-			<li>
-				<a href="<?= site_url() ?>/detail/">
-					<img src="<?= get_template_directory_uri() ?>/img/photos/list1.jpg">
-				</a>
-			</li>
-			<li>
-				<a href="<?= site_url() ?>/detail/">
-					<img src="<?= get_template_directory_uri() ?>/img/photos/list2.jpg">
-				</a>
-			</li>
+<!--			<div class="swiper-slide">
+				<img src="<?=wp_get_attachment_url($gallery_image_id)?>" />
+			</div>-->
+			<?php endwhile; ?>
 		</ul>
 	</div>
 </div>

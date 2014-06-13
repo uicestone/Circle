@@ -2,6 +2,7 @@
 add_action('wp_enqueue_scripts', function(){
 	wp_enqueue_style('detail');
 });
+the_post();
 get_header();
 ?>
 <div class="panel container">
@@ -21,15 +22,22 @@ get_header();
 	<div class="info">
 		<div class="pic">
 			<div class="inner">
-				<img src="<?=get_template_directory_uri()?>/img/photos/detail.jpg">
+				<?php $image_ids = explode(',', get_post_meta(get_the_ID(), '_product_image_gallery', true)); ?>
+				<?php foreach($image_ids as $image_id){ ?>
+					<?php echo wp_get_attachment_image($image_id, 'desktop-product-gallery')?>
+				<?php } ?>
 			</div>
 		</div>
 		<div class="detail">
 			<div class="head dblock">
-				<div class="inner">18K金镶嵌钻石珍珠戒指
-					<br>K18 diamond & pearl ring 
-					<br>钻石:1.2mmX2Pcs 0.02ct,1.5mmX2Pcs 0.03ct, 珍珠:1.6mmX2Pcs 2mmX2Pcs, 2.2mmX1Pc 黄金：1.11g</div>
-				<div class="price">￥2300</div>
+				<div class="inner">
+					<?php the_title(); ?>
+					<br>
+					<?php echo get_piece(get_post_meta(get_the_ID(), 'name_en', true))?>
+					<br>
+					<?php echo get_piece(get_post_meta(get_the_ID(), 'material', true)); ?>
+				</div>
+				<div class="price">￥<?php echo get_post_meta(get_the_ID(), 'price', true); ?></div>
 			</div>
 			<div class="meta dblock">
 				<ul class="tips">
@@ -40,11 +48,11 @@ get_header();
 					<li class="last"><a href="javascript:;" data-toggle="modal" data-target="#modal-certificate">查看证书</a>
 					</li>
 				</ul>
-				<ul class="thumbs">
+<!--				<ul class="thumbs">
 					<li>
 						<img src="<?=get_template_directory_uri()?>/img/photos/detail-thumb.jpg">
 					</li>
-				</ul>
+				</ul>-->
 			</div>
 			<div class="select dblock">
 				<div class="title">选择戒圈</div>

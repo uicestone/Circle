@@ -1,13 +1,13 @@
-#product_images_container .image {
+.image-gallery .image {
 	width: 80px;
 	float: left;
 	margin-right: 4px;
 }
 
-#product_images_container .image img {
-	width: 100%;
+.image-gallery .image img, .image-meta-box img {
+	max-width: 100%;
 }
 
-#product_images_container .product_images {
+.image-gallery .gallery-images {
 	display: table;
 }

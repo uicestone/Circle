@@ -11,6 +11,11 @@ add_action('init', function(){
 	
 	add_theme_support('post-thumbnails');
 	
+	add_image_size('mobile-product-head', 640, 428, true);
+	add_image_size('desktop-product-gallery', 466, 582, true);
+	add_image_size('mobile-list-thumbnail', 320, 441, true);
+	add_image_size('desktop-list-thumbnail', 446, 600, true);
+	
 	register_taxonomy('product_cat', 'product', array(
 		'label'=>'产品分类',
 		'labels'=>array(
@@ -38,29 +43,65 @@ add_action('init', function(){
 			'search_items'=>'搜索产品'
 		),
 		'public'=>true,
-		'supports'=>array('title','editor','thumbnail','excerpt','revisions'),
+		'supports'=>array('title','editor','thumbnail','revisions'),
 		'has_archive'=>true,
 		'register_meta_box_cb'=>function($post){
 			add_meta_box('properties', '参数', function($post){
 				require plugin_dir_path(__FILE__) . 'templates/product-property-meta-box.php';
-			});
+			}, 'product', 'normal');
 			
-			add_meta_box('product_images_container', '相册', function($post){
-				$product_image_gallery = get_post_meta($post->ID, 'product_image_gallery', true);
+			add_meta_box('product_images_gallery', '相册', function($post){
+				$product_image_gallery = get_post_meta($post->ID, '_product_image_gallery', true);
 				$product_image_ids = $product_image_gallery ? explode(',', $product_image_gallery) : array();
+				$gallery_args = array(
+					'title_remove'=>'从相册删除',
+					'title_add'=>'添加图片到相册',
+					'insert_button_text'=>'添加',
+					'meta_key'=>'_product_image_gallery'
+				);
 				require plugin_dir_path(__FILE__) . 'templates/product-image-gallery-meta-box.php';
-			}, 'product', 'side');
+			}, 'product', 'side', 'default');
+			
+			add_meta_box('mobile-list-thumbnail', '移动版列表缩略图', function($post){
+				$image_id = get_post_meta($post->ID, '_mobile_list_thumbnail', true);
+				$args = array(
+					'title_remove'=>'删除',
+					'title_add'=>'设置',
+					'insert_button_text'=>'选择',
+					'meta_key'=>'_mobile_list_thumbnail'
+				);
+				require plugin_dir_path(__FILE__) . 'templates/image-meta-box.php';
+			}, 'product', 'side', 'default');
+			
+			add_meta_box('mobile-product-head', '移动版顶部大图', function($post){
+				$image_id = get_post_meta($post->ID, '_mobile_product_head', true);
+				$args = array(
+					'title_remove'=>'删除',
+					'title_add'=>'设置',
+					'insert_button_text'=>'选择',
+					'meta_key'=>'_mobile_product_head'
+				);
+				require plugin_dir_path(__FILE__) . 'templates/image-meta-box.php';
+			}, 'product', 'side', 'default');
+			
 		},
+		'menu_icon'=>'dashicons-cart'
 	));
 	
 	add_action('add_meta_boxes', function(){
 		
-		add_meta_box('product_images_container', '相册', function($post){
-			$product_image_gallery = get_post_meta($post->ID, 'product_image_gallery', true);
+		add_meta_box('product_images_gallery', '相册', function($post){
+			$product_image_gallery = get_post_meta($post->ID, '_product_image_gallery', true);
 			$product_image_ids = $product_image_gallery ? explode(',', $product_image_gallery) : array();
+			$gallery_args = array(
+				'title_remove'=>'从相册删除',
+				'title_add'=>'添加图片到相册',
+				'insert_button_text'=>'添加',
+				'meta_key'=>'_product_image_gallery'
+			);
 			require plugin_dir_path(__FILE__) . 'templates/product-image-gallery-meta-box.php';
-		}, 'post', 'side');
-
+		}, 'post', 'side', 'default');
+			
 	});
 	
 //	add_filter('manage_edit-product_columns', function($columns){
@@ -74,7 +115,18 @@ add_action('init', function(){
 //	});
 //	
 	add_action('save_post', function($post_id){
-		foreach(array('price', 'material', 'origin', 'product_image_gallery') as $field){
+		
+		$metas = array(
+			'name_en',
+			'price',
+			'material',
+			'origin',
+			'_product_image_gallery',
+			'_mobile_list_thumbnail',
+			'_mobile_product_head'
+		);
+		
+		foreach($metas as $field){
 			if(isset($_POST[$field])){
 				update_post_meta($post_id, $field, $_POST[$field]);
 			}
@@ -93,7 +145,7 @@ add_action('init', function(){
 		),
 		'show_ui'=>true,
 		'show_in_menu'=>true,
-		
+		'menu_icon'=>'dashicons-format-aside',
 		'supports'=>array(),
 	));
 	
@@ -107,7 +159,9 @@ add_action('init', function(){
 
 add_action('admin_enqueue_scripts', function(){
 	wp_register_style('circle-admin', plugin_dir_url(__FILE__).'admin.css');
+	wp_register_script('circle-admin', plugin_dir_url(__FILE__).'admin.js', array('jquery-ui-sortable'));
 	wp_enqueue_style('circle-admin');
+	wp_enqueue_script('circle-admin');
 });
 
 add_action('wp_loaded', function(){
@@ -115,3 +169,8 @@ add_action('wp_loaded', function(){
 	//global $wp_rewrite;
 	//print_r($wp_rewrite->rewrite_rules());
 });
+
+function get_piece($string, $prefer_index = 0, $delimiter = '/\s*\|\s/'){
+	$splitted = preg_split($delimiter, $string);
+	return $splitted[$prefer_index] ? $splitted[$prefer_index] : $splitted[0];
+}

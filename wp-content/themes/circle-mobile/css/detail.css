@@ -18,6 +18,10 @@ body {
 .product:after {
   clear: both;
 }
+.product img {
+  width: 100%;
+  height:auto;
+}
 .table {
   font-size: 12px;
   padding: 40px 22px 35px 22px;

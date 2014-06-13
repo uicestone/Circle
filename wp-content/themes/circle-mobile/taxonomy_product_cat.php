@@ -20,7 +20,7 @@ get_header();
 			<div class="swiper-wrapper">
 				<?php
 				$category_intro = get_posts(array('name'=>get_queried_object()->slug))[0];
-				$gallery = get_post_meta($category_intro->ID, 'product_image_gallery', true);
+				$gallery = get_post_meta($category_intro->ID, '_product_image_gallery', true);
 				$image_ids = $gallery ? explode(',', $gallery) : array();
 				foreach($image_ids as $image_id):
 				?>
@@ -40,7 +40,7 @@ get_header();
 		<?php while(have_posts()): the_post(); ?>
 		<li class="item">
 			<a href="<?php the_permalink(); ?>">
-				<?php the_post_thumbnail(); ?>
+				<?php echo wp_get_attachment_image(get_post_meta(get_the_ID(), '_mobile_list_thumbnail', true), 'mobile-list-thumbnail') ?>
 				<div style="background-color:rgba(209,203,191,0.3)" class="txt">
 					<div class="txt-inner">
 						<div class="title"><?php the_title(); ?></div>
