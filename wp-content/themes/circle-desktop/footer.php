@@ -72,11 +72,54 @@
           $("#profile").show();
       });
 
-       // 注册
-      $("#modal-register .btn-submit").click(function() {
-          $("#modal-register .bd").hide();
-          $("#modal-register .success").show();
+      $("#modal-login").on('show.bs.modal',function(){
+        var loginModal = $(this);
+        $.getJSON("/login-qrcode/",function(data){
+          var url = data.url;
+          loginModal.find("#login-qr").attr("src", url);
+        });
+        pollingLogin.start(function(){
+          location.reload();
+        });
+      }).on('hide.bs.modal',function(){
+        pollingLogin.stop();
       });
+
+
+      var pollingLogin = (function(){
+        var keepGoing = false;
+        
+        function polling(callback){
+          var interval = 750;
+          $.getJSON("/login-polling/",function(data){
+            if(data.logged_in){return callback();}
+            keepGoing && setTimeout(function(){
+              polling(callback);
+            },interval);
+          }).fail(function(){
+            keepGoing && setTimeout(function(){
+              polling(callback);
+            },interval);
+          });
+        }
+
+        return {
+          start: function(callback){
+            keepGoing = true;
+            polling(callback);
+          },
+          stop: function(){
+            keepGoing = false;
+          }
+        }
+
+      })();
+      // 登录
+       // 注册
+      // $("#modal-register .btn-submit").click(function() {
+      //     $("#modal-register .bd").hide();
+      //     $("#modal-register .success").show();
+      // });
     })(jQuery)
 		</script>
 		<?php wp_footer(); ?>

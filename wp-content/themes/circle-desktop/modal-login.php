@@ -14,7 +14,7 @@
             </div>
           </div>
           <div class="right">
-            <img src="<?=get_template_directory_uri()?>/img/login-qr.png" alt="">
+            <img id="login-qr" src="<?=get_template_directory_uri()?>/img/login-qr.png" alt="login qr">
           </div>
         </div>
       </div>
