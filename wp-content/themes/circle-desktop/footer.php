@@ -74,7 +74,7 @@
 
       $("#modal-login").on('show.bs.modal',function(){
         var loginModal = $(this);
-        $.getJSON("/login-qrcode/",function(data){
+        $.getJSON(window.apiBase + "/login-qrcode/",function(data){
           var url = data.url;
           loginModal.find("#login-qr").attr("src", url);
         });
