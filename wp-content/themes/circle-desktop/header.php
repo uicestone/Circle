@@ -19,9 +19,6 @@
 						<li class="menu-item">
 							<a href="javascript:;" data-toggle="modal" data-target="#modal-login">登录</a>
 						</li>
-						<li class="menu-item">
-							<a href="javascript:;" data-toggle="modal" data-target="#modal-register">注册</a>
-						</li>
 					</ul><a href="#" data-toggle="modal" data-target="#modal-mine" class="menu-item mine">Morning, 王同学</a>
 				</div>
 			</div>
