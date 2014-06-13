@@ -11,7 +11,7 @@ add_action('init', function(){
 	wp_register_script('bootstrap', get_template_directory_uri() . '/js/desktop/placeholder.js', array('jquery'));
 	
 	$scripts = array(
-		'script'=>array('jquery.slides', 'mbox', 'mousewheel', 'placeholder', 'scrollbar'),
+		'script'=>array('base', 'jquery.slides', 'mbox', 'mousewheel', 'placeholder', 'scrollbar'),
 		'style'=>array('base', 'brand', 'collection', 'detail', 'list', 'login', 'mixins', 'order', 'scrollbar', 'success', 'variables'),
 	);
 	
@@ -27,6 +27,7 @@ add_action('init', function(){
 add_action('wp_enqueue_scripts', function(){
 	wp_enqueue_style('bootstrap');
 	wp_enqueue_style('base');
+	wp_enqueue_script('base');
 	wp_enqueue_script('jquery');
 	wp_enqueue_script('bootstrap');
 	wp_enqueue_script('placeholder');

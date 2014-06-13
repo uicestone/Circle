@@ -56,28 +56,25 @@ get_header();
 					<li>14</li>
 				</ul><a href="#" class="howto">戒指选择指南</a>
 			</div>
-			<div class="buy dblock last"><a href="#" data-toggle="modal" data-target="#myModal" class="submit">点击购买</a>
+			<div class="buy dblock last"><a href="#" id="buy" class="submit">点击购买</a>
 				<div class="hint">免运费
 					<br>7天无理由退货</div>
-			</div>
-			<div id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" class="modal fade">
-				<div class="modal-dialog modal-lg">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" data-dismiss="modal" aria-hidden="true" class="close">×</button>
-							<h4 id="myModalLabel" class="modal-title">Modal title</h4>
-						</div>
-						<div class="modal-body">...</div>
-						<div class="modal-footer">
-							<button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
-							<button type="button" class="btn btn-primary">Save changes</button>
-						</div>
-					</div>
-				</div>
 			</div>
 		</div>
 	</div>
 </div>
+<script>
+(function($){
+
+	$("#buy").click(function(){
+		judgeLogin(function(){
+			$("#modal-order-detail").modal();
+		},function(){
+			$("#modal-login").modal();
+		});
+	});
+})(jQuery);
+</script>
 <?php get_template_part('modal','upkeep') ?>
 <?php get_template_part('modal','brand-service') ?>
 <?php get_template_part('modal','certificate') ?>
