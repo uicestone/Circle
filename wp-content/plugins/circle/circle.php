@@ -43,7 +43,7 @@ add_action('init', function(){
 			'search_items'=>'搜索产品'
 		),
 		'public'=>true,
-		'supports'=>array('title','editor','thumbnail','revisions'),
+		'supports'=>array('title','editor','thumbnail','revisions','page-attributes'),
 		'has_archive'=>true,
 		'register_meta_box_cb'=>function($post){
 			add_meta_box('properties', '参数', function($post){
@@ -168,6 +168,27 @@ add_action('wp_loaded', function(){
 	flush_rewrite_rules();
 	//global $wp_rewrite;
 	//print_r($wp_rewrite->rewrite_rules());
+});
+
+add_filter('posts_orderby', function($orderby_statement){
+	return str_replace('wp_posts.menu_order,wp_posts.post_date desc', 'wp_posts.menu_order desc,wp_posts.post_date desc', $orderby_statement);
+});
+
+/**
+ * Modify the main loop,
+ * rather than put it aside and create a new one.
+ * This is a nice solution when we need to get more args from uri,
+ * and are not willing to parse them in our new main loop
+ */
+add_action('parse_query', function($wp_query){
+
+	if(!$wp_query->is_main_query() || !$wp_query->is_archive() || get_query_var('post_type') !== 'product'){
+		return;
+	}
+
+	!get_query_var('orderby') && $wp_query->set('orderby', 'menu_order date');
+	!get_query_var('order') && $wp_query->set('order', 'desc');
+
 });
 
 function get_piece($string, $prefer_index = 0, $delimiter = '/\s*\|\s/'){
