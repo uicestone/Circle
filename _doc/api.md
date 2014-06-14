@@ -7,7 +7,8 @@ GET /login-qrcode/
 
 //个人资料
 GET | POST /user-profile/
-若用户未登录，则响应内容为空
+若用户未登录，则响应内容为
+{}
 若用户已登录，响应内容为
 {
 	"nickname":"",
@@ -19,7 +20,7 @@ GET | POST /user-profile/
 }
 
 //已完成订单的详情
-//GET /order/[?id=1]
+GET /order/[?id=1]
 [
 	{
 		"date":"value",
