@@ -73,12 +73,23 @@ get_header();
 </div>
 <script>
 (function($){
-	$(".choices li").click(function(){
-		$(".choices li").removeClass("active");
-		$(this).addClass("active");
-	});
-	$("#buy").click(function(){
-		judgeLogin(function(){
+	$(function(){
+		$(".choices li").click(function(){
+			$(".choices li").removeClass("active");
+			$(this).addClass("active");
+		});
+		$("#modal-order-confirm .btn-sure").click(function(){
+			$("#modal-order-confirm").modal('hide');
+			$("#modal-payment").modal();
+		});
+
+		$("#modal-order-confirm .btn-continue").click(function(){
+			$("#modal-order-confirm").modal('hide');
+		});
+
+		// $("#modal-payment").modal();
+
+		function loggedHandler(){
 			// $("#modal-order-confirm").modal();
 			// return
 			var count = 2;
@@ -98,8 +109,11 @@ get_header();
 				modal.find(".addresses").html( render($("#tpl-address").html(),{profile:profile}) );
 				modal.find(".order-detail").html( render($("#tpl-order-detail").html(),{product:product}) );
 			}
-		},function(){
-			$("#modal-login").modal();
+		}
+		$("#buy").click(function(){
+			judgeLogin(loggedHandler,function(){
+				$("#modal-login").modal();
+			});
 		});
 	});
 })(jQuery);
@@ -108,4 +122,5 @@ get_header();
 <?php get_template_part('modal','brand-service') ?>
 <?php get_template_part('modal','certificate') ?>
 <?php get_template_part('modal','order-confirm') ?>
+<?php get_template_part('modal','payment') ?>
 <?php get_footer(); ?>		

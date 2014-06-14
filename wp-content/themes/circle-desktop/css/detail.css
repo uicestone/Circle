@@ -217,3 +217,37 @@
   float:right;
   display: block
 }
+
+#modal-payment .modal-body{
+  padding: 0 75px;
+}
+
+#modal-payment .modal-body:after{
+  clear:both;
+  content:"";
+  display:block;
+}
+
+#modal-payment .modal-dialog{
+  width: 850px;
+}
+
+#modal-payment .way{
+  float: left;
+  padding: 100px 60px;
+}
+#modal-payment .way h2{
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 2;
+}
+#modal-payment .way p{
+  font-size: 12px;
+  line-height: 2;
+}
+
+#modal-payment .way .btn-pay{
+  cursor: pointer;
+  display: block;
+  margin-top: 30px;
+}

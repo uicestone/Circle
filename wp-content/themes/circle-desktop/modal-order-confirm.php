@@ -38,8 +38,8 @@
           </tr>
         </table>
         <div class="btns">
-          <div class="btn btn-black">确认付款</div>
-          <div class="btn">继续购买</div>
+          <div class="btn btn-black btn-sure">确认付款</div>
+          <div class="btn btn-continue">继续购买</div>
         </div>
         <div class="clear"></div>
       </div>
