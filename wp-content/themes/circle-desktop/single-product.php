@@ -33,9 +33,9 @@ get_header();
 				<div class="inner">
 					<?php the_title(); ?>
 					<br>
-					<?php echo get_piece(get_post_meta(get_the_ID(), 'name_en', true))?>
+					<?php //echo get_piece(get_post_meta(get_the_ID(), 'name_en', true))?>
 					<br>
-					<?php echo get_piece(get_post_meta(get_the_ID(), 'material', true)); ?>
+					<?php //echo get_piece(get_post_meta(get_the_ID(), 'material', true)); ?>
 				</div>
 				<div class="price">￥<?php echo get_post_meta(get_the_ID(), 'price', true); ?></div>
 			</div>
@@ -110,6 +110,14 @@ get_header();
 				modal.find(".order-detail").html( render($("#tpl-order-detail").html(),{product:product}) );
 			}
 		}
+
+		if(location.hash.slice(1) == "orders"){
+			var modal = $("#modal-mine");
+			modal.modal();
+			modal.find(".menu .active").removeClass("active");
+			modal.find(".menu li:eq(1) a").trigger("click");
+		}
+
 		$("#buy").click(function(){
 			judgeLogin(loggedHandler,function(){
 				$("#modal-login").modal();

@@ -84,8 +84,6 @@
       }).on('hide.bs.modal',function(){
         pollingLogin.stop();
       });
-
-      
       // 登录
        // 注册
       // $("#modal-register .btn-submit").click(function() {
