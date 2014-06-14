@@ -92,6 +92,7 @@ get_header();
 		function loggedHandler(){
 			// $("#modal-order-confirm").modal();
 			// return
+			loading.show();
 			var count = 2;
 			var profile,product;
 			var size = $(".choices .active").text();
@@ -104,6 +105,8 @@ get_header();
 			function success(){
 				count--;
 				if(count !== 0 ){return;}
+
+				loading.hide();
 				var modal = $("#modal-order-confirm");
 				modal.modal();
 				modal.find(".addresses").html( render($("#tpl-address").html(),{profile:profile}) );

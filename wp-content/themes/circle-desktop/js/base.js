@@ -1,6 +1,21 @@
 (function($) {
   var exports = {
     apiBase: "http://circlewava.apiary-mock.com",
+    loading: {
+      init: function() {
+        $("<div id='loading' />").appendTo($('body'));
+        new Spinner({
+          color: "#fff",
+        }).spin(document.getElementById('loading'));
+        loading.hide();
+      },
+      show: function() {
+        $("#loading").show();
+      },
+      hide: function() {
+        $("#loading").hide();
+      }
+    },
     pollingLogin: (function() {
       var keepGoing = false;
 
@@ -72,5 +87,8 @@
       };
     })()
   }
+  $(function() {
+    window.loading.init();
+  });
   $.extend(window, exports);
 })(jQuery);
