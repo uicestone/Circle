@@ -123,7 +123,18 @@ add_action('init', function(){
 			'origin',
 			'_product_image_gallery',
 			'_mobile_list_thumbnail',
-			'_mobile_product_head'
+			'_mobile_product_head',
+			
+			'province',
+			'address',
+			'zipcode',
+			'receiver',
+			'contact',
+			'product',
+			'amount',
+			'size',
+			'num',
+			'status',
 		);
 		
 		foreach($metas as $field){
@@ -138,7 +149,7 @@ add_action('init', function(){
 		'labels'=>array(
 			'all_items'=>'所有订单',
 			'add_new'=>'新订单',
-			'add_new_items'=>'添加新订单',
+			'add_new_item'=>'新建订单',
 			'edit_item'=>'编辑订单',
 			'new_item'=>'新订单',
 			'search_items'=>'搜索订单'
@@ -146,7 +157,21 @@ add_action('init', function(){
 		'show_ui'=>true,
 		'show_in_menu'=>true,
 		'menu_icon'=>'dashicons-format-aside',
-		'supports'=>array(),
+		'supports'=>array('title'),
+		'register_meta_box_cb'=>function($post){
+			remove_meta_box( 'slugdiv', 'shop_order' , 'normal' );
+			add_meta_box('base-info', '基本信息', function($post){
+				require plugin_dir_path(__FILE__) . 'templates/order-base-info-meta-box.php';
+			}, 'shop_order', 'side');
+			add_meta_box('ship-info', '物流信息', function($post){
+				require plugin_dir_path(__FILE__) . 'templates/order-ship-info-meta-box.php';
+			}, 'shop_order', 'normal');
+			add_meta_box('product-info', '商品信息', function($post){
+				$product = get_post_meta($post->ID, 'product', true);
+				$product_order_meta = json_decode(get_post_meta($post->ID, 'product_meta', true));
+				require plugin_dir_path(__FILE__) . 'templates/order-product-info-meta-box.php';
+			}, 'shop_order', 'normal');
+		}
 	));
 	
 	show_admin_bar(false);
@@ -165,7 +190,7 @@ add_action('admin_enqueue_scripts', function(){
 });
 
 add_action('wp_loaded', function(){
-	flush_rewrite_rules();
+//	flush_rewrite_rules();
 	//global $wp_rewrite;
 	//print_r($wp_rewrite->rewrite_rules());
 });

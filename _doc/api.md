@@ -24,9 +24,14 @@ GET /order/[?id=1]
 [
 	{
 		"date":"value",
-		"address":"",
+		"province":"",//省市信息
+		"address":"",//详细地址
+		"zipcode":"",
+		"receiver":"",//收货人姓名
+		"contact":"",//联系方式
 		"id":"",
 		"num":"",
+		"price":"",//订单总价
 		"product":{
 			"id":0,
 			"num":"",

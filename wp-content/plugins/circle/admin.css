@@ -11,3 +11,7 @@
 .image-gallery .gallery-images {
 	display: table;
 }
+
+textarea.regular-text {
+	width: 25em;
+}
