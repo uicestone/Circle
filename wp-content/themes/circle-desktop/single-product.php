@@ -73,10 +73,31 @@ get_header();
 </div>
 <script>
 (function($){
-
+	$(".choices li").click(function(){
+		$(".choices li").removeClass("active");
+		$(this).addClass("active");
+	});
 	$("#buy").click(function(){
 		judgeLogin(function(){
-			$("#modal-order-detail").modal();
+			// $("#modal-order-confirm").modal();
+			// return
+			var count = 2;
+			var profile,product;
+			var size = $(".choices .active").text();
+			$.get(apiBase + "/user-profile/",function(data){
+				profile = data; success();
+			});
+			$.get(apiBase + "/product/",function(data){
+				product = $.extend(data,{amount:1,size:size}); success();
+			});
+			function success(){
+				count--;
+				if(count !== 0 ){return;}
+				var modal = $("#modal-order-confirm");
+				modal.modal();
+				modal.find(".addresses").html( render($("#tpl-address").html(),{profile:profile}) );
+				modal.find(".order-detail").html( render($("#tpl-order-detail").html(),{product:product}) );
+			}
 		},function(){
 			$("#modal-login").modal();
 		});
@@ -86,4 +107,5 @@ get_header();
 <?php get_template_part('modal','upkeep') ?>
 <?php get_template_part('modal','brand-service') ?>
 <?php get_template_part('modal','certificate') ?>
+<?php get_template_part('modal','order-confirm') ?>
 <?php get_footer(); ?>		
