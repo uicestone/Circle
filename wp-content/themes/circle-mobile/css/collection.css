@@ -21,6 +21,7 @@
   overflow: hidden;
 }
 .list .item .pic {
+  width: 100%;
   height: 220px;
 }
 .list .item .txt {
