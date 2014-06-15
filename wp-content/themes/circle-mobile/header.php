@@ -8,6 +8,7 @@
     <title>缘点彩色珠宝</title>
     <?php wp_head(); ?>
     <script>
+		var siteUrl = '<?=site_url()?>';
         var startTime = +new Date;
         (function() {
             var isAndroid = navigator.userAgent.toLowerCase().indexOf("android") > -1;
@@ -21,4 +22,4 @@
     </script>
 </head>
 
-<body <?php body_class($class); ?>>
+<body <?php body_class(); ?>>
