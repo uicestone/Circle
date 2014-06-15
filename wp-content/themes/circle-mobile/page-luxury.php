@@ -25,7 +25,7 @@ get_header();
 	</div>
 	<div class="btns">
 		<div class="btn">
-			<div class="text">点此返回</div>
+			<div class="text"><a href="<?=site_url()?>">点此返回</div>
 		</div>
 	</div>
 </div>
