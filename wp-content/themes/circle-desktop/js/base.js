@@ -1,6 +1,6 @@
 (function($) {
   var exports = {
-    apiBase: siteUrl,
+    apiBase: "http://circlewava.apiary-mock.com",
     loading: {
       init: function() {
         $("<div id='loading' />").appendTo($('body'));
@@ -45,7 +45,11 @@
     judgeLogin: function(succ, fail) {
       var self = this;
       $.getJSON( apiBase + "/user-profile/", function(data) {
-        if (data.nickname !== undefined) {
+        var keys = [];
+        for(var item in data){
+          keys.push(item);
+        }
+        if (keys.length) {
           return succ();
         } else {
           fail();

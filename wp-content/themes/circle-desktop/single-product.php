@@ -80,6 +80,12 @@ get_header();
 		</div>
 	</div>
 </div>
+
+<form id="payment-form" action="/buy/" method="POST">
+	<input type="hidden" name="gateway" class="gateway">
+	<input type="hidden" name="product" class="product">
+	<input type="hidden" name="address" class="address">
+</form>
 <script>
 (function($){
 	$(function(){
@@ -101,26 +107,30 @@ get_header();
 		function loggedHandler(){
 			// $("#modal-order-confirm").modal();
 			// return
-			loading.show();
-			var count = 2;
-			var profile,product;
+			// loading.show();
+			// var count = 2;
+			var profile = window.profile;
+			var product = window.product;
 			var size = $(".choices .active").text();
-			$.get(apiBase + "/user-profile/",function(data){
-				profile = data; success();
-			});
-			$.get(apiBase + "/product/",function(data){
-				product = $.extend(data,{amount:1,size:size}); success();
-			});
-			function success(){
-				count--;
-				if(count !== 0 ){return;}
+			product = $.extend(product,{amount:1,size:size});
+			// $.get(apiBase + "/user-profile/",function(data){
+			// 	profile = data; success();
+			// });
+			// $.get(apiBase + "/product/",function(data){
+			//  success();
+			// });
+			// function success(){
 
-				loading.hide();
+				// loading.hide();
 				var modal = $("#modal-order-confirm");
 				modal.modal();
 				modal.find(".addresses").html( render($("#tpl-address").html(),{profile:profile}) );
 				modal.find(".order-detail").html( render($("#tpl-order-detail").html(),{product:product}) );
-			}
+
+
+				$("#payment-form").find(".product").val(JSON.stringify(product));
+				$("#payment-form").find(".address").val(JSON.stringify(profile));
+			// }
 		}
 
 		if(location.hash.slice(1) == "orders"){
@@ -134,6 +144,12 @@ get_header();
 			judgeLogin(loggedHandler,function(){
 				$("#modal-login").modal();
 			});
+		});
+
+		$(".btn-alipay,.btn-weixin").click(function(){
+			var gateway = $(this).attr("data-gateway");
+			$("#payment-form").find(".gateway").val(gateway);
+			$("#payment-form").submit();
 		});
 
 		;(function(){

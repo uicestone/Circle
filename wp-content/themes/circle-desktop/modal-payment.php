@@ -11,7 +11,7 @@
           <p>您可以使用微信扫一扫功能</p>
           <p>扫下方的二维码</p>
           <p>身份识别成功后 使用微信支付</p>
-          <a class="weixin-qr btn-pay">
+          <a class="weixin-qr btn-weixin btn-pay" data-gateway="weixin">
             <img src="<?=get_template_directory_uri()?>/img/login-qr.png" alt="">
           </a>
         </div>
@@ -20,7 +20,7 @@
           <p>您可以直接使用支付宝支付</p>
           <p>我们与支付宝合作</p>
           <p>请您放心 点击图标进入支付页面</p>
-          <a class="btn-alipay btn-pay">
+          <a class="btn-alipay btn-pay" data-gateway="alipay">
             <img src="<?=get_template_directory_uri()?>/img/btn-alipay.png" alt="">
           </a>
         </div>
