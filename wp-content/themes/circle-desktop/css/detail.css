@@ -251,3 +251,66 @@
   display: block;
   margin-top: 30px;
 }
+
+
+#modal-guide{
+  font-size: 12px
+}
+#modal-guide h2{
+  padding-top: 26px;
+  padding-bottom: 26px
+}
+
+#modal-guide .guides{
+  margin-top: 37px;  
+  margin-bottom: 68px;
+  font-size: 12px;
+}
+
+#modal-guide .modal-body{
+  width: 950px;
+  margin: 0 auto;
+  padding: 20px 0 65px 0;
+}
+
+#modal-guide .guides:after{
+  content:"";
+  display: block;
+  clear: both;
+}
+
+#modal-guide .left,
+#modal-guide .right
+{
+  float: left;
+  margin-right: 40px;
+  width: 435px;
+}
+
+
+#modal-guide .right .pic{
+  text-align: center;
+}
+
+#modal-guide h2,h3{
+  font-size: 12px;
+  font-weight: bold;
+}
+
+#modal-guide .guides img{
+  margin-bottom: 15px;
+}
+
+#modal-guide table{
+  margin-top: 15px;
+  margin-bottom: 50px;
+  width: 100%;
+}
+
+
+#modal-guide .guides table td{
+  width: 40px
+}
+#modal-guide .guides table .tt{
+  width: 135px;
+}

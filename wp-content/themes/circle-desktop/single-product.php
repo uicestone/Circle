@@ -71,7 +71,7 @@ get_header();
 					<li>12</li>
 					<li class="active">13</li>
 					<li>14</li>
-				</ul><a href="#" class="howto">戒指选择指南</a>
+				</ul><a href="#" data-toggle="modal" data-target="#modal-guide" class="howto">戒指选择指南</a>
 			</div>
 			<div class="buy dblock last"><a href="#" id="buy" class="submit">点击购买</a>
 				<div class="hint">免运费
@@ -146,5 +146,6 @@ var product = <?=json_encode($product_info)?>
 <?php get_template_part('modal','brand-service') ?>
 <?php get_template_part('modal','certificate') ?>
 <?php get_template_part('modal','order-confirm') ?>
+<?php get_template_part('modal','guide') ?>
 <?php get_template_part('modal','payment') ?>
 <?php get_footer(); ?>		
