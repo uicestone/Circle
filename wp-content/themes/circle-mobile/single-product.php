@@ -36,7 +36,7 @@ get_header();
 			<td>¥<?=get_post_meta(get_the_ID(), 'price', true)?></td>
 		</tr>
 	</table>
-	<a href="" class="buy">
+	<a href="<?=site_url()?>/buy/?buy_product=<?=get_the_ID()?>" class="buy">
 		<img src="<?=get_template_directory_uri()?>/img/detail-buy.png" class="btn">
 	</a>
 	<div class="detail">
