@@ -3,6 +3,15 @@ add_action('wp_enqueue_scripts', function(){
 	wp_enqueue_style('detail');
 });
 the_post();
+$product_info = array(
+	'name'=>get_the_title(),
+	'name_en'=>get_piece(get_post_meta(get_the_ID(), 'name_en', true)),
+	'price'=>get_post_meta(get_the_ID(), 'price', true),
+	'origin'=>get_piece(get_post_meta(get_the_ID(), 'origin', true)),
+	'material'=>get_piece(get_post_meta(get_the_ID(), 'material', true)),
+	
+);
+
 get_header();
 ?>
 <div class="panel container">
@@ -33,9 +42,9 @@ get_header();
 				<div class="inner">
 					<?php the_title(); ?>
 					<br>
-					<?php //echo get_piece(get_post_meta(get_the_ID(), 'name_en', true))?>
+					<?php echo get_piece(get_post_meta(get_the_ID(), 'name_en', true))?>
 					<br>
-					<?php //echo get_piece(get_post_meta(get_the_ID(), 'material', true)); ?>
+					<?php echo get_piece(get_post_meta(get_the_ID(), 'material', true)); ?>
 				</div>
 				<div class="price">￥<?php echo get_post_meta(get_the_ID(), 'price', true); ?></div>
 			</div>
@@ -126,8 +135,12 @@ get_header();
 				$("#modal-login").modal();
 			});
 		});
+		
 	});
 })(jQuery);
+
+var product = <?=json_encode($product_info)?>
+
 </script>
 <?php get_template_part('modal','upkeep') ?>
 <?php get_template_part('modal','brand-service') ?>
