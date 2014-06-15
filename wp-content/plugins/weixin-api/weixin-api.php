@@ -15,6 +15,7 @@ class WeixinAPI {
 	private $pay_sign_key;
 	private $app_id;
 	private $app_secret;
+	private $token;
 	
 	function __construct() {
 		$this->partner_id = get_option('wx_partner_id');
@@ -22,26 +23,23 @@ class WeixinAPI {
 		$this->pay_sign_key = get_option('wx_pay_sign_key');
 		$this->app_id = get_option('wx_app_id');
 		$this->app_secret = get_option('wx_app_secret');
+		$this->token = get_option('wx_token');
 	}
 	
 	/*
-	 * 接口测试
+	 * 验证来源为微信
 	 */
-	function test(){
-		if(isset($_GET['echostr'])){
-			$sign = array(
-				'Test',
-				$_GET['timestamp'],
-				$_GET['nonce']
-			);
+	function verify(){
+		$sign = array(
+			$this->token,
+			$_GET['timestamp'],
+			$_GET['nonce']
+		);
 
-			sort($sign);
+		sort($sign, SORT_STRING);
 
-			if(sha1(implode($sign)) == $_GET['signature']){
-				echo $_GET['echostr'];
-			}else{
-				exit('Signature verification failed.');
-			}
+		if(sha1(implode($sign)) !== $_GET['signature']){
+			exit('Signature verification failed.');
 		}
 	}
 	
