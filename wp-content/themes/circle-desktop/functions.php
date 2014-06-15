@@ -27,9 +27,10 @@ add_action('init', function(){
 add_action('wp_enqueue_scripts', function(){
 	wp_enqueue_style('bootstrap');
 	wp_enqueue_style('base');
+	
+	wp_enqueue_script('jquery');
 	wp_enqueue_script('base');
 	wp_enqueue_script('spin');
-	wp_enqueue_script('jquery');
 	wp_enqueue_script('bootstrap');
 	wp_enqueue_script('placeholder');
 });
