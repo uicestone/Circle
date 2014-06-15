@@ -76,9 +76,11 @@
 
       $("#modal-login").on('show.bs.modal',function(){
         var loginModal = $(this);
+        loading.show();
         $.getJSON(apiBase + "/wx/qrcode/?action=login",function(data){
           var url = data.url;
           loginModal.find("#login-qr").attr("src", url).show();
+          loading.hide();
         });
         pollingLogin.start(function(){
           location.reload();
