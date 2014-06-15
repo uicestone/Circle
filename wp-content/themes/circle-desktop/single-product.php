@@ -31,10 +31,18 @@ get_header();
 	<div class="info">
 		<div class="pic">
 			<div class="inner">
-				<?php $image_ids = explode(',', get_post_meta(get_the_ID(), '_product_image_gallery', true)); ?>
-				<?php foreach($image_ids as $image_id){ ?>
-					<?php echo wp_get_attachment_image($image_id, 'desktop-product-gallery')?>
-				<?php } ?>
+				<div class="photos">
+					<div class="prev"></div>
+					<div class="slides">
+						<?php $image_ids = explode(',', get_post_meta(get_the_ID(), '_product_image_gallery', true)); ?>
+						<ul>
+						<?php foreach($image_ids as $image_id){ ?>
+							<li><?php echo wp_get_attachment_image($image_id, 'desktop-product-gallery')?></li>
+						<?php } ?>
+						</ul>
+					</div>
+					<div class="next"></div>
+				</div>				
 			</div>
 		</div>
 		<div class="detail">
