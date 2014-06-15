@@ -10,6 +10,7 @@ $product_id = $_GET['buy_product'];
 $order_id = wp_insert_post(array(
 	'post_type'=>'shop_order',
 	'post_title'=>get_post($product_id)->post_title,
+	'post_status'=>'private'
 ));
 
 add_post_meta($order_id, 'product', $product_id, true);
