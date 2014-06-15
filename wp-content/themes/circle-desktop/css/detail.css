@@ -12,8 +12,8 @@
 }
 
 .info{
-    width: 75%;
-    float: right
+  float: left;
+  width: 1023px;
 }
 .info:after{
     content:"";
@@ -21,19 +21,18 @@
     clear:both
 }
 .info .pic{
-    float: left;
-    width: 50%
+  width: 465px;
+  height: 300px;
+  float: left;
+  margin-right: 60px
 }
 
-.info .pic .inner{
-    padding: 0 60px
-} 
+
 .info .pic .inner img{
     width: 100%
 }
 .info .detail{
     float: left;
-    width: 50%;
     font-size: 12px;
     color: #fff
 }
@@ -115,6 +114,62 @@
   display: block;
   background-color: #fff;
   margin-bottom: 35px;
+}
+
+
+
+.photos{
+  position: relative;
+  width: 465px;
+  height: 100%;
+}
+
+.photos:after{
+  display: block;
+  content: "";
+  clear: both;
+}
+
+.photos .prev,
+.photos .next{
+  position: absolute;
+  float: left;
+  top: 0;
+  cursor: pointer;
+  width: 10px;
+  height: 10px;
+  background-repeat: no-repeat;
+}
+
+
+.photos .slides{
+  overflow: hidden;
+  height: 582px;
+  position: relative;
+}
+.photos ul{
+  position: absolute;
+  height: 100%;
+  width: 5000px;
+}
+
+.photos ul li{
+  float: left;
+  width: 465px;
+}
+.photos ul img{
+  display: block;
+}
+.photos .prev{
+  left: -26px;
+  margin-right: 26px;
+  background-image: url("../img/arrow-left.png")
+}
+
+.photos .next{
+  right: -26px;
+  margin-left: 26px;
+  background-image: url("../img/arrow-right.png")
 }
 
 /* 如何保养 */

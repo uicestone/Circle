@@ -135,6 +135,34 @@ get_header();
 				$("#modal-login").modal();
 			});
 		});
+
+		;(function(){
+      var slide_ul = $(".info .slides ul");
+      var current = 0;
+      var count = slide_ul.find("li").length;
+      var can_interact = true;
+      slide_ul.css("width",count * 465);
+      $(".photos .prev").click(function(){
+        if(current == 0 || !can_interact){return;}
+        current--;
+        can_interact = false;
+        slide_ul.animate({
+          left:"+=465"
+        },function(){
+          can_interact = true;
+        });
+      });   
+      $(".photos .next").click(function(){
+        if(current == count - 1 || !can_interact){return;}
+        current++;
+        can_interact = false;
+        slide_ul.animate({
+          left:"-=465"
+        },function(){
+          can_interact = true;
+        });
+      }); 
+    })(); 
 		
 	});
 })(jQuery);
