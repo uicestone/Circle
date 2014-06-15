@@ -413,6 +413,10 @@ a {
   width: 50%;
   float: left;
 }
+#modal-login #login-qr{
+  width: 240px;
+  height: 240px;
+}
 #modal-register {
   font-size: 12px;
 }

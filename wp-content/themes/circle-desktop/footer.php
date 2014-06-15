@@ -15,7 +15,7 @@
 			var profile = <?php get_template_part('user-profile'); ?>
 			
 			// 弹层tab切换
-			(function($){
+			;(function($){
       var menus = $(".modal-body .menu li");
       menus.click(function(e) {
           e.preventDefault();
@@ -76,9 +76,9 @@
 
       $("#modal-login").on('show.bs.modal',function(){
         var loginModal = $(this);
-        $.getJSON(window.apiBase + "/login-qrcode/",function(data){
+        $.getJSON(apiBase + "/wx/qrcode/?action=login",function(data){
           var url = data.url;
-          loginModal.find("#login-qr").attr("src", url);
+          loginModal.find("#login-qr").attr("src", url).show();
         });
         pollingLogin.start(function(){
           location.reload();
