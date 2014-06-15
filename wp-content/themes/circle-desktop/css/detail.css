@@ -1,5 +1,8 @@
 .content{
-    background-color: #303030;
+    background-color: #2c2c2b;
+    background-image: url('../img/photos/detail-bg.jpg');
+    background-repeat: no-repeat;
+    background-position: right top;
 }
 .aside .inner .title{
     color: #787878;
