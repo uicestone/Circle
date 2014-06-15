@@ -59,6 +59,8 @@
 .info .list li {
   width: 50%;
   float: left;
+  height: 450px;
+  overflow: hidden;
 }
 .info .list li a {
   display: block;
