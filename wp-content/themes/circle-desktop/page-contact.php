@@ -33,6 +33,6 @@
 			</ul>
 		</div>
 	</div>
-	<img src="/photos/contact.jpg" class="bigpic">
+	<img src="<?=get_template_directory_uri()?>/img/photos/contact.jpg" class="bigpic">
 </div>
 <?php get_footer(); ?>		

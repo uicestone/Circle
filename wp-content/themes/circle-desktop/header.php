@@ -19,11 +19,16 @@
 				</a>
 				<?php wp_nav_menu(array('theme_location'=>'desktop-head', 'menu_class'=>'nav', 'container'=>false, 'fallback_cb'=>'wp_bootstrap_navwalker::fallback', 'walker'=>new wp_bootstrap_navwalker())); ?>
 				<div class="user">
+					
+					<?php if(!is_user_logged_in()){ ?>
 					<ul class="nav">
 						<li class="menu-item">
 							<a href="javascript:;" data-toggle="modal" data-target="#modal-login">登录</a>
 						</li>
-					</ul><a href="#" data-toggle="modal" data-target="#modal-mine" class="menu-item mine">Morning, 王同学</a>
+					</ul>
+					<?php }else{ ?>
+					<a href="#" data-toggle="modal" data-target="#modal-mine" class="menu-item mine">你好, <?=get_user_meta(get_current_user_id(), 'nickname', true)?></a>
+					<?php } ?>
 				</div>
 			</div>
 		</div>
