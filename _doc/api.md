@@ -34,7 +34,8 @@ GET /order/[?id=1]
 		"id":"",
 		"num":"",
 		"price":"",//订单总价
-		"product":{
+		"product":0,
+		"product_meta":{
 			"id":0,
 			"name":"",
 			"size":"",
