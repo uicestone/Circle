@@ -206,14 +206,16 @@ class WeixinAPI {
 	}
 	
 	function generate_qr_code($scene_id, $action_info = array(), $action_name = 'QR_SCENE', $expires_in = '1800'){
-		
+		// TODO scene_id 应该要可以自动生成
+		// TODO 过期scene应该要回收
 		$url = 'https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=' . $this->get_access_token();
+		
+		$action_info['scene']['scene_id'] = $scene_id;
 		
 		$post_data = array(
 			'expire_seconds'=>$expires_in,
 			'action_name'=>$action_name,
 			'action_info'=>$action_info,
-			'scene_id'=>$scene_id
 		);
 		
 		$ch = curl_init($url);
@@ -229,11 +231,20 @@ class WeixinAPI {
 		
 		$response = json_decode(curl_exec($ch));
 		
-		if(!$response->ticket){
+		if(!property_exists($response, 'ticket')){
 			return $response;
 		}
 		
-		return 'https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=' . urlencode($response->ticket);
+		$qrcode = array(
+			'url'=>'https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=' . urlencode($response->ticket),
+			'expires_at'=>time() + $response->expire_seconds,
+			'action_info'=>$action_info,
+			'ticket'=>$response->ticket
+		);
+		
+		update_option('wx_qrscene_' . $scene_id, json_encode($qrcode));
+		
+		return $qrcode;
 		
 	}
 	

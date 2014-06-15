@@ -1,9 +1,11 @@
 //登录二维码
-GET /login-qrcode/
-{"url":""}
-
-//登录 /login-polling/ (已被下面的个人资料API取代)
-//{"logged_in":false}
+GET /wx/qrcode/?action=login
+{
+	"url":"https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=gQG77zoAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xL05rd3BuWWZsTHlGV1J6N1VUR0pmAAIEH3adUwMECAcAAA%3D%3D",
+	"expires_at":1402830118,
+	"action_info":{"scene":{"scene_id":"123"},"action":"login"},
+	"ticket":"gQG77zoAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xL05rd3BuWWZsTHlGV1J6N1VUR0pmAAIEH3adUwMECAcAAA=="
+}
 
 //个人资料
 GET | POST /user-profile/
