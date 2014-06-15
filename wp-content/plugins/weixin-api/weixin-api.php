@@ -45,6 +45,7 @@ class WeixinAPI {
 	
 	function get_access_token(){
 		
+		//TODO 似乎缓存access_token有点问题
 		$stored = json_decode(get_option('wx_access_token'));
 		
 		if($stored && $stored->expires_at > time()){
@@ -60,11 +61,29 @@ class WeixinAPI {
 		$return = json_decode(file_get_contents('https://api.weixin.qq.com/cgi-bin/token?' . http_build_query($query_args)));
 		
 		if($return->access_token){
-			update_option('wx_access_token', json_encode(array('token'=>$return->access_token, 'expires_at'=>time() + $return->expires_in)));
+			update_option('wx_access_token', json_encode(array('token'=>$return->access_token, 'expires_at'=>time() + $return->expires_in - 60)));
 			return $return->access_token;
 		}
 		
 		return false;
+		
+	}
+	
+	function get_user_info($openid, $lang = 'zh_CN'){
+		
+		$url = 'https://api.weixin.qq.com/cgi-bin/user/info?';
+		
+		$query_vars = array(
+			'access_token'=>$this->get_access_token(),
+			'openid'=>$openid,
+			'lang'=>$lang
+		);
+		
+		$url .= http_build_query($query_vars);
+		
+		$user_info = json_decode(file_get_contents($url));
+		
+		return $user_info;
 		
 	}
 	
@@ -74,70 +93,110 @@ class WeixinAPI {
 	 * @param type $scope
 	 * @return string
 	 */
-	function get_auth_url($redirect_uri = null, $scope = 'snsapi_base'){
+	function oauth_redirect($redirect_uri = null, $state = '', $scope = 'snsapi_base', $redirect = true){
+		
 		$url = 'https://open.weixin.qq.com/connect/oauth2/authorize?';
+		
 		$query_args = array(
 			'appid'=>$this->app_id,
 			'redirect_uri'=>is_null($redirect_uri) ? site_url() : $redirect_uri,
 			'response_type'=>'code',
 			'scope'=>$scope,
-			'state'=>1
+			'state'=>$state
 		);
+		
 		$url .= http_build_query($query_args) . '#wechat_redirect';
+		
+		if($redirect){
+			header('Location: ' . $url);
+		}
+		
 		return $url;
 	}
 	
-	/*
-	 * 获得用户信息
-	 */
-	function get_auth_info(){
-		if(isset($_GET['code'])){
-			
-			$url = 'https://api.weixin.qq.com/sns/oauth2/access_token?';
-			
-			$query_args = array(
-				'appid'=>$this->app_id,
-				'secret'=>$this->app_secret,
-				'code'=>$_GET['code'],
-				'grant_type'=>'authorization_code'
-			);
+	function get_oauth_token($code){
+		
+		$url = 'https://api.weixin.qq.com/sns/oauth2/access_token?';
 
-			$auth_result = json_decode(file_get_contents($url . http_build_query($query_args)));
+		$query_args = array(
+			'appid'=>$this->app_id,
+			'secret'=>$this->app_secret,
+			'code'=>$code,
+			'grant_type'=>'authorization_code'
+		);
 
-			if(!isset($auth_result->openid)){
-				exit('Authentication failed.');
-			}
+		$auth_result = json_decode(file_get_contents($url . http_build_query($query_args)));
 
-			if($auth_result->scope === 'snsapi_base'){
-				update_option('wx_oauth_access_token_' . $auth_result->openid, $auth_result->access_token);
-				return $auth_result->openid;
-			}
-
-			if($auth_result->scope === 'snsapi_userinfo'){
-				$user_info = json_decode(file_get_contents('https://api.weixin.qq.com/sns/userinfo?access_token=' . $auth_result->access_token . '&openid=' . $auth_result->openid . '&lang=zh_CN'));
-				return $user_info;
-			}
-			
-			// TODO 授权需要刷新
-			function refresh_token($refresh_token){
-				$auth_result = json_decode(file_get_contents('https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=wxccb5433a51ab1bb4&grant_type=refresh_token&refresh_token=' . $refresh_token));
-				return $auth_result;
-			}
-
-		}	
+		if(!isset($auth_result->openid)){
+			echo 'Authentication failed. ';
+			echo json_encode($auth_result);
+			exit;
+		}
+		
+		$auth_result->expires_at = $auth_result->expires_in + time();
+		
+		update_option('wx_oauth_token_' . $auth_result->openid, json_encode($auth_result));
+		
+		return $auth_result;
 	}
 	
-	function generate_js_pay_args($order_id){
+	function refresh_oauth_token($refresh_token){
+		
+		$url = 'https://api.weixin.qq.com/sns/oauth2/refresh_token?';
+		
+		$query_args = array(
+			'appid'=>$this->app_id,
+			'grant_type'=>'refresh_token',
+			'refresh_token'=>$refresh_token,
+		);
+		
+		$url .= http_build_query($query_args);
+		
+		$auth_result = json_decode(file_get_contents($url));
+		
+		return $auth_result;
+	}
+	
+	/*
+	 * OAuth方式获得用户信息
+	 */
+	function oauth_get_user_info($openid, $lang = 'zh_CN'){
+		
+		$url = 'https://api.weixin.qq.com/sns/userinfo?';
+		
+		$auth_info = get_option('wx_oauth_token_' . $openid);
+		
+		if(!$auth_info){
+			$auth_info = $this->get_oauth_token($_GET['code']);
+		}
+		elseif($auth_info->expires_at <= time()){
+			$auth_info = $this->refresh_oauth_token($auth_info->refresh_token);
+		}
+		
+		$query_vars = array(
+			'access_token'=>$auth_info->access_token,
+			'openid'=>$openid,
+			'lang'=>$lang
+		);
+		
+		$url .= http_build_query($query_vars);
+		
+		$user_info = json_decode(file_get_contents($url));
+		
+		return $user_info;
+	}
+	
+	function generate_js_pay_args($notify_url, $order_id, $total_price, $order_name, $attach = ' '){
 		
 		$package_data = array(
 			'bank_type'=>'WX',
-			'body'=>'测试订单',
-			'attach'=>'CircleWava',
+			'body'=>$order_name,
+			'attach'=>$attach,
 			'partner'=>$this->partner_id,
 			'out_trade_no'=>$order_id,
-			'total_fee'=>(string)10,
+			'total_fee'=>(string)(int)$total_price * 100,
 			'fee_type'=>'1',
-			'notify_url'=>'http://dev.circlewava.com/wx/payment-confirm/',
+			'notify_url'=>$notify_url,
 			'spbill_create_ip'=>$_SERVER['REMOTE_ADDR'],
 			'input_charset'=>'UTF-8'
 		);
@@ -193,9 +252,9 @@ class WeixinAPI {
 			'url'=>"http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]",
 			'timestamp'=>$args['timeStamp'],
 			'noncestr'=>$args['nonceStr'],
-			'accesstoken'=>$this->get_access_token()
+			'accesstoken'=>$this->get_oauth_token($_GET['code'])->access_token
 		);
-		
+
 		ksort($sign_args, SORT_STRING);
 		$string1 = urldecode(http_build_query($sign_args));
 		
@@ -245,6 +304,32 @@ class WeixinAPI {
 		update_option('wx_qrscene_' . $scene_id, json_encode($qrcode));
 		
 		return $qrcode;
+		
+	}
+	
+	function remove_menu(){
+		$url = 'https://api.weixin.qq.com/cgi-bin/menu/delete?access_token=' . $this->get_access_token();
+		return json_decode(file_get_contents($url));
+	}
+	
+	function create_menu($data){
+		
+		$url = 'https://api.weixin.qq.com/cgi-bin/menu/create?access_token=' . $this->get_access_token();
+		
+		$ch = curl_init($url);
+		
+		curl_setopt_array($ch, array(
+			CURLOPT_POST => TRUE,
+			CURLOPT_RETURNTRANSFER => TRUE,
+			CURLOPT_HTTPHEADER => array(
+				'Content-Type: application/json'
+			),
+			CURLOPT_POSTFIELDS => json_encode($data, JSON_UNESCAPED_UNICODE)
+		));
+		
+		$response = json_decode(curl_exec($ch));
+		
+		return $response;
 		
 	}
 	
