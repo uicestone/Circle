@@ -12,8 +12,6 @@
 		<?php get_template_part('modal','login') ?>
 		<?php get_template_part('modal','mine') ?>
 		<script>
-			var profile = <?php get_template_part('user-profile'); ?>
-			
 			// 弹层tab切换
 			;(function($){
       var menus = $(".modal-body .menu li");

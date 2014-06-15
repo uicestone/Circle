@@ -4,6 +4,10 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>缘点彩色珠宝</title>
+		<script>
+			var profile = <?php get_template_part('user-profile'); ?>;
+			var siteUrl = '<?=site_url();?>';
+		</script>
 		<?php wp_head(); ?>
 	</head>
 
