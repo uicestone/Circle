@@ -33,19 +33,10 @@ if(isset($GLOBALS["HTTP_RAW_POST_DATA"])){
 		}
 		
 		$qrcode = json_decode(get_option('wx_qrscene_' . $scene_id));
-		
+
 		if($qrcode->action_info->action === 'login'){
-			$users = get_users(array('meta_key'=>'wx_openid','meta_value'=>$post['FromUserName']));
+			$users = get_users(array('meta_key'=>'wx_openid','meta_value'=>$post['FROMUSERNAME']));
 			if(!$users){
-				$user_info = $wx->get_user_info($post['FromUserName']);
-				$user_id = register_new_user($user_info->nickname, $user_info->nickname . '@circlewava.com');
-				add_user_meta($user_id, 'wx_openid', $post['FromUserName']);
-				add_user_meta($user_id, 'sex', $user_info->sex);
-				add_user_meta($user_id, 'country', $user_info->country);
-				add_user_meta($user_id, 'province', $user_info->province);
-				add_user_meta($user_id, 'language', $user_info->language);
-				add_user_meta($user_id, 'headimgurl', $user_info->headimgurl);
-				add_user_meta($user_id, 'subscribe_time', $user_info->subscribe_time);
 			}else{
 				wp_set_auth_cookie($users[0]->ID, true);
 			}
