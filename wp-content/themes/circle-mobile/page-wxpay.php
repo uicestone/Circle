@@ -31,7 +31,14 @@ get_header();
 			};
 			
 			jQuery.post(siteUrl + '/order/?set_order=' + '<?=$order_id?>', shipInfo, function(response){
+				WeixinJSBridge.invoke('getBrandWCPayRequest',<?=json_encode($wx->generate_js_pay_args(site_url() . '/wx/payment-confirm/', $order_id, get_post_meta($order_id, 'price', true), get_post($order_id)->post_title))?>, function(response) {
+					// 返回 res.err_msg,取值
+					// get_brand_wcpay_request:cancel 用户取消 // get_brand_wcpay_request:fail 发送失败
+					// get_brand_wcpay_request:ok 发送成功
+//					WeixinJSBridge.log(res.err_msg);
+//					alert(res.err_code + res.err_desc);
 					window.location.href = siteUrl + '/payment-success/';
+				});
 			});
 		});
 	});
