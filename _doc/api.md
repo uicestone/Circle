@@ -36,7 +36,6 @@ GET /order/[?id=1]
 		"price":"",//订单总价
 		"product":{
 			"id":0,
-			"num":"",
 			"name":"",
 			"size":"",
 			"amount":"",
@@ -46,11 +45,9 @@ GET /order/[?id=1]
 	},
 	...
 ]
-获得支付接口信息
-
 
 支付
-POST /pay/
+POST /buy/
 
 {
 	"gateway":"weixin"|"alipay"
