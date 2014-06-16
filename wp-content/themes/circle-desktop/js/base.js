@@ -19,21 +19,21 @@
     pollingLogin: (function() {
       var keepGoing = false;
 
-      function polling(callback) {
+      function polling(callback,scene_id) {
         var interval = 750;
         judgeLogin(function() {
           callback();
         }, function() {
           keepGoing && setTimeout(function() {
-            polling(callback);
+            polling(callback,scene_id);
           }, interval);
-        });
+        },scene_id);
       }
 
       return {
-        start: function(callback) {
+        start: function(callback, scene_id) {
           keepGoing = true;
-          polling(callback);
+          polling(callback,scene_id);
         },
         stop: function() {
           keepGoing = false;
@@ -42,9 +42,13 @@
 
     })(),
 
-    judgeLogin: function(succ, fail) {
+    judgeLogin: function(succ, fail, scene_id) {
       var self = this;
-      $.getJSON( apiBase + "/user-profile/", function(data) {
+      var url = apiBase + "/user-profile/";
+      if(scene_id){
+        url += "?scene_id="+scene_id;
+      }
+      $.getJSON( url, function(data) {
         var keys = [];
         for(var item in data){
           keys.push(item);

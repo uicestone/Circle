@@ -78,10 +78,10 @@
         $.getJSON(apiBase + "/wx/qrcode/?action=login",function(data){
           var url = data.url;
           loginModal.find("#login-qr").attr("src", url).show();
+          pollingLogin.start(function(){
+            location.reload();
+          },data.action_info.scene.scene_id);
           loading.hide();
-        });
-        pollingLogin.start(function(){
-          location.reload();
         });
       }).on('hide.bs.modal',function(){
         pollingLogin.stop();
