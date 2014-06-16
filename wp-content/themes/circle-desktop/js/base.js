@@ -1,6 +1,6 @@
 (function($) {
   var exports = {
-    apiBase: "http://circlewava.apiary-mock.com",
+    apiBase: siteUrl,
     loading: {
       init: function() {
         $("<div id='loading' />").appendTo($('body'));
