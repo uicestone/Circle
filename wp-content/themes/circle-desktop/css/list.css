@@ -59,7 +59,7 @@
 .info .list li {
   width: 50%;
   float: left;
-  height: 450px;
+  height: 380px;
   overflow: hidden;
 }
 .info .list li a {
@@ -68,4 +68,5 @@
 }
 .info .list li a img {
   width: 100%;
+  height: auto;
 }

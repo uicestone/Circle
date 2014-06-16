@@ -12,7 +12,7 @@
 }
 .list .item {
   background-color: #fff;
-  width: 160px;
+  width: 50%;
   float: left;
   border: 1px solid #2c2c2b;
   -webkit-box-sizing: border-box;
