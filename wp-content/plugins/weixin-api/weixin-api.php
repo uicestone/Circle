@@ -109,6 +109,7 @@ class WeixinAPI {
 		
 		if($redirect){
 			header('Location: ' . $url);
+			exit;
 		}
 		
 		return $url;
@@ -194,7 +195,7 @@ class WeixinAPI {
 			'attach'=>$attach,
 			'partner'=>$this->partner_id,
 			'out_trade_no'=>$order_id,
-			'total_fee'=>(string)(int)$total_price * 100,
+			'total_fee'=>(string)(int) ($total_price * 100),
 			'fee_type'=>'1',
 			'notify_url'=>$notify_url,
 			'spbill_create_ip'=>$_SERVER['REMOTE_ADDR'],

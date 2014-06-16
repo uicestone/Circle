@@ -1,4 +1,10 @@
 <?php
+/**
+ * 微信用户授权跳转回调页面
+ * 利用open_id识别用户
+ */
+
+// 更新订单的物流信息
 if(isset($_GET['set_order'])){
 	update_option('wx_post_data', json_encode($_POST));
 	$order_id = $_GET['set_order'];
@@ -9,9 +15,22 @@ if(isset($_GET['set_order'])){
 }
 
 $wx = new WeixinAPI();
+
+if(!isset($_GET['code']) || !isset($_GET['state'])){
+	$wx->oauth_redirect(site_url() . '/order/');
+}
+
+$auth_info = $wx->get_oauth_token($_GET['code']);
+
+$users = get_users(array('meta_key'=>'wx_openid','meta_value'=>$auth_info->openid));
+
+if(!$users){
+	header('Location: ' . site_url());
+}
+
 query_posts(array(
 	'post_type'=>'shop_order',
-	'author'=>'',
+	'author'=>$users[0]->ID,
 ));
 get_header();
 ?>
