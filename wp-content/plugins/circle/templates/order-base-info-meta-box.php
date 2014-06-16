@@ -1,6 +1,6 @@
 <div class="misc-pub-section">
 	<label>订单号：</label>
-	<span><?=get_post_meta($post->ID, 'num', true)?></span>
+	<span><?=$post->ID?></span>
 </div>
 <div class="misc-pub-section">
 	<label>订单状态：</label>
