@@ -71,6 +71,7 @@ body {
 .detail img {
   display: block;
   width: 100%;
+  height: auto;
 }
 .manufacturing {
   border-top: 1px solid #25a58e;
