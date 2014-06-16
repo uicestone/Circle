@@ -206,13 +206,14 @@ add_filter('posts_orderby', function($orderby_statement){
  * and are not willing to parse them in our new main loop
  */
 add_action('parse_query', function($wp_query){
-
-	if(!$wp_query->is_main_query() || !$wp_query->is_archive() || get_query_var('post_type') !== 'product'){
+	
+	if(!$wp_query->is_main_query() || !$wp_query->is_archive()){
 		return;
 	}
 
 	!get_query_var('orderby') && $wp_query->set('orderby', 'menu_order date');
 	!get_query_var('order') && $wp_query->set('order', 'desc');
+	!get_query_var('posts_per_page') && $wp_query->set('posts_per_page', -1);
 
 });
 
