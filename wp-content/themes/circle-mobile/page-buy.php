@@ -19,7 +19,7 @@ $users = get_users(array('meta_key'=>'wx_openid','meta_value'=>$auth_info->openi
 
 if(!$users){
 	$user_id = wp_create_user(substr($auth_info->openid, 0, 8), $auth_info->openid);
-	add_user_meta($user_id, 'wx_openid', $auth_info->openid);
+	add_user_meta($user_id, 'wx_openid', $auth_info->openid, true);
 }else{
 	$user_id = $users[0]->ID;
 }
