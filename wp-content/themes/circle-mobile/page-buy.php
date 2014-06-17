@@ -18,15 +18,8 @@ $auth_info = $wx->get_oauth_token($_GET['code']);
 $users = get_users(array('meta_key'=>'wx_openid','meta_value'=>$auth_info->openid));
 
 if(!$users){
-	$user_info = $wx->oauth_get_user_info($auth_info->openid);
-	$user_id = wp_create_user($user_info->nickname, $auth_info->openid);
+	$user_id = wp_create_user(substr($auth_info->openid, 0, 8), $auth_info->openid);
 	add_user_meta($user_id, 'wx_openid', $auth_info->openid);
-	add_user_meta($user_id, 'sex', $user_info->sex);
-	add_user_meta($user_id, 'country', $user_info->country);
-	add_user_meta($user_id, 'province', $user_info->province);
-	add_user_meta($user_id, 'language', $user_info->language);
-	add_user_meta($user_id, 'headimgurl', $user_info->headimgurl);
-	add_user_meta($user_id, 'subscribe_time', $user_info->subscribe_time);
 }else{
 	$user_id = $users[0]->ID;
 }
