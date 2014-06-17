@@ -19,8 +19,8 @@ $users = get_users(array('meta_key'=>'wx_openid','meta_value'=>$auth_info->openi
 
 if(!$users){
 	$user_info = $wx->oauth_get_user_info($auth_info->openid);
-	$user_id = wp_create_user($user_info->nickname, $post['FROMUSERNAME']);
-	add_user_meta($user_id, 'wx_openid', $post['FROMUSERNAME']);
+	$user_id = wp_create_user($user_info->nickname, $auth_info->openid);
+	add_user_meta($user_id, 'wx_openid', $auth_info->openid);
 	add_user_meta($user_id, 'sex', $user_info->sex);
 	add_user_meta($user_id, 'country', $user_info->country);
 	add_user_meta($user_id, 'province', $user_info->province);
@@ -41,6 +41,7 @@ $order_id = wp_insert_post(array(
 ));
 
 add_post_meta($order_id, 'product', $product_id, true);
+add_post_meta($order_id, 'status', 'pending', true);
 add_post_meta($order_id, 'price', get_post_meta($product_id, 'price', true), true);
 
 $product = array(

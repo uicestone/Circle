@@ -165,7 +165,7 @@ class WeixinAPI {
 		
 		$url = 'https://api.weixin.qq.com/sns/userinfo?';
 		
-		$auth_info = get_option('wx_oauth_token_' . $openid);
+		$auth_info = json_decode(get_option('wx_oauth_token_' . $openid));
 		
 		if(!$auth_info){
 			$auth_info = $this->get_oauth_token($_GET['code']);
