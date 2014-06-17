@@ -4,31 +4,55 @@
  * 可以输出当前登录用户的所有订单或者一个订单信息
  */
 if(isset($_GET['id'])){
-	$order = get_post($_GET['id']);
+	
+	$id = $_GET['id'];
+	$post = get_post($id);
+	
 	if(get_current_user_id() != $order->post_author){
-		exit('No permission to access order' . $_GET['id']);
+		exit('No permission to access order' . $id);
 	}
 	
-	$order_meta = get_post_meta($_GET['id'], '', true);
-	
 	$order = array(
-		"date"=>"value",
-		"province"=>"",//省市信息
-		"address"=>"",//详细地址
-		"zipcode"=>"",
-		"receiver"=>"",//收货人姓名
-		"contact"=>"",//联系方式
-		"id"=>"",
-		"num"=>"",
-		"price"=>"",//订单总价
-		"product"=>0,
-		"product_meta"=>array(
-			"id"=>0,
-			"name"=>"",
-			"size"=>"",
-			"amount"=>"",
-			"price"=>0.00,
-			"thumbnail"=>"{url}"
-		)
+		"date"=>$post->post_date,
+		"province"=>get_post_meta($id, 'province', true),//省市信息
+		"address"=>get_post_meta($id, 'address', true),//详细地址
+		"zipcode"=>get_post_meta($id, 'zipcode', true),
+		"receiver"=>get_post_meta($id, 'receiver', true),//收货人姓名
+		"contact"=>get_post_meta($id, 'contact', true),//联系方式
+		"id"=>$post->ID,
+		"price"=>get_post_meta($id, 'price', true),//订单总价
+		"product"=>get_post_meta($id, 'product', true),
+		"product_meta"=>json_decode(get_post_meta($id, 'product_meta', true))
 	);
+	
+	header('Content-Type: application/json');
+	echo json_encode($order);
+}
+else{
+	$posts = get_posts(array(
+		'post_type'=>'shop_order',
+		'post_status'=>'any',
+		'author'=>get_current_user_id()
+	));
+	
+	$orders = array();
+	
+	foreach($posts as $post){
+		$order = array(
+			"date"=>$post->post_date,
+			"province"=>get_post_meta($post->ID, 'province', true),//省市信息
+			"address"=>get_post_meta($post->ID, 'address', true),//详细地址
+			"zipcode"=>get_post_meta($post->ID, 'zipcode', true),
+			"receiver"=>get_post_meta($post->ID, 'receiver', true),//收货人姓名
+			"contact"=>get_post_meta($post->ID, 'contact', true),//联系方式
+			"id"=>$post->ID,
+			"price"=>get_post_meta($post->ID, 'price', true),//订单总价
+			"product"=>get_post_meta($post->ID, 'product', true),
+			"product_meta"=>json_decode(get_post_meta($post->ID, 'product_meta', true))
+		);
+		array_push($orders, $order);
+	}
+	
+	header('Content-Type: application/json');
+	echo json_encode($orders);
 }
