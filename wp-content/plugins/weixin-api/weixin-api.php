@@ -226,9 +226,9 @@ class WeixinAPI {
 		$pay_sign = sha1($string1);
 
 		$pay_request_args = array(
-			'appId'=>get_option('wx_app_id'),
-			'timeStamp'=>$timestamp,
-			'nonceStr'=>$nonce_str,
+			'appId'=>(string) get_option('wx_app_id'),
+			'timeStamp'=>(string) $timestamp,
+			'nonceStr'=>(string) $nonce_str,
 			'package'=>$package,
 			'signType'=>'SHA1',
 			'paySign'=>$pay_sign,
@@ -240,11 +240,11 @@ class WeixinAPI {
 	function generate_js_edit_address_args(){
 		
 		$args = array(
-			'appId'=>$this->app_id,
+			'appId'=>(string) $this->app_id,
 			'scope'=>'jsapi_address',
 			'signType'=>'sha1',
 			'addrSign'=>'',
-			'timeStamp'=>time(),
+			'timeStamp'=>(string) time(),
 			'nonceStr'=>(string) rand(1E15, 1E16-1)
 		);
 		
