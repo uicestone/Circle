@@ -6,7 +6,6 @@
 
 // 更新订单的物流信息
 if(isset($_GET['set_order'])){
-	update_option('wx_post_data', json_encode($_POST));
 	$order_id = $_GET['set_order'];
 	foreach($_POST as $key => $value){
 		update_post_meta($order_id, $key, $value);
