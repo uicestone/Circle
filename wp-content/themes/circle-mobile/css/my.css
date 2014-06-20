@@ -28,7 +28,7 @@
 .order .product .pic {
   float: left;
   width: 88px;
-  height: 88px;
+  height: auto;
   padding: 8px;
   margin-right: 5px;
 }

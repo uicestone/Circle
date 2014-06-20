@@ -32,6 +32,9 @@ query_posts(array(
 	'author'=>$users[0]->ID,
 	'post_status'=>'any'
 ));
+add_action('wp_enqueue_scripts', function(){
+	wp_enqueue_style('my');
+});
 get_header();
 $status = array(
 	'pending'=>'等待付款',
@@ -54,12 +57,12 @@ $status = array(
 					<div class="row status">订单状态：<?=$status[get_post_meta(get_the_ID(), 'status', true)]?></div>
 					<div class="row func">订单操作：
 						<?php if(get_post_meta(get_the_ID(), 'status', true) === 'pending'){ ?>
-						<span><a href="<?=$wx->oauth_redirect(site_url() . '/wx/wxpay/?pay_order=' . get_the_ID(), '', 'snsapi_base', false)?>">付款</a></span>
+						<span><a href="<?=$wx->oauth_redirect(site_url() . '/wx/wxpay/?pay_order=' . get_the_ID(), '', 'snsapi_base', false)?>">【付款】</a></span>
 						<?php } ?>
 					</div>
 				</div>
-				<div class="product" style="margin-top:10px;">
-					<img src="<?=get_template_directory_uri()?>/img/order.jpg" class="pic" style="float:left;width:80px;margin-right:10px;" />
+				<div class="product">
+					<?=get_the_post_thumbnail(get_post_meta(get_the_ID(), 'product', true), 'post-thumbnail', array('class'=>'pic'))?>
 					<div class="info">
 						<div class="name">商品名称： <?=get_the_title(get_post_meta(get_the_ID(), 'product', true))?></div>
 						<div class="price">商品金额： ￥<?=get_post_meta(get_the_ID(), 'price', true)?></div>
