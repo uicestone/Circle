@@ -36,9 +36,11 @@ get_header();
 			<td>¥<?=get_post_meta(get_the_ID(), 'price', true)?></td>
 		</tr>
 	</table>
+	<?php if(is_numeric(get_post_meta(get_the_ID(), 'price', true))){ ?>
 	<a href="<?=$wx->oauth_redirect(site_url() . '/buy/?buy_product=' . get_the_ID(), '', 'snsapi_base', false)?>" class="buy">
 		<img src="<?=get_template_directory_uri()?>/img/detail-buy.png" class="btn">
 	</a>
+	<?php } ?>
 	<div class="detail">
 		<?php the_content() ?>
 	</div>
