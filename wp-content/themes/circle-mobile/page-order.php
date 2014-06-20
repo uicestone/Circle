@@ -35,6 +35,10 @@ query_posts(array(
 add_action('wp_enqueue_scripts', function(){
 	wp_enqueue_style('my');
 });
+add_filter('body_class', function($class){
+	$class[] = 'nonav';
+	return $class;
+});
 get_header();
 $status = array(
 	'pending'=>'等待付款',
