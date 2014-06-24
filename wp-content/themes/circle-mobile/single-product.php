@@ -35,6 +35,16 @@ get_header();
 			<td class="fname w2">价 格</td>
 			<td style="font-size: 18px;color: #25a58e;">¥<?=get_post_meta(get_the_ID(), 'price', true)?></td>
 		</tr>
+		<tr>
+			<td class="fname w4">戒 圈 选 择</td>
+			<td>
+				<span class="page">10</span>
+				<span class="page">11</span>
+				<span class="page">12</span>
+				<span class="page">13</span>
+				<span class="page">14</span>
+			</td>
+		</tr>
 	</table>
 	<?php if(is_numeric(get_post_meta(get_the_ID(), 'price', true))){ ?>
 	<a href="<?=$wx->oauth_redirect(site_url() . '/buy/?buy_product=' . get_the_ID(), '', 'snsapi_base', false)?>" class="buy">
