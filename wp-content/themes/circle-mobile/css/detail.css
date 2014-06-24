@@ -28,9 +28,10 @@ body {
 }
 .table td {
   vertical-align: top;
+  line-height: 1.5;
 }
 .table td.fname {
-  width: 50px;
+  width: 60px;
   padding-right: 15px;
 }
 .table td.w4 {
@@ -57,9 +58,8 @@ body {
   clear: both;
 }
 .buy .btn {
-  float: right;
   margin-bottom: 12px;
-  width: 186px;
+  width: 100%;
 }
 .detail .quote {
   font-size: 12px;

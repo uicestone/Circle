@@ -20,20 +20,20 @@ get_header();
 	</div>
 	<table class="table">
 		<tr>
-			<td class="fname w4">商品名称</td>
+			<td class="fname w4">商 品 名 称</td>
 			<td><?php the_title(); ?></td>
 		</tr>
 		<tr>
-			<td class="fname w4">材质</td>
+			<td class="fname w2">材 质</td>
 			<td><?=get_piece(get_post_meta(get_the_ID(), 'material', true), 1)?></td>
 		</tr>
 		<tr>
-			<td class="fname w3">制造地</td>
+			<td class="fname w3">制 造 地</td>
 			<td><?=get_piece(get_post_meta(get_the_ID(), 'origin', true), 1)?></td>
 		</tr>
 		<tr>
-			<td class="fname w2">价格</td>
-			<td>¥<?=get_post_meta(get_the_ID(), 'price', true)?></td>
+			<td class="fname w2">价 格</td>
+			<td style="font-size: 18px;color: #25a58e;">¥<?=get_post_meta(get_the_ID(), 'price', true)?></td>
 		</tr>
 	</table>
 	<?php if(is_numeric(get_post_meta(get_the_ID(), 'price', true))){ ?>
