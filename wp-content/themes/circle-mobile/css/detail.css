@@ -73,6 +73,19 @@ body {
   width: 100%;
   height: auto;
 }
+
+.page{
+  border: 1px solid #34a68c;
+  color: #34a68c;
+  padding: 3px 3px 0px 3px;
+  display: inline-block;
+  position: relative;
+  top: -3px;
+  text-align: center;
+  line-height: 15px;
+  height: 15px;
+}
+
 .manufacturing {
   border-top: 1px solid #25a58e;
   margin: 24px 5px 0 5px;
