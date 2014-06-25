@@ -2,7 +2,7 @@
 
 add_action('init', function(){
 	
-	$css_files = array('base', 'brand', 'collection', 'detail', 'login', 'mixins', 'my', 'order', 'pay', 'swiper', 'variables');
+	$css_files = array('base', 'brand', 'baoyang', 'collection', 'detail', 'login', 'mixins', 'my', 'order', 'pay', 'swiper', 'variables');
 	
 	foreach($css_files as $css_file){
 		wp_register_style($css_file, get_template_directory_uri() . '/css/' . $css_file . '.css');

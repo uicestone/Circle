@@ -1,6 +1,6 @@
 .content {
   top: 32px;
-  background-image: url("/img/tile.png");
+  background-image: url("../img/tile.png");
   background-position: -60px -63px;
 }
 .content .content-inner {
