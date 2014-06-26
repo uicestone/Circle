@@ -27,7 +27,7 @@ a {
   width: 100%;
   position: fixed;
   z-index: 1;
-  background-image: url("../img/bg.png");
+  background-color: #000;
   top: 0;
 }
 .header .brand {
