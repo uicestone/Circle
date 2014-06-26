@@ -7,22 +7,18 @@ add_action('wp_enqueue_scripts', function(){
 get_header();
 
 ?>
-<div class="head">
-	<img src="<?=get_template_directory_uri()?>/img/logo.png" class="logo">
+<div style="height:auto" class="head">
+    <img src="<?=get_template_directory_uri()?>/img/new-nav.png" style="width:100%">
 </div>
 <div class="content">
 	<div class="content-inner">
-		<div class="banner center">生活是一个无边的圆
-			<br>圆心无处不在
-			<br>而圆周不在任何地方</div>
-		<img src="<?=get_template_directory_uri()?>/img/brand-1.jpg">
-		<h3 class="center title">品牌介绍</h3>
-		<p>始创于2013年的彩色珠宝品牌Circle，关注女性的生命状态，希望通过精心打造的每一件彩色珠宝，倡导一种融通豁达的生活态度。</p>
-		<p>Circle,探索女性与自我的相处，期望通过不同个性的珠宝促成此我与彼我的一场缘分，寻找你不自知的另一面。当女人遇见那个神秘的隐藏的自己，或许会回到原点，或许会找到缘点，又或许会走向圆点。</p>
-		<img src="<?=get_template_directory_uri()?>/img/brand-2.jpg">
-		<p>Circle珠宝作为国内专注于轻奢彩色珠宝的新锐品牌，旗下汇集许多来自欧美和日本的优秀独立设计师和品牌，力求在循环往复的流行风潮中呈现温柔岁月的女性表情和惊艳时代的女性价值。</p>
-		<img src="<?=get_template_directory_uri()?>/img/brand-3.jpg">
-		<p class="footer center">Circle，缘你而起，圆你所望。</p>
+		<img src="<?=get_template_directory_uri()?>/img/page-brand-1.jpg">
+		<h3>品牌介绍</h3>
+		<p>彩色珠宝品牌Circle始创于2013年，以关注女性的生命状态为初衷，希望通过彩色珠宝倡导一种融通豁达的女性生活态度。</p>
+		<img src="<?=get_template_directory_uri()?>/img/page-brand-2.jpg">
+		<p>作为一个女性高端珠宝订制品牌， Circle聚集了来自欧美、日本的独立设计师和设计品牌，专注于打造适合中国女性的品质彩宝，力求在流行与经典的平衡中寻求中国女性与众不同的优雅格调和历久弥新的时尚内涵。<br/>
+		Circle相信，女性的生命如同璀璨的彩色宝石一般丰富，个性化的珠宝不但可以帮助女性发掘自身的多种样貌，更可以让女性遇见更好的自己。</p>
+		<p>生命如同无边之圆，无论是回到原点，还是找到缘点，又或是走向圆点，拥有circle,你的生命之圆都将拥有无穷的可能，无限的延伸。</p>
 	</div>
 </div>
 <?php get_footer(); ?>
