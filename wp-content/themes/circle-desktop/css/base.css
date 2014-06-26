@@ -85,7 +85,7 @@ a {
 }
 /* footer */
 .footer {
-  background-image: url("../img/bg.png");
+  background-color: #000;
   position: fixed;
   bottom: 0;
   width: 100%;
