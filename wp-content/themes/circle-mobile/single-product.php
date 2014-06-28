@@ -14,6 +14,9 @@ the_post();
 
 get_header();
 ?>
+<div style="height:auto" class="head">
+    <img src="<?=get_template_directory_uri()?>/img/new-nav.png" style="width:100%">
+</div>
 <div class="content">
 	<div class="product">
 		<?php echo wp_get_attachment_image(get_post_meta(get_the_ID(), '_mobile_product_head', true), 'mobile-product-head'); ?>
