@@ -58,10 +58,6 @@ get_header();
 			</div>
 			<div class="meta dblock">
 				<ul class="tips">
-					<li><a href="javascript:;" data-toggle="modal" data-target="#modal-upkeep">如何保养</a>
-					</li>
-					<li><a href="javascript:;" data-toggle="modal" data-target="#modal-brand-service">品牌服务</a>
-					</li>
 					<li class="last"><a href="javascript:;" data-toggle="modal" data-target="#modal-certificate">查看证书</a>
 					</li>
 				</ul>
