@@ -24,7 +24,7 @@ body {
 }
 .table {
   font-size: 12px;
-  padding: 40px 22px 35px 22px;
+  padding: 40px 22px 0 22px;
 }
 .table td {
   vertical-align: top;
@@ -46,8 +46,14 @@ body {
 .buy {
   zoom: 1;
   display: block;
-  margin: 0 5px;
+  margin: 10px 5px;
   border-bottom: 2px solid #25a58e;
+  font-size: 15px;
+  color: #fff;
+  height: 32px;
+  line-height: 32px;
+  background-color: #25a58e;
+  text-align: center;
 }
 .buy:before,
 .buy:after {
@@ -57,10 +63,7 @@ body {
 .buy:after {
   clear: both;
 }
-.buy .btn {
-  margin-bottom: 12px;
-  width: 100%;
-}
+
 .detail .quote {
   font-size: 12px;
   padding: 25px 22px 20px 22px;

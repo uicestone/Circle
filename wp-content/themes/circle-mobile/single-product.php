@@ -33,7 +33,7 @@ get_header();
 		</tr>
 		<tr>
 			<td class="fname w2">价 格</td>
-			<td style="font-size: 18px;color: #25a58e;">¥<?=get_post_meta(get_the_ID(), 'price', true)?></td>
+			<td style="font-size: 15px;color: #25a58e;">¥<?=get_post_meta(get_the_ID(), 'price', true)?></td>
 		</tr>
 		<tr>
 			<td class="fname w4">戒 圈 选 择</td>
@@ -48,7 +48,7 @@ get_header();
 	</table>
 	<?php if(is_numeric(get_post_meta(get_the_ID(), 'price', true))){ ?>
 	<a href="<?=$wx->oauth_redirect(site_url() . '/buy/?buy_product=' . get_the_ID(), '', 'snsapi_base', false)?>" class="buy">
-		<img src="<?=get_template_directory_uri()?>/img/detail-buy.png" class="btn">
+		立即购买
 	</a>
 	<?php } ?>
 	<div class="detail">
