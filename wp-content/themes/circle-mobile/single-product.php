@@ -14,7 +14,7 @@ the_post();
 
 get_header();
 ?>
-<div style="height:auto" class="head">
+<div style="height:auto;background-image:url('<?=get_template_directory_uri()?>/img/tile.png');" class="head">
     <img src="<?=get_template_directory_uri()?>/img/new-nav.png" style="width:100%">
 </div>
 <div class="content">
