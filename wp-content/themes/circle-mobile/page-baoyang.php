@@ -15,31 +15,35 @@ get_header();
         <h2>关于珠宝的保养</h2>
         <section>
             <h3>1. 选择中性界面活性剂清洗珠宝</h3>
-            <p>清晰珠宝是应该的，但用牙膏是不理想的，因为牙膏内含有微细的高硬度研磨颗粒物质，这些颗粒物质很细小但是硬度高达6、7度（几乎与水晶相同）</p>
+            <p>清洗珠宝是应该的，但用牙膏是不理想的，因为牙膏内含有微细的高硬度研磨颗粒物质，这些颗粒物质很细小但是硬度高达6、7度(几乎与水晶相同)，因此用牙膏清洗珠宝会损坏比水晶硬度低的宝石表面，尤其珍珠、黄金与K金表面，而珍珠则绝对避免，最正确的洗涤溶液应该是稀释后的中性界面活性剂，例如沙拉脱，婴儿洗发精。</p>
         </section>
         <section>
-            <h3>2. blahblah</h3>
-            <p>blahblahblahlahblahblahlahblahblahlahblahblahlahblahblahlahblahblahlahblahblahlahblahblahlahblahblah</p>
+            <h3>2. 不要经常抚摸</h3>
+            <p>人体不时在皮肤表面排泄汗水与油质，手是最容易碰触的身体部位，因此皮肤上的油质经常沾染到手的表面上，用手触摸宝石时，手上的油很容易停留在宝石上面，而影响宝石的光泽与亮度。尤其是钻石之类亲油性宝石，表面容易沾染油质，大大地影响光泽。但翡翠白玉属于集合体结构，常去触摸则可使玉质更加湿润可爱。</p>
         </section>
         <section>
-            <h3>2. blahblah</h3>
-            <p>blahblahblahlahblahblahlahblahblahlahblahblahlahblahblahlahblahblahlahblahblahlahblahblahlahblahblah</p>
+            <h3>3. 适时取下，就是保养</h3>
+            <p>我们建议您，在洗手、洗澡、做家务、游泳等情况下最好将珠宝取下，因为某些肥皂含着程度不一的碱性物质，日积月累对于较脆弱的宝石可能造成伤害，并且肥皂中的皂质也容易卡在戒指的细缝中，会大大影响宝石的光泽与亮度。</p>
         </section>
         <section>
-            <h3>2. blahblah</h3>
-            <p>blahblahblahlahblahblahlahblahblahlahblahblahlahblahblahlahblahblahlahblahblahlahblahblahlahblahblah</p>
+            <h3>4. 注意含酸、碱性的物质</h3>
+            <p>请尽量避免日常使用的化妆品、香水等沾染到珠宝。平日着装时建议您先化妆与喷洒香水后，再佩戴珠宝，如需补充香水，也应避免将香水直接喷酒到珠宝表面。</p>
         </section>
         <section>
-            <h3>2. blahblah</h3>
-            <p>blahblahblahlahblahblahlahblahblahlahblahblahlahblahblahlahblahblahlahblahblahlahblahblahlahblahblah</p>
+            <h3>5. 注意珠宝佩戴顺序</h3>
+            <p>佩戴爪镶珠宝或戒指时，应避免勾到衣服、皮包，一般来说，珠宝佩戴的顺序是：在衣服穿戴好之后再佩戴珠宝。</p>
         </section>
         <section>
-            <h3>2. blahblah</h3>
-            <p>blahblahblahlahblahblahlahblahblahlahblahblahlahblahblahlahblahblahlahblahblahlahblahblahlahblahblah</p>
+            <h3>6. 随身携带小珠宝袋</h3>
+            <p>当您买珠宝时，circle会送您一个小珠宝盒，这小小的珠宝盒自有它的妙用，它体积小巧而不占地方，可随身携带，当外出洗手时可将戒指取下，随手放入珠宝盒中，若养成此种习惯可大大降低珠宝戒指遗失的机率。因此别嫌麻烦，随身带个小珠宝盒吧。</p>
         </section>
         <section>
-            <h3>2. blahblah</h3>
-            <p>blahblahblahlahblahblahlahblahblahlahblahblahlahblahblahlahblahblahlahblahblahlahblahblahlahblahblah</p>
+            <h3>7. 小心使用超音波洗净机</h3>
+            <p>超音波洗净机对K金宝石的珠宝及K金清洗功能的首饰确实有很好的洗涤效果，但超音波洗净机并不适合祖母绿、珍珠等特殊结构的宝石。另外，超音波洗净机虽然清洗效果好，但建议您不要经常性使用，若使用太过频繁，容易使小钻松脱甚至掉落。</p>
+        </section>
+        <section>
+            <h3>8. 定期仔细检视珠宝</h3>
+            <p>多花费一点时间照顾您的珠宝可以大大降低危机，例如珠宝中小钻是否稳固而无松脱现象，珍珠项链是否绑得牢固，夹式耳环中间卡的弹性是否减低或是螺丝接触不良等，定期检视珠宝使用情况可以延长珠宝的寿命，请养成这样的好习惯吧。</p>
         </section>
     </div>
 </div>
