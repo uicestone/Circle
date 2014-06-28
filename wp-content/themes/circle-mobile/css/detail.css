@@ -47,6 +47,8 @@ body {
   zoom: 1;
   display: block;
   margin: 10px 5px;
+  border: 0;
+  -webkit-appearance: none;
   border-bottom: 2px solid #25a58e;
   font-size: 15px;
   color: #fff;
@@ -54,14 +56,6 @@ body {
   line-height: 32px;
   background-color: #25a58e;
   text-align: center;
-}
-.buy:before,
-.buy:after {
-  content: "";
-  display: table;
-}
-.buy:after {
-  clear: both;
 }
 
 .detail .quote {
@@ -87,6 +81,11 @@ body {
   text-align: center;
   line-height: 15px;
   height: 15px;
+}
+
+.page.current{
+  background-color: #34a68c;
+  color: #fff;
 }
 
 .manufacturing {
