@@ -2,7 +2,7 @@
 	<tbody>
 		<tr>
 			<th><label for="product">商品：</label></th>
-			<td><?=$product ? get_the_title(get_post($product)) : ''?></td>
+			<td><a href="<?=site_url()?>/wp-admin/post.php?post=<?=$product?>&action=edit"><?=$product ? get_the_title(get_post($product)) : ''?></a></td>
 		</tr>
 		<tr>
 			<th><label for="amount">数量：</label></th>
