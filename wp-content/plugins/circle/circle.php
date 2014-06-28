@@ -217,6 +217,40 @@ add_action('parse_query', function($wp_query){
 
 });
 
+add_filter('manage_shop_order_posts_columns', function ($columns){
+    $newcolumns = array(
+        'cb' => $columns['cb'],
+        'title' => $columns['title'],
+		'receiver' => '收货人',
+		'contact' => '联系方式',
+		'status' => '状态',
+		'date' => $columns['date']
+    );
+    return $newcolumns;
+});
+
+add_action('manage_shop_order_posts_custom_column', function ($column_name) {
+	global $post;
+    switch( $column_name ) {
+        case 'status' :
+            switch(get_post_meta($post->ID, 'status', true)){
+				case 'pending': echo '等待付款'; break;
+				case 'payed': echo '已付款'; break;
+				case 'shipped': echo '已发货'; break;
+				case 'pending': echo '已完成'; break;
+			}
+            break;
+		case 'receiver' :
+			echo get_post_meta($post->ID, 'receiver', true);
+			break;
+		case 'contact' :
+			echo get_post_meta($post->ID, 'contact', true);
+			break;
+    }
+});
+
+
+
 function get_piece($string, $prefer_index = 0, $delimiter = '/\s*\|\s/'){
 	$splitted = preg_split($delimiter, $string);
 	return $splitted[$prefer_index] ? $splitted[$prefer_index] : $splitted[0];
