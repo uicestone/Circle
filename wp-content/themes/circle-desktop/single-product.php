@@ -113,19 +113,10 @@ get_header();
 			// return
 			// loading.show();
 			// var count = 2;
-			var profile = window.profile;
 			var product = window.product;
 			var size = $(".choices .active").text();
-			product = $.extend(product,{amount:1,size:size});
-			// $.get(apiBase + "/user-profile/",function(data){
-			// 	profile = data; success();
-			// });
-			// $.get(apiBase + "/product/",function(data){
-			//  success();
-			// });
-			// function success(){
-
-				// loading.hide();
+			assureProfile(function(profile){
+				product = $.extend(product,{amount:1,size:size});
 				var modal = $("#modal-order-confirm");
 				modal.modal();
 				modal.find(".addresses").html( render($("#tpl-address").html(),{profile:profile}) );
@@ -134,7 +125,7 @@ get_header();
 
 				$("#payment-form").find(".product").val(JSON.stringify(product));
 				$("#payment-form").find(".address").val(JSON.stringify(profile));
-			// }
+			});
 		}
 
 		$("#buy").click(function(){

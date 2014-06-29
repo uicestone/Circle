@@ -44,6 +44,29 @@
       }
 
     })(),
+    assureProfile: function(callback){
+      if(userProfile){
+        var needComplete = false;
+        for(var key in userProfile){
+          if(!userProfile[key]){
+            needComplete = true
+          }
+        }
+        if(needComplete){
+          showProfileForm();
+        }else{
+          callback(userProfile);
+        }
+      }else{
+        $("#modal-login").modal();
+      }
+    },
+    showProfileForm: function(callback){
+      var modal = $("#modal-mine");
+      modal.modal();
+      modal.find(".menu .active").removeClass("active");
+      modal.find(".menu li:eq(2) a").trigger("click");
+    },
     showMyOrders: function(){
       loading.show();
       var modal = $("#modal-mine");

@@ -48,7 +48,7 @@
 
   <script id="tpl-address" type="text/tpl">
     <li> 
-      <span><%= profile.province %> <%= profile.address %> （<%= profile.address %> 收）邮编：<%= profile.zipcode %> <%= profile.contact %></span>
+      <span><%= profile.province %> <%= profile.address %> （<%= profile.receiver %> 收）邮编：<%= profile.zipcode %> <%= profile.contact %></span>
     </li>
   </script>
   <script id="tpl-order-detail" type="text/tpl">

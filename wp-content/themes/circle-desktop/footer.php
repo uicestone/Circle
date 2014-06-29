@@ -32,41 +32,66 @@
 
       // 个人资料
       // 表单验证
+      function validateField(input){
+        var validators = {
+          "zipcode":function(v){
+            return v.match(/^\d{6}$/);
+          },
+          "contact":function(v){
+            return v.match(/^\d+$/);
+          }
+        };
+        var fieldName = input.attr("id").split("-")[1];
+        var value = input.val().trim();
+        var hint = input.parent().find(".hint");
+        if(value){
+          if(passValidator(value)){
+            hint.html('<i class="icon-ok"></i>');
+            return true;
+          }else{
+            hint.html('<i class="icon-warn"></i>格式不正确');  
+            return false;
+          }
+        }else{
+          hint.html('<i class="icon-warn"></i>此项为必填');
+          return false;
+        }
+        function passValidator(v){
+          var validator = validators[fieldName];
+          if(!validator){return true}
+          else{
+            return validator(v)
+          }
+        }
+      }
+      function getProfileData(){
+        var data = {};
+        $("#profile .field .form-control").each(function(i,el){
+          el = $(el);
+          data[el.attr('name')] = el.val();
+        });
+        return data;
+      }
       $("#profile .field .form-control").blur(function(){
       	var input = $(this);
-      	var hint = input.parent().find(".hint");
-      	var fieldName = input.attr("id").split("-")[1];
-      	var validators = {
-      		"zipcode":function(v){
-      			return v.match(/^\d{6}$/);
-      		},
-      		"contact":function(v){
-      			return v.match(/^\d+$/);
-      		}
-      	}
-      	function passValidator(v){
-      		var validator = validators[fieldName];
-      		if(!validator){return true}
-    			else{
-    				return validator(v)
-    			}
-      	}
-      	var value = input.val().trim();
-      	if(value){
-      		if(passValidator(value)){
-      			hint.html('<i class="icon-ok"></i>');
-      		}else{
-	      		hint.html('<i class="icon-warn"></i>格式不正确');	
-      		}
-      	}else{
-      		hint.html('<i class="icon-warn"></i>此项为必填');
-      	}
+      	validateField(input);
       });
       $("#profile .btn-update").click(function() {
           // check form
-          // send ajax
-          $(".tabbody").hide();
-          $("#profile-updated").show();
+          var ok = true;
+          $("#profile .field .form-control").each(function(i,el){
+            var fieldOk = validateField($(el));
+            if(!fieldOk){ok = false;}
+          });
+          if(ok){
+            loading.show();
+            $.post("/user-profile",getProfileData(),function(profile){
+              window.userProfile = profile;
+              loading.hide();
+              $(".tabbody").hide();
+              $("#profile-updated").show();
+            });
+          }
       });
       $("#profile-updated .btn-check").click(function() {
           $(".tabbody").hide();
@@ -88,6 +113,14 @@
         pollingLogin.stop();
       });
 
+      $("#modal-mine").on('show.bs.modal',function(){
+        $("#profile .field .form-control").each(function(i,el){
+          el = $(el);
+          var name = el.attr("name");
+          userProfile && userProfile[name] && el.val(userProfile[name]);
+        });
+      });
+
       $('[title="订单服务"]').click(function(){
         showMyOrders();
         return false;
@@ -102,6 +135,7 @@
           userProfile[key] && $("#field-" + key).val(userProfile[key]);
         }
       }
+
       // 登录
        // 注册
       // $("#modal-register .btn-submit").click(function() {
@@ -109,7 +143,8 @@
       //     $("#modal-register .success").show();
       // });
     })(jQuery)
-	var userProfile = <?php get_template_part('user-profile'); ?>;
+  var userProfile = <?php get_template_part('user-profile'); ?>;
+	var userProfile =  {"nickname":"Test","province":"","address":"b","zipcode":"c","receiver":"d","contact":"e"};
 		</script>
 		<?php wp_footer(); ?>
 	</body>
