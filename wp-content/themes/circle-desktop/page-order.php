@@ -46,7 +46,7 @@ else{
 	foreach($posts as $post){
 		$order = array(
 			"date"=>$post->post_date,
-			"status"=>get_post_meta($id, 'status', true), // 订单状态
+			"status"=>get_post_meta($post->ID, 'status', true), // 订单状态
 			"province"=>get_post_meta($post->ID, 'province', true),//省市信息
 			"address"=>get_post_meta($post->ID, 'address', true),//详细地址
 			"zipcode"=>get_post_meta($post->ID, 'zipcode', true),
