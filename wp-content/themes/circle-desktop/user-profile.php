@@ -9,7 +9,7 @@ if(isset($qrcode->loggin_userid)){
 
 $output_keys = array(
 	'nickname',
-	'provice',
+	'province',
 	'address',
 	'zipcode',
 	'receiver',

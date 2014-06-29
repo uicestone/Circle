@@ -1,7 +1,7 @@
 <?php
 foreach(array(
 	'nickname',
-	'provice',
+	'province',
 	'address',
 	'zipcode',
 	'receiver',
