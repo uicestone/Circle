@@ -249,9 +249,77 @@ add_action('manage_shop_order_posts_custom_column', function ($column_name) {
     }
 });
 
-
-
 function get_piece($string, $prefer_index = 0, $delimiter = '/\s*\|\s/'){
 	$splitted = preg_split($delimiter, $string);
 	return $splitted[$prefer_index] ? $splitted[$prefer_index] : $splitted[0];
+}
+
+function alipay_redirect($order_id){
+
+	$order = get_post($order_id);
+
+	$alipay_request_args = array(
+		'service'=>'create_direct_pay_by_user',
+		'partner'=>get_option('alipay_partner_id'),
+		'_input_charset'=>'utf-8',
+		'return_url'=>site_url().'/payment-confirm/?gateway=alipay',
+		'seller_email'=>'circlewava@163.com',
+		'out_trade_no'=>$order->ID,
+		'subject'=>$order->post_title,
+		'payment_type'=>1,
+		'total_fee'=>get_post_meta($order_id, 'price', true)
+	);
+
+	ksort($alipay_request_args);
+
+	$alipay_request_args_temp = array();
+
+	foreach($alipay_request_args as $key => $value){
+		$alipay_request_args_temp[] = $key.'='.$value;
+	}
+
+	$sign_text = implode('&', $alipay_request_args_temp);
+
+	$alipay_request_args['sign'] = md5($sign_text . get_option('alipay_key'));
+
+	$alipay_request_args['sign_type'] = 'MD5';
+	
+	add_post_meta($order_id, 'alipay_sign', $alipay_request_args['sign'], true);
+	
+	$redirect_to = 'https://mapi.alipay.com/gateway.do?'.http_build_query($alipay_request_args);
+	
+	if(headers_sent()){
+		exit('Cannot perform redirect, please click <a href="' . $redirect_to . '">here</a>.');
+	}
+	
+	header('Location: ' . $redirect_to);
+	exit;
+
+}
+
+function alipay_confirm(){
+
+	$notify_verify = file_get_contents('https://mapi.alipay.com/gateway.do?service=notify_verify&partner=' . get_option('alipay_partner_id') . '&notify_id=' . $_GET['notify_id']);
+
+	if($notify_verify !== 'true'){
+		throw new Exception('支付校验失败', 400);
+	}
+
+	$order_id = $_GET['out_trade_no'];
+
+	$order = get_post($order_id);
+
+	add_post_meta($order_id, 'alipay_trade_no', $_GET['trade_no']);
+	
+	update_post_meta($order_id, 'status', 'payed');
+	
+	$redirect_to = site_url() . '/#orders';
+	
+	if(headers_sent()){
+		exit('Cannot perform redirect, please click <a href="' . $redirect_to . '">here</a>.');
+	}
+	
+	header('Location: ' . $redirect_to);
+	exit;
+
 }

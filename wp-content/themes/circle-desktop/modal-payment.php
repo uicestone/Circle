@@ -11,9 +11,9 @@
           <p>您可以使用微信扫一扫功能</p>
           <p>扫下方的二维码</p>
           <p>身份识别成功后 使用微信支付</p>
-          <a class="weixin-qr btn-weixin btn-pay" data-gateway="weixin">
-            <img src="<?=get_template_directory_uri()?>/img/login-qr.png" alt="">
-          </a>
+          <p class="weixin-qr btn-weixin btn-pay" data-gateway="weixin">
+            暂未开通，敬请期待
+          </p>
         </div>
         <div class="alipay way">
           <h2>付款方式B</h2>

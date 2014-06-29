@@ -87,7 +87,7 @@ get_header();
 
 <form id="payment-form" action="/buy/" method="POST">
 	<input type="hidden" name="gateway" class="gateway">
-	<input type="hidden" name="product" class="product">
+	<input type="hidden" name="product_meta" class="product">
 	<input type="hidden" name="address" class="address">
 </form>
 <script>
@@ -181,7 +181,7 @@ get_header();
 	});
 })(jQuery);
 
-var product = <?=json_encode($product_info)?>
+var product = <?=json_encode(array_merge($product_info, array('id'=>get_the_ID())))?>
 
 </script>
 <?php get_template_part('modal','upkeep') ?>
