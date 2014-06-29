@@ -137,13 +137,6 @@ get_header();
 			// }
 		}
 
-		if(location.hash.slice(1) == "orders"){
-			var modal = $("#modal-mine");
-			modal.modal();
-			modal.find(".menu .active").removeClass("active");
-			modal.find(".menu li:eq(1) a").trigger("click");
-		}
-
 		$("#buy").click(function(){
 			judgeLogin(loggedHandler,function(){
 				$("#modal-login").modal();

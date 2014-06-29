@@ -92,6 +92,16 @@
         showMyOrders();
         return false;
       });
+
+      if(location.hash.slice(1) == "orders"){
+        showMyOrders();
+      }
+
+      if(userProfile){
+        for(var key in userProfile){
+          userProfile[key] && $("#field-" + key).val(userProfile[key]);
+        }
+      }
       // 登录
        // 注册
       // $("#modal-register .btn-submit").click(function() {

@@ -5,8 +5,8 @@
   </div>
   <div class="bd">
     <div class="field">
-      <div class="name">姓名 *</div>
-      <input id="field-name" class="form-control">
+      <div class="name">收货人姓名 *</div>
+      <input id="field-receiver" class="form-control">
       <div class="hint"></div>
     </div>
     <div class="field">
@@ -27,8 +27,7 @@
     <div class="field">
       <div class="name">联系方式 *</div>
       <input id="field-contact" class="form-control">
-      <div class="hint"><i class="icon-ok"></i>
-      </div>
+      <div class="hint"></div>
     </div>
     <div style="margin-top: 30px;margin-left: 170px;width: 200px;" class="btn">更新个人资料</div>
   </div>
