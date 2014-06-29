@@ -144,7 +144,7 @@
       // });
     })(jQuery)
   var userProfile = <?php get_template_part('user-profile'); ?>;
-	var userProfile =  {"nickname":"Test","province":"","address":"b","zipcode":"c","receiver":"d","contact":"e"};
+	var userProfile =  {"nickname":"Test","province":"d","address":"b","zipcode":"c","receiver":"d","contact":"e"};
 		</script>
 		<?php wp_footer(); ?>
 	</body>

@@ -26,11 +26,11 @@
           </tr>
           <tr>
             <td>寄送费用:</td>
-            <td class="price">¥ 10.00</td>
+            <td class="price">¥ 0.00</td>
           </tr>
           <tr>
             <td>总金额:</td>
-            <td class="price">¥ 337.00</td>
+            <td class="price price-total"></td>
           </tr>
           <tr>
             <td></td>
@@ -39,7 +39,7 @@
         </table>
         <div class="btns">
           <div class="btn btn-black btn-sure">确认付款</div>
-          <div class="btn btn-continue">继续购买</div>
+          <div class="btn btn-cancel">取消购买</div>
         </div>
         <div class="clear"></div>
       </div>
@@ -53,7 +53,7 @@
   </script>
   <script id="tpl-order-detail" type="text/tpl">
     <td><%= product.name %></td>
-    <td><%= product.num %></td>
+    <td><%= product.id %></td>
     <td><%= product.size %></td>
     <td><%= product.amount %></td>
     <td><%= product.price %></td>

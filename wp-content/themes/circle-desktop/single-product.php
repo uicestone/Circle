@@ -102,7 +102,7 @@ get_header();
 			$("#modal-payment").modal();
 		});
 
-		$("#modal-order-confirm .btn-continue").click(function(){
+		$("#modal-order-confirm .btn-cancel").click(function(){
 			$("#modal-order-confirm").modal('hide');
 		});
 
@@ -119,6 +119,7 @@ get_header();
 				product = $.extend(product,{amount:1,size:size});
 				var modal = $("#modal-order-confirm");
 				modal.modal();
+				modal.find(".price-total").html("¥ " + product.price + ".00")
 				modal.find(".addresses").html( render($("#tpl-address").html(),{profile:profile}) );
 				modal.find(".order-detail").html( render($("#tpl-order-detail").html(),{product:product}) );
 
