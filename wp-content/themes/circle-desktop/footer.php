@@ -94,6 +94,7 @@
       //     $("#modal-register .success").show();
       // });
     })(jQuery)
+	var userProfile = <?php get_template_part('user-profile'); ?>;
 		</script>
 		<?php wp_footer(); ?>
 	</body>
