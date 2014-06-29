@@ -55,7 +55,7 @@
     <td><%= product.name %></td>
     <td><%= product.id %></td>
     <td><%= product.size %></td>
-    <td><%= product.amount %></td>
+    <td><input value="<%= product.amount %>" id="field-product-price" /></td>
     <td><%= product.price %></td>
   </script>
 </div>

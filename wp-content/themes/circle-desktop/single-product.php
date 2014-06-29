@@ -119,15 +119,24 @@ get_header();
 				product = $.extend(product,{amount:1,size:size});
 				var modal = $("#modal-order-confirm");
 				modal.modal();
-				modal.find(".price-total").html("¥ " + product.price + ".00")
 				modal.find(".addresses").html( render($("#tpl-address").html(),{profile:profile}) );
 				modal.find(".order-detail").html( render($("#tpl-order-detail").html(),{product:product}) );
 
+				function updateTotal(){
+					modal.find(".price-total").html("¥ " + (product.price * product.amount) + ".00");
+				}
 
+				$("#field-product-price").blur(function(){
+					var val = $(this).val();
+					product.amount = val;
+					updateTotal();
+				});
+				updateTotal();
 				$("#payment-form").find(".product").val(JSON.stringify(product));
 				$("#payment-form").find(".address").val(JSON.stringify(profile));
 			});
 		}
+
 
 		$("#buy").click(function(){
 			judgeLogin(loggedHandler,function(){

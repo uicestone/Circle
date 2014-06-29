@@ -372,3 +372,9 @@
 #modal-guide .guides table .tt{
   width: 135px;
 }
+
+#field-product-price{
+  border: 1px solid #ccc;
+  width: 30px;
+  text-align: center;
+}
