@@ -68,16 +68,10 @@
       modal.find(".menu li:eq(2) a").trigger("click");
     },
     showMyOrders: function(){
-      loading.show();
       var modal = $("#modal-mine");
       modal.modal();
       modal.find(".menu .active").removeClass("active");
       modal.find(".menu li:eq(1) a").trigger("click");
-      $.getJSON(/order/, function(data){
-        var html = render($("#modal-mine-tr").html(),{items:data});
-        $("#order-tbody").html(html);
-        loading.hide();
-      });
     },
     judgeLogin: function(succ, fail, scene_id) {
       var self = this;
@@ -136,4 +130,6 @@
     window.loading.init();
   });
   $.extend(window, exports);
+
+  
 })(jQuery);

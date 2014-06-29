@@ -119,6 +119,12 @@
           var name = el.attr("name");
           userProfile && userProfile[name] && el.val(userProfile[name]);
         });
+        loading.show();
+        $.getJSON(/order/, function(data){
+          var html = render($("#modal-mine-tr").html(),{items:data});
+          $("#order-tbody").html(html);
+          loading.hide();
+        });
       });
 
       $('[title="订单服务"]').click(function(){
