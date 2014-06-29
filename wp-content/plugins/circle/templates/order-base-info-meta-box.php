@@ -19,7 +19,7 @@
 </div>
 <div class="misc-pub-section">
 	<label>用户名：</label>
-	<span><?=get_user_by('id', $post->post_author)->display_name?></span>
+	<span><a href="http://www.circlewava.com/wp-admin/user-edit.php?user_id=<?=$post->post_author?>"><?=get_user_by('id', $post->post_author)->display_name?></a></span>
 </div>
 <div class="misc-pub-section">
 	<label>下单时间：</label>

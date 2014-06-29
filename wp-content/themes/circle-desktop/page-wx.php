@@ -50,7 +50,7 @@ if(isset($GLOBALS["HTTP_RAW_POST_DATA"])){
 				add_user_meta($user_id, 'subscribe_time', $user_info->subscribe_time, true);
 			}else{
 				$user_id = $users[0]->ID;
-				if($users[0]->user_login === substr($post['FROMUSERNAME'], 0, 8)){
+				if($users[0]->user_login === substr($post['FROMUSERNAME'], -8, 8)){
 					$user_info = $wx->get_user_info($post['FROMUSERNAME']);
 					update_user_meta($user_id, 'nickname', $user_info->nickname);
 					add_user_meta($user_id, 'sex', $user_info->sex, true);

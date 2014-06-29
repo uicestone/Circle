@@ -3,6 +3,11 @@
  * 桌面版订单AJAX响应接口
  * 可以输出当前登录用户的所有订单或者一个订单信息
  */
+
+if(!is_user_logged_in()){
+	exit();
+}
+
 if(isset($_GET['id'])){
 	
 	$id = $_GET['id'];
