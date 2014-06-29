@@ -29,9 +29,19 @@ $data = array(
 			)
 		),
 		array(
-			'name'=>'品牌故事',
-			'type'=>'view',
-			'url'=>'http://www.circlewava.com/brand/'
+			'name'=>'品牌中心',
+			'sub_button'=>array(
+				array(
+					'name'=>'品牌故事',
+					'type'=>'view',
+					'url'=>'http://www.circlewava.com/brand/'
+				),
+				array(
+					'name'=>'品牌活动',
+					'type'=>'view',
+					'url'=>'#'
+				)
+			)
 		),
 		array(
 			'name'=>'订单服务',
