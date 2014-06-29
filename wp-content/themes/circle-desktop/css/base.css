@@ -445,3 +445,16 @@ a {
 #intro.tabbody p {
   margin-bottom: 13px;
 }
+
+.loading-bg{
+  position: absolute;
+  width: 75px;
+  left: 50%;
+  height: 75px;
+  top: 50%;
+  background-color: rgba(0,0,0,.8);
+  z-index: 2000;
+  margin-left: -37.5px;
+  margin-top: -37.5px;
+  border-radius: 5px;
+}

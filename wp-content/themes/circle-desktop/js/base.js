@@ -3,10 +3,13 @@
     apiBase: siteUrl,
     loading: {
       init: function() {
-        $("<div id='loading' />").appendTo($('body'));
+        var loading_container = $("<div id='loading' />");
+        var loading_bg = $("<div class='loading-bg' />");
+        loading_container.appendTo($('body'));
+        loading_bg.appendTo(loading_container);
         new Spinner({
           color: "#fff",
-        }).spin(document.getElementById('loading'));
+        }).spin(loading_bg[0]);
         loading.hide();
       },
       show: function() {
@@ -41,7 +44,18 @@
       }
 
     })(),
-
+    showMyOrders: function(){
+      loading.show();
+      var modal = $("#modal-mine");
+      modal.modal();
+      modal.find(".menu .active").removeClass("active");
+      modal.find(".menu li:eq(1) a").trigger("click");
+      $.getJSON(/order/, function(data){
+        var html = render($("#modal-mine-tr").html(),{items:data});
+        $("#order-tbody").html(html);
+        loading.hide();
+      });
+    },
     judgeLogin: function(succ, fail, scene_id) {
       var self = this;
       var url = apiBase + "/user-profile/";

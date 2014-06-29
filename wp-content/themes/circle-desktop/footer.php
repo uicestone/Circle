@@ -87,6 +87,11 @@
       }).on('hide.bs.modal',function(){
         pollingLogin.stop();
       });
+
+      $('[title="订单服务"]').click(function(){
+        showMyOrders();
+        return false;
+      });
       // 登录
        // 注册
       // $("#modal-register .btn-submit").click(function() {

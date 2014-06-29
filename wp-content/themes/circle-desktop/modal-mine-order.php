@@ -4,6 +4,7 @@
     <p>在这里您可以查看过往的订单</p>
   </div>
   <table class="table">
+    <thead>
     <tr>
       <th>日期</th>
       <th>订单编号</th>
@@ -11,46 +12,9 @@
       <th>金额</th>
       <th>操作</th>
     </tr>
-    <tr>
-      <td>2014/5/20</td>
-      <td>000000000000</td>
-      <td>等待付款</td>
-      <td><strong>￥2300</strong>
-      </td>
-      <td>
-        <div class="btn">查看详情</div>
-      </td>
-    </tr>
-    <tr>
-      <td>2014/5/20</td>
-      <td>000000000000</td>
-      <td>等待付款</td>
-      <td><strong>￥2300</strong>
-      </td>
-      <td>
-        <div class="btn">查看详情</div>
-      </td>
-    </tr>
-    <tr>
-      <td>2014/5/20</td>
-      <td>000000000000</td>
-      <td>等待付款</td>
-      <td><strong>￥2300</strong>
-      </td>
-      <td>
-        <div class="btn">查看详情</div>
-      </td>
-    </tr>
-    <tr>
-      <td>2014/5/20</td>
-      <td>000000000000</td>
-      <td>等待付款</td>
-      <td><strong>￥2300</strong>
-      </td>
-      <td>
-        <div class="btn">查看详情</div>
-      </td>
-    </tr>
+    <thead>
+    <tbody id="order-tbody">
+    </tbody>
   </table>
 </div>
 
@@ -122,4 +86,16 @@
     </table>
     <p style="clear:both;text-align:right" class="align-right">* 含增值税</p>
   </div>
+  <script type="text/template" id="modal-mine-tr">
+  <% var statusMap = {"pending":"等待付款","payed":"已付款","shipped":"已发货","completed":"已完成"}; %>
+  <% for(var i = 0 ; i < items.length; i++){ item = items[i]; %>
+    <tr data-id="<%= item.product %>">
+      <td><%= item.date %></td>
+      <td><%= item.id %></td>
+      <td><%= statusMap[item.status] %></td>
+      <td><strong>￥<%= item.price %></strong></td>
+      <td><div class="btn">查看详情</div></td>
+    </tr>
+  <% } %>
+  </script>
 </div>
