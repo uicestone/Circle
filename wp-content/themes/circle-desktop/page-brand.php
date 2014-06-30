@@ -8,6 +8,7 @@
 	}
 	.content .panel .aside .inner {
 		padding-top: 50px;
+		padding-right: 50px;
 		color: #fff;
 	}
 	.content .panel .aside .inner p {
