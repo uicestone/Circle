@@ -65,7 +65,9 @@
 }
 .info .list li a {
   display: block;
-  padding: 2px;
+  margin: 2px;
+  background-color: #fff;
+  height: 452px;
 }
 .info .list li a img {
   width: 100%;
