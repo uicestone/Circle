@@ -6,7 +6,8 @@
 }
 .content {
   background-color: #2c2c2a;
-  background-image: url("../img/photos/flower-bg.jpg");
+  background-image: url("../img/photos/list-bg.jpg");
+  background-repeat: no-repeat;
   background-position: left top;
 }
 .aside {
