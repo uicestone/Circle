@@ -126,14 +126,23 @@ get_header();
 					modal.find(".price-total").html("¥ " + (product.price * product.amount) + ".00");
 				}
 
+				function updateProfile(){
+					$("#payment-form").find(".address").val(JSON.stringify(profile));
+				}
+
+				function updateProduct(){
+					$("#payment-form").find(".product").val(JSON.stringify(product));
+				}
+
 				$("#field-product-price").blur(function(){
-					var val = $(this).val();
+					var val = +$(this).val();
 					product.amount = val;
 					updateTotal();
+					updateProduct();
 				});
 				updateTotal();
-				$("#payment-form").find(".product").val(JSON.stringify(product));
-				$("#payment-form").find(".address").val(JSON.stringify(profile));
+				updateProfile();
+				updateProduct();
 			});
 		}
 
