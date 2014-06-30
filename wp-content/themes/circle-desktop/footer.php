@@ -25,7 +25,7 @@
       });
 
        // 订单详情
-      $("#order .btn").click(function() {
+      $("#order .btn").live('click',function() {
           $(".tabbody").hide();
           $("#order-detail").show();
       });
