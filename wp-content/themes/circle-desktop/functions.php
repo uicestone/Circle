@@ -38,3 +38,10 @@ add_action('wp_enqueue_scripts', function(){
 add_action('wp_footer', function(){
 	wp_enqueue_script('bootstrap');
 });
+
+// TODO 这么做只是为了使用中文名称注册，存在一些安全性问题
+add_filter('sanitize_user', function( $username, $raw_username, $strict ) {
+	if( !$strict )
+		return $username;
+	return sanitize_user(stripslashes($raw_username), false);
+}, 10, 3);
