@@ -12,6 +12,8 @@ add_filter('body_class', function($class){
 $wx = new WeixinAPI();
 the_post(); 
 
+$sizes = get_post_meta(get_the_ID(), 'sizes', true);
+
 get_header();
 ?>
 <div style="height:auto;background-image:url('<?=get_template_directory_uri()?>/img/tile.png');" class="head">
@@ -39,16 +41,16 @@ get_header();
 			<td class="fname w2">价 格</td>
 			<td style="font-size: 15px;color: #25a58e;">¥<?=get_post_meta(get_the_ID(), 'price', true)?></td>
 		</tr>
+		<?php if($sizes){ ?>
 		<tr>
 			<td class="fname w4">戒 圈 选 择</td>
 			<td>
-				<span class="page current">10</span>
-				<span class="page">11</span>
-				<span class="page">12</span>
-				<span class="page">13</span>
-				<span class="page">14</span>
+				<?php foreach(explode(',', $sizes) as $index => $size){ ?>
+				<span class="page<?php if($index === 0){ ?> current<?php } ?>"><?=$size?></span>
+				<?php } ?>
 			</td>
 		</tr>
+		<?php } ?>
 	</table>
 	<input type="hidden" name="size" value="10" id="size">
 	<?php if(is_numeric(get_post_meta(get_the_ID(), 'price', true))){ ?>

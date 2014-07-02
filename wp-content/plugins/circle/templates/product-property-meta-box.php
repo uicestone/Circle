@@ -16,5 +16,9 @@
 			<th><label for="origin">产地：</label></th>
 			<td><input type="text" id="origin" name="origin" value="<?=esc_attr(get_post_meta($post->ID, 'origin', true))?>" class="regular-text code" /></td>
 		</tr>
+		<tr>
+			<th><label for="sizes">可选尺寸（使用“,”分隔）：</label></th>
+			<td><input type="text" id="sizes" name="sizes" value="<?=esc_attr(get_post_meta($post->ID, 'sizes', true))?>" class="regular-text code" /></td>
+		</tr>
 	</tbody>
 </table>

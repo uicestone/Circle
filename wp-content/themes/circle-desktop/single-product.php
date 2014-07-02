@@ -11,7 +11,7 @@ $product_info = array(
 	'material'=>get_piece(get_post_meta(get_the_ID(), 'material', true)),
 	
 );
-
+$sizes = get_post_meta(get_the_ID(), 'sizes', true);
 get_header();
 ?>
 <div class="panel container">
@@ -67,16 +67,17 @@ get_header();
 					</li>
 				</ul>-->
 			</div>
+			<?php if($sizes){ ?>
 			<div class="select dblock">
 				<div class="title">选择戒圈</div>
 				<ul class="choices">
-					<li>10</li>
-					<li>11</li>
-					<li>12</li>
-					<li class="active">13</li>
-					<li>14</li>
-				</ul><a href="#" data-toggle="modal" data-target="#modal-guide" class="howto">戒指选择指南</a>
+					<?php foreach(explode(',', $sizes) as $index => $size){ ?>
+					<li<?php if($index === 0){ ?> class="active"<?php } ?>><?=$size?></li>
+					<?php } ?>
+				</ul>
+				<a href="#" data-toggle="modal" data-target="#modal-guide" class="howto">戒指选择指南</a>
 			</div>
+			<?php } ?>
 			<div class="buy dblock last"><a href="#" id="buy" class="submit">点击购买</a>
 				<div class="hint">免运费
 					<br>7天无理由退货</div>

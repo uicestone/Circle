@@ -121,6 +121,7 @@ add_action('init', function(){
 			'price',
 			'material',
 			'origin',
+			'sizes',
 			'_product_image_gallery',
 			'_mobile_list_thumbnail',
 			'_mobile_product_head',
