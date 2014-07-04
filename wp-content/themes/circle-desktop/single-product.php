@@ -1,4 +1,4 @@
-<?php 
+<?php
 add_action('wp_enqueue_scripts', function(){
 	wp_enqueue_style('detail');
 });
@@ -9,7 +9,7 @@ $product_info = array(
 	'price'=>get_post_meta(get_the_ID(), 'price', true),
 	'origin'=>get_piece(get_post_meta(get_the_ID(), 'origin', true)),
 	'material'=>get_piece(get_post_meta(get_the_ID(), 'material', true)),
-	
+
 );
 $sizes = get_post_meta(get_the_ID(), 'sizes', true);
 get_header();
@@ -19,11 +19,11 @@ get_header();
 		<div class="inner">
 			<div class="title">轻奢彩宝</div>
 			<ul>
-				<li class="active">
-					<a href="#">爱，从自己开始。</a>
+				<li>
+					<a href="product_cat/爱，从自己开始/">爱，从自己开始。</a>
 				</li>
 				<li>
-					<a href="#">闺蜜的果香</a>
+					<a href="product_cat/闺蜜的果香/">闺蜜的果香</a>
 				</li>
 			</ul>
 		</div>
@@ -42,7 +42,7 @@ get_header();
 						</ul>
 					</div>
 					<div class="next"></div>
-				</div>				
+				</div>
 			</div>
 		</div>
 		<div class="detail">
@@ -175,7 +175,7 @@ get_header();
         },function(){
           can_interact = true;
         });
-      });   
+      });
       $(".photos .next").click(function(){
         if(current == count - 1 || !can_interact){return;}
         current++;
@@ -185,9 +185,9 @@ get_header();
         },function(){
           can_interact = true;
         });
-      }); 
-    })(); 
-		
+      });
+    })();
+
 	});
 })(jQuery);
 
@@ -200,4 +200,4 @@ var product = <?=json_encode(array_merge($product_info, array('id'=>get_the_ID()
 <?php get_template_part('modal','order-confirm') ?>
 <?php get_template_part('modal','guide') ?>
 <?php get_template_part('modal','payment') ?>
-<?php get_footer(); ?>		
+<?php get_footer(); ?>

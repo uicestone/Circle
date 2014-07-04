@@ -10,10 +10,10 @@
 			<div class="title">轻奢彩宝</div>
 			<ul>
 				<li>
-					<a href="#">爱，从自己开始。</a>
+					<a href="product_cat/爱，从自己开始/">爱，从自己开始。</a>
 				</li>
-				<li class="active">
-					<a href="#">闺蜜的果香</a>
+				<li>
+					<a href="product_cat/闺蜜的果香/">闺蜜的果香</a>
 				</li>
 			</ul>
 		</div>

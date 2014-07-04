@@ -1,4 +1,4 @@
-<?php 
+<?php
 add_action('wp_enqueue_scripts', function(){
 	wp_enqueue_style('list');
 });
@@ -9,9 +9,11 @@ get_header();
 		<div class="inner">
 			<div class="title">轻奢彩宝</div>
 			<ul>
-				<li class="active"><a href="#">爱，从自己开始。</a>
+				<li>
+					<a href="product_cat/爱，从自己开始/">爱，从自己开始。</a>
 				</li>
-				<li><a href="#">闺蜜的果香</a>
+				<li>
+					<a href="product_cat/闺蜜的果香/">闺蜜的果香</a>
 				</li>
 			</ul>
 		</div>
