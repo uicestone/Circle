@@ -169,15 +169,20 @@
   display: block;
 }
 .photos .prev{
-  left: -26px;
-  margin-right: 26px;
-  background-image: url("../img/arrow-left.png")
+  height: 100%;
+  width: 50%;
+  position: absolute;
+  cursor: url('http://i1.dpfile.com/s/c/i/btn_prev.cur'),auto;
+  z-index: 1;
 }
 
 .photos .next{
-  right: -26px;
-  margin-left: 26px;
-  background-image: url("../img/arrow-right.png")
+  height: 100%;
+  width: 50%;
+  margin-left: 50%;
+  position: absolute;
+  cursor: url('http://i1.dpfile.com/s/c/i/btn_next.cur'),auto;
+  z-index: 1;
 }
 
 /* 如何保养 */

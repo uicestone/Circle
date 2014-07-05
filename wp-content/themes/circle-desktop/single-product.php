@@ -32,16 +32,16 @@ get_header();
 		<div class="pic">
 			<div class="inner">
 				<div class="photos">
-					<div class="prev"></div>
 					<div class="slides">
+						<div class="prev"></div>
 						<?php $image_ids = explode(',', get_post_meta(get_the_ID(), '_product_image_gallery', true)); ?>
 						<ul>
 						<?php foreach($image_ids as $image_id){ ?>
 							<li><?php echo wp_get_attachment_image($image_id, 'desktop-product-gallery')?></li>
 						<?php } ?>
 						</ul>
+						<div class="next"></div>
 					</div>
-					<div class="next"></div>
 				</div>
 			</div>
 		</div>
