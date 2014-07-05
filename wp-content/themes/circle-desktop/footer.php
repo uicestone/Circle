@@ -49,7 +49,7 @@
             hint.html('<i class="icon-ok"></i>');
             return true;
           }else{
-            hint.html('<i class="icon-warn"></i>格式不正确');  
+            hint.html('<i class="icon-warn"></i>格式不正确');
             return false;
           }
         }else{
@@ -108,9 +108,12 @@
             location.reload();
           },data.action_info.scene.scene_id);
           loading.hide();
+        },function(){
+          loginModal.modal('hide');
         });
       }).on('hide.bs.modal',function(){
         pollingLogin.stop();
+        loading.hide();
       });
 
       $("#modal-mine").on('show.bs.modal',function(){
@@ -128,7 +131,9 @@
       });
 
       $('[title="订单服务"]').click(function(){
-        showMyOrders();
+        judgeLogin(showMyOrders,function(){
+          $("#modal-login").modal('show');
+        });
         return false;
       });
 
