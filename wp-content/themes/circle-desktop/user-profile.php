@@ -1,12 +1,5 @@
 <?php
 
-$qrcode = json_decode(get_option('wx_qrscene_1'));
-if(isset($qrcode->loggin_userid)){
-	wp_set_auth_cookie($qrcode->loggin_userid);
-	wp_set_current_user($qrcode->loggin_userid);
-	delete_option('wx_qrscene_1');
-}
-
 $output_keys = array(
 	'nickname',
 	'province',

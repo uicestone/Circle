@@ -265,10 +265,18 @@ class WeixinAPI {
 		
 	}
 	
-	function generate_qr_code($scene_id, $action_info = array(), $action_name = 'QR_SCENE', $expires_in = '1800'){
-		// TODO scene_id 应该要可以自动生成
+	function generate_qr_code($action_info = array(), $action_name = 'QR_SCENE', $expires_in = '1800'){
+		
 		// TODO 过期scene应该要回收
+		// TODO scene id 到达100000后无法重置
+		// TODO QR_LIMIT_SCENE只能有100000个
 		$url = 'https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=' . $this->get_access_token();
+		
+		$scene_id = get_option('wx_last_qccode_scene_id', 0) + 1;
+		
+		if($scene_id > 100000){
+			$scene_id = 1; // 强制重置
+		}
 		
 		$action_info['scene']['scene_id'] = $scene_id;
 		
@@ -303,6 +311,7 @@ class WeixinAPI {
 		);
 		
 		update_option('wx_qrscene_' . $scene_id, json_encode($qrcode));
+		update_option('wx_last_qccode_scene_id', $scene_id);
 		
 		return $qrcode;
 		
