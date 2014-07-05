@@ -14,6 +14,8 @@
             </li>
             <li><a href="#" target="#profile">个人资料</a>
             </li>
+            <li><a href="<?=wp_logout_url()?>">退出登录</a>
+            </li>
           </ul>
         </div>
         <div class="right">
