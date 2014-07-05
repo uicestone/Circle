@@ -180,6 +180,7 @@ add_action('init', function(){
 	register_nav_menu('mobile-foot', '移动版底部固定菜单');
 	register_nav_menu('desktop-head', '桌面版顶部固定菜单');
 	register_nav_menu('desktop-foot', '桌面版底部固定菜单');
+	register_nav_menu('desktop-side', '桌面版侧边导航菜单');
 	
 });
 
