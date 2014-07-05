@@ -16,7 +16,7 @@
 
 .info{
   float: left;
-  width: 1023px;
+  width: 1000px;
 }
 .info:after{
     content:"";
@@ -125,6 +125,7 @@
   position: relative;
   width: 465px;
   height: 100%;
+  margin-bottom: 20px;
 }
 
 .photos:after{
@@ -320,7 +321,7 @@
 }
 
 #modal-guide .guides{
-  margin-top: 37px;  
+  margin-top: 37px;
   margin-bottom: 68px;
   font-size: 12px;
 }

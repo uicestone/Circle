@@ -176,6 +176,7 @@ a {
   height: 100%;
   overflow: scroll;
   padding: 20px 0;
+  overflow-x: hidden;
 }
 .content .panel:before,
 .content .panel:after {

@@ -76,8 +76,9 @@
     judgeLogin: function(succ, fail, scene_id) {
       var self = this;
       var url = apiBase + "/user-profile/";
+      url += "?t=" + (+new Date());
       if(scene_id){
-        url += "?scene_id="+scene_id;
+        url += "&scene_id="+scene_id;
       }
       $.getJSON( url, function(data) {
         var keys = [];
@@ -131,5 +132,5 @@
   });
   $.extend(window, exports);
 
-  
+
 })(jQuery);
