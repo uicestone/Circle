@@ -101,7 +101,7 @@
       $("#modal-login").on('show.bs.modal',function(){
         var loginModal = $(this);
         loading.show();
-        $.getJSON(apiBase + "/wx/qrcode/?action=login",function(data){
+        $.getJSON(apiBase + "/wx/qrcode/?action=login&t=" + (+new Date()),function(data){
           if(data.errcode){
             alert(data.errmsg);
             loginModal.modal('hide');
