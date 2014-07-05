@@ -10,6 +10,11 @@
 .aside .inner a{
     color: #787878;
 }
+
+.aside .inner a:hover{
+  color: #fff;
+}
+
 .aside .inner .active a{
     color: #fff;
 }
