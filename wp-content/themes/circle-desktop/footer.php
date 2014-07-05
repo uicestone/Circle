@@ -102,6 +102,11 @@
         var loginModal = $(this);
         loading.show();
         $.getJSON(apiBase + "/wx/qrcode/?action=login",function(data){
+          if(data.errcode){
+            alert(data.errmsg);
+            loginModal.modal('hide');
+            return;
+          }
           var url = data.url;
           loginModal.find("#login-qr").attr("src", url).show();
           pollingLogin.start(function(){
