@@ -334,4 +334,29 @@ class WeixinAPI {
 		
 	}
 	
+	function onmessage($type, $callback){
+		
+		if(!isset($GLOBALS["HTTP_RAW_POST_DATA"])){
+			return false;
+		}
+		
+		xml_parse_into_struct(xml_parser_create(), $GLOBALS["HTTP_RAW_POST_DATA"], $message);
+
+		$message = array_column($message, 'value', 'tag');
+
+		if(!is_array($message)){
+			error_log('XML parse error.');
+		}
+
+		// 事件消息			
+		if($message['MSGTYPE'] === $type){
+			$callback($message);
+		}
+		
+	}
+	
+	function reply_message($reply_message_content, $received_message){
+		require plugin_dir_path(__FILE__) . 'template/message_reply.php';
+	}
+	
 }
