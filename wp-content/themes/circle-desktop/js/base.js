@@ -210,11 +210,15 @@
     // 弹层tab切换
     var menus = $(".modal-body .menu li");
     menus.click(function(e) {
-        e.preventDefault();
-        menus.removeClass("active");
-        $(this).addClass("active");
-        $('.tabbody').hide();
-        $($(this).find('a').attr('target')).show();
+      var el = $(this);
+      if(el.text().trim() == "退出登录"){
+        return true;
+      }
+      e.preventDefault();
+      menus.removeClass("active");
+      el.addClass("active");
+      $('.tabbody').hide();
+      $(el.find('a').attr('target')).show();
     });
 
     // 订单详情
