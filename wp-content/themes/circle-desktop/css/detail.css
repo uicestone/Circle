@@ -185,6 +185,14 @@
   z-index: 1;
 }
 
+.photos .first .prev{
+  cursor: default;
+}
+
+.photos .last .next{
+  cursor: default;
+}
+
 /* 如何保养 */
 #modal-upkeep h2{
   font-weight: bold;

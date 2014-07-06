@@ -161,14 +161,28 @@ get_header();
 		});
 
 		;(function(){
+			var container = $(".info .slides");
       var slide_ul = $(".info .slides ul");
       var current = 0;
       var count = slide_ul.find("li").length;
       var can_interact = true;
       slide_ul.css("width",count * 465);
+      function dealClass(){
+        if(current == 0){
+        	container.addClass("first");
+        }else{
+        	container.removeClass("first");
+        }
+        if(current == count - 1){
+        	container.addClass("last");
+        }else{
+        	container.removeClass("last");
+        }
+      }
       $(".photos .prev").click(function(){
         if(current == 0 || !can_interact){return;}
         current--;
+        dealClass();
         can_interact = false;
         slide_ul.animate({
           left:"+=465"
@@ -180,12 +194,14 @@ get_header();
         if(current == count - 1 || !can_interact){return;}
         current++;
         can_interact = false;
+        dealClass();
         slide_ul.animate({
           left:"-=465"
         },function(){
           can_interact = true;
         });
       });
+      dealClass();
     })();
 
 	});
