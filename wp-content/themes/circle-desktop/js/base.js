@@ -221,6 +221,30 @@
     $("#order .btn").live('click',function() {
         $(".tabbody").hide();
         $("#order-detail").show();
+        var data = $.parseJSON(unescape($(this).closest('tr').attr('data-item')));
+
+        var data_field_mapping = {
+          order_date:"date",
+          order_id:"id",
+          user_nickname:"receiver",
+          user_mobile:"contact",
+          product_name:"product_meta.name",
+          product_id:"product_meta.id",
+          product_size:"product_meta.size",
+          product_amount:"product_meta.amount",
+          product_price:"product_meta.price",
+          summary_price:"product_meta.price * product_meta.amount"
+        };
+
+
+        function toValue(statement){
+          return new Function("data","with(data){return " + statement + "}")(data);
+        }
+
+        for(field in data_field_mapping){
+          var value = toValue(data_field_mapping[field]);
+          $("#order-detail").find("." + field).html(value);
+        }
     });
 
     // 个人资料

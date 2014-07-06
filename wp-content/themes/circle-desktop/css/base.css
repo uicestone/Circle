@@ -328,7 +328,7 @@ a {
 }
 #modal-mine .modal-body {
   zoom: 1;
-  padding: 80px 65px;
+  padding: 40px 65px;
 }
 #modal-mine .modal-body:before,
 #modal-mine .modal-body:after {
@@ -359,6 +359,8 @@ a {
 }
 #modal-mine .table-bordered th,
 #modal-mine .table-bordered td {
+  word-wrap: break-word;
+  word-break: break-all;
   border: none;
   border-bottom: 1px dashed #b7b3b2;
   padding: 20px;

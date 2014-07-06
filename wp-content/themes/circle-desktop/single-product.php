@@ -151,7 +151,8 @@ get_header();
 		}
 
 
-		$("#buy").click(function(){
+		$("#buy").click(function(e){
+      e.preventDefault();
 			assureLogin(loggedHandler);
 		});
 
