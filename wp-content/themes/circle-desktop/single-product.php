@@ -103,6 +103,13 @@ get_header();
 			$("#modal-payment").modal();
 		});
 
+    $("#modal-order-confirm .edit").live('click', function(){
+      $("#modal-order-confirm").modal('hide');
+      updateProfile(function(){
+        $("#buy").trigger("click");
+      });
+    });
+
 		$("#modal-order-confirm .btn-cancel").click(function(){
 			$("#modal-order-confirm").modal('hide');
 		});
@@ -110,10 +117,6 @@ get_header();
 		// $("#modal-payment").modal();
 
 		function loggedHandler(){
-			// $("#modal-order-confirm").modal();
-			// return
-			// loading.show();
-			// var count = 2;
 			var product = window.product;
 			var size = $(".choices .active").text();
 			assureProfile(function(profile){
@@ -127,11 +130,11 @@ get_header();
 					modal.find(".price-total").html("¥ " + (product.price * product.amount) + ".00");
 				}
 
-				function updateProfile(){
+				function updateProfileInput(){
 					$("#payment-form").find(".address").val(JSON.stringify(profile));
 				}
 
-				function updateProduct(){
+				function updateProductInput(){
 					$("#payment-form").find(".product").val(JSON.stringify(product));
 				}
 
@@ -139,19 +142,17 @@ get_header();
 					var val = +$(this).val();
 					product.amount = val;
 					updateTotal();
-					updateProduct();
+					updateProductInput();
 				});
 				updateTotal();
-				updateProfile();
-				updateProduct();
+				updateProfileInput();
+				updateProductInput();
 			});
 		}
 
 
 		$("#buy").click(function(){
-			judgeLogin(loggedHandler,function(){
-				$("#modal-login").modal();
-			});
+			assureLogin(loggedHandler);
 		});
 
 		$(".btn-alipay,.btn-weixin").click(function(){

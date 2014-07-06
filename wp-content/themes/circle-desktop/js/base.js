@@ -1,6 +1,43 @@
 (function($) {
   var exports = {
-    apiBase: siteUrl,
+    apiBase: "",
+    login: function(callback){
+      var loginModal = $("#modal-login");
+
+
+      loading.show();
+      $.getJSON(apiBase + "/wx/qrcode/?action=login&t=" + (+new Date()),function(data){
+        loginModal.modal('show');
+        if(data.errcode){
+          alert(data.errmsg);
+          loginModal.modal('hide');
+          return;
+        }
+        var url = data.url;
+        loginModal.find("#login-qr").attr("src", url).show();
+        pollingLogin.start(function(){
+          if(callback){
+            $("#login").hide();
+            $("#welcome").show().html("你好, " + userProfile.nickname);
+            loading.hide();
+            loginModal.modal('hide');
+            callback();
+          }else{
+            location.reload();
+          }
+        },data.action_info.scene.scene_id);
+        loading.hide();
+      },function(){
+        loginModal.modal('hide');
+      });
+
+
+    },
+    assureLogin: function(callback){
+      judgeLogin(callback,function(){
+        login(callback);
+      });
+    },
     loading: {
       init: function() {
         var loading_container = $("<div id='loading' />");
@@ -45,7 +82,7 @@
 
     })(),
     assureProfile: function(callback){
-      if(userProfile){
+      if(JSON.stringify(userProfile) !== "{}"){
         var needComplete = false;
         for(var key in userProfile){
           if(!userProfile[key]){
@@ -53,16 +90,36 @@
           }
         }
         if(needComplete){
-          showProfileForm();
+          updateProfile(callback);
         }else{
           callback(userProfile);
         }
       }else{
-        $("#modal-login").modal();
+        login(function(){
+          assureProfile(callback);
+        });
       }
     },
-    showProfileForm: function(callback){
+    fillMine: function(){
+      // fill form with window data
+      $("#profile .field .form-control").each(function(i,el){
+        el = $(el);
+        var name = el.attr("name");
+        userProfile && userProfile[name] && el.val(userProfile[name]);
+      });
+
+      // load orders
+      loading.show();
+      $.getJSON("/order/?t=" + (+ new Date()), function(data){
+        var html = render($("#modal-mine-tr").html(),{items:data});
+        $("#order-tbody").html(html);
+        loading.hide();
+      });
+    },
+    updateProfile: function(callback){
+      window.profileUpdatedCallback = callback;
       var modal = $("#modal-mine");
+
       modal.modal();
       modal.find(".menu .active").removeClass("active");
       modal.find(".menu li:eq(2) a").trigger("click");
@@ -86,6 +143,7 @@
           keys.push(item);
         }
         if (keys.length) {
+          window.userProfile = data;
           return succ();
         } else {
           fail();
@@ -129,6 +187,117 @@
   }
   $(function() {
     window.loading.init();
+    $("#modal-login").on('hide.bs.modal',function(){
+      loading.hide();
+      pollingLogin.stop();
+    });
+
+    $("#login").click(function(e){
+      e.preventDefault();
+      login();
+    });
+
+    $("#modal-mine").on('show.bs.modal',function(){
+      fillMine();
+    }).on('hide.bs.modal',function(){
+      window.profileUpdatedCallback = null;
+    });
+
+    $('[title="订单服务"]').click(function(){
+      assureLogin(showMyOrders);
+      return false;
+    });
+    // 弹层tab切换
+    var menus = $(".modal-body .menu li");
+    menus.click(function(e) {
+        e.preventDefault();
+        menus.removeClass("active");
+        $(this).addClass("active");
+        $('.tabbody').hide();
+        $($(this).find('a').attr('target')).show();
+    });
+
+    // 订单详情
+    $("#order .btn").live('click',function() {
+        $(".tabbody").hide();
+        $("#order-detail").show();
+    });
+
+    // 个人资料
+    // 表单验证
+    function validateField(input){
+      var validators = {
+        "zipcode":function(v){
+          return v.match(/^\d{6}$/);
+        },
+        "contact":function(v){
+          return v.match(/^\d+$/);
+        }
+      };
+      var fieldName = input.attr("id").split("-")[1];
+      var value = input.val().trim();
+      var hint = input.parent().find(".hint");
+      if(value){
+        if(passValidator(value)){
+          hint.html('<i class="icon-ok"></i>');
+          return true;
+        }else{
+          hint.html('<i class="icon-warn"></i>格式不正确');
+          return false;
+        }
+      }else{
+        hint.html('<i class="icon-warn"></i>此项为必填');
+        return false;
+      }
+      function passValidator(v){
+        var validator = validators[fieldName];
+        if(!validator){return true}
+        else{
+          return validator(v)
+        }
+      }
+    }
+
+    function getProfileData(){
+      var data = {};
+      $("#profile .field .form-control").each(function(i,el){
+        el = $(el);
+        data[el.attr('name')] = el.val();
+      });
+      return data;
+    }
+    $("#profile .field .form-control").blur(function(){
+      var input = $(this);
+      validateField(input);
+    });
+    $("#profile .btn-update").click(function() {
+        // check form
+        var ok = true;
+        $("#profile .field .form-control").each(function(i,el){
+          var fieldOk = validateField($(el));
+          if(!fieldOk){ok = false;}
+        });
+        if(ok){
+          loading.show();
+          $.post("/user-profile",getProfileData(),function(profile){
+            window.userProfile = profile;
+            loading.hide();
+
+            if(window.profileUpdatedCallback){
+              profileUpdatedCallback(userProfile);
+              $("#modal-mine").modal('hide');
+            }else{
+              $(".tabbody").hide();
+              $("#profile-updated").show();
+            }
+          });
+        }
+    });
+    $("#profile-updated .btn-check").click(function() {
+      $(".tabbody").hide();
+      $("#profile").show();
+    });
+
   });
   $.extend(window, exports);
 

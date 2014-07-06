@@ -47,8 +47,8 @@
   </div>
 
   <script id="tpl-address" type="text/tpl">
-    <li> 
-      <span><%= profile.province %> <%= profile.address %> （<%= profile.receiver %> 收）邮编：<%= profile.zipcode %> <%= profile.contact %></span>
+    <li>
+      <span><%= profile.province %> <%= profile.address %> （<%= profile.receiver %> 收）邮编：<%= profile.zipcode %> <%= profile.contact %><a class="edit" href="javascript:;" style="float:right;color:#39d">修改</a></span>
     </li>
   </script>
   <script id="tpl-order-detail" type="text/tpl">
