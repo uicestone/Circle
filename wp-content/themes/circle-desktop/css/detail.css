@@ -21,7 +21,7 @@
 
 .info{
   float: left;
-  width: 1000px;
+  width: 960px;
 }
 .info:after{
     content:"";

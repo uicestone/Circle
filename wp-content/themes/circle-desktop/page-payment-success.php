@@ -1,10 +1,10 @@
-<?php 
+<?php
 add_action('wp_enqueue_scripts', function(){
 	wp_enqueue_style('success');
 });
 get_header();
 ?>
-<div class="panel container">
+<div class="panel">
 	<div class="panel">
 		<div class="panel-inner">
 			<div class="logo">

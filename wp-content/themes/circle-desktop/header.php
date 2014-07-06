@@ -12,14 +12,13 @@
 	</head>
 
 	<body <?php body_class(); ?>>
-		<div class="header">
-			<div class="container">
+		<div class="header container">
 				<a href="<?=site_url()?>" class="brand">
 					<img src="<?=get_template_directory_uri()?>/img/brand.png">
 				</a>
 				<?php wp_nav_menu(array('theme_location'=>'desktop-head', 'menu_class'=>'nav', 'container'=>false, 'fallback_cb'=>'wp_bootstrap_navwalker::fallback', 'walker'=>new wp_bootstrap_navwalker())); ?>
 				<div class="user">
-					
+
 					<?php if(!is_user_logged_in()){ ?>
 					<ul class="nav">
 						<li class="menu-item">
@@ -31,6 +30,5 @@
 					<?php } ?>
 				</div>
 			</div>
-		</div>
-		<div class="content">
+		<div class="content container">
 

@@ -4,7 +4,7 @@ add_action('wp_enqueue_scripts', function(){
 });
 get_header();
 ?>
-<div class="panel container">
+<div class="panel">
 	<div class="aside">
 		<div class="inner">
 			<div class="title">轻奢彩宝</div>

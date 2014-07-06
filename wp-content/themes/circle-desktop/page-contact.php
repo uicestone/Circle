@@ -20,7 +20,7 @@
 	}
 </style>
 
-<div class="panel container">
+<div class="panel">
 	<div class="aside">
 		<div class="inner">
 			<div class="title">联系我们</div>
@@ -35,4 +35,4 @@
 	</div>
 	<img src="<?=get_template_directory_uri()?>/img/photos/contact.jpg" class="bigpic">
 </div>
-<?php get_footer(); ?>		
+<?php get_footer(); ?>

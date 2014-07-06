@@ -4,7 +4,7 @@
 		min-width: 150px
 	}
 </style>
-<div class="panel container">
+<div class="panel">
 	<div class="aside">
 		<div class="inner">
 			<div class="title">轻奢彩宝</div>

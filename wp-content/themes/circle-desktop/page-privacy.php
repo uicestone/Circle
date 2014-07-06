@@ -18,7 +18,7 @@
         font-size: 13px;
     }
 </style>
-<div class="panel container">
+<div class="panel">
   <div class="single">
       <div class="inner">
           <h1 class="title">隐私政策</h1>
@@ -34,4 +34,4 @@
       </div>
   </div>
 </div>
-<?php get_footer(); ?>    
+<?php get_footer(); ?>

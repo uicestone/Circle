@@ -20,7 +20,7 @@
 		width: 55%
 	}
 </style>
-<div class="panel container">
+<div class="panel">
 	<div class="aside">
 		<div class="inner">
 			<div class="title">品牌介绍</div>
