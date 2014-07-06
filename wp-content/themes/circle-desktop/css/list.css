@@ -25,6 +25,8 @@
 .aside .inner a {
   color: #787878;
 }
+
+.aside .inner .current-menu-item a,
 .aside .inner a:hover{
   color: #fff;
 }
