@@ -153,7 +153,7 @@ a {
 }
 .content {
   zoom: 1;
-  margin: 6px 0;
+  margin: 6px auto;
   background-color: #fff;
 }
 .content:before,
