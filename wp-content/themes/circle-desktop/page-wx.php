@@ -13,6 +13,8 @@ if(isset($_GET['echostr'])){
 
 $wx->onmessage('event', function($message){
 	
+	global $wx;
+	
 	// 未关注用户扫带参数码
 	if($message['EVENT'] === 'subscribe'){
 		$scene_id = str_replace('qrscene_', '', $message['EVENTKEY']);
@@ -57,7 +59,6 @@ $wx->onmessage('event', function($message){
 
 		update_option('wx_qrscene_' . $scene_id, json_encode($qrcode));
 		
-		global $wx;
 		$wx->reply_message('您已在桌面版登录，请在桌面浏览器中继续浏览', $message);
 
 	}
