@@ -23,29 +23,32 @@ $auth_info = $wx->get_oauth_token($_GET['code']);
 
 $users = get_users(array('meta_key'=>'wx_openid','meta_value'=>$auth_info->openid));
 
-if(!$users){
-	header('Location: ' . site_url());
-}
+$user_id = $users ? $users[0]->ID : 1;
 
 query_posts(array(
 	'post_type'=>'shop_order',
-	'author'=>$users[0]->ID,
-	'post_status'=>'any'
+	'author'=>$user_id,
+	'post_status'=>'any',
+	'posts_per_page'=>-1
 ));
-add_action('wp_enqueue_scripts', function(){
-	wp_enqueue_style('my');
-});
-add_filter('body_class', function($class){
-	$class[] = 'nonav';
-	return $class;
-});
-get_header();
+
 $status = array(
 	'pending'=>'等待付款',
 	'payed'=>'已支付',
 	'shipped'=>'已发货',
 	'completed'=>'已完成'
 );
+
+add_action('wp_enqueue_scripts', function(){
+	wp_enqueue_style('my');
+});
+
+add_filter('body_class', function($class){
+	$class[] = 'nonav';
+	return $class;
+});
+
+get_header();
 ?>
 <div class="head">
 	<img src="<?=get_template_directory_uri()?>/img/logo.png" class="logo">
@@ -53,6 +56,9 @@ $status = array(
 <div class="content">
 	<div class="content-inner">
 		<div class="orders">
+			<?php if(!have_posts()):?>
+			<p>您还没有任何订单</p>
+			<?php endif; ?>
 			<?php while(have_posts()): the_post();?>
 			<div class="order">
 				<div class="order-detail">
