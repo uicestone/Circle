@@ -56,7 +56,7 @@ get_header();
 jQuery(function($){
 	var swiper = new Swiper('.swiper-container', {
 		pagination: '.pagination',
-		loop: true
+		loop: false
 	});
 
 
