@@ -14,17 +14,17 @@ $data = array(
 				array(
 					'type'=>'view',
 					'name'=>'爱，从自己开始',
-					'url'=>'http://www.circlewava.com/product_cat/%E7%88%B1%EF%BC%8C%E4%BB%8E%E8%87%AA%E5%B7%B1%E5%BC%80%E5%A7%8B/',
+					'url'=>'http://www.circlewava.com/product_series/%E7%88%B1%EF%BC%8C%E4%BB%8E%E8%87%AA%E5%B7%B1%E5%BC%80%E5%A7%8B/',
 				),
 				array(
 					'type'=>'view',
 					'name'=>'闺蜜的果香',
-					'url'=>'http://www.circlewava.com/product_cat/%E9%97%BA%E8%9C%9C%E7%9A%84%E6%9E%9C%E9%A6%99/'
+					'url'=>'http://www.circlewava.com/product_series/%E9%97%BA%E8%9C%9C%E7%9A%84%E6%9E%9C%E9%A6%99/'
 				),
 				array(
 					'type'=>'view',
 					'name'=>'高级彩宝',
-					'url'=>'http://www.circlewava.com/product_cat/%E9%AB%98%E7%BA%A7%E5%BD%A9%E5%AE%9D%E5%AE%9A%E5%88%B6/'
+					'url'=>'http://www.circlewava.com/product_series/%E9%AB%98%E7%BA%A7%E5%BD%A9%E5%AE%9D%E5%AE%9A%E5%88%B6/'
 				),
 			)
 		),

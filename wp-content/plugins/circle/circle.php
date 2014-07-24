@@ -32,6 +32,22 @@ add_action('init', function(){
 		'hierarchical'=>true,
 	));
 	
+	register_taxonomy('product_series', 'product', array(
+		'label'=>'产品系列',
+		'labels'=>array(
+			'all_items'=>'所有产品系列',
+			'update_item'=>'更新产品系列',
+			'add_new_item'=>'添加新产品系列',
+			'edit_item'=>'编辑产品系列',
+			'view_item'=>'查看产品系列',
+			'new_item_name'=>'新产品系列名称',
+			'parent_item'=>'上级产品系列',
+			'parent_item_colon'=>'上级产品系列：',
+			'search_items'=>'搜索产品系列'
+		),
+		'hierarchical'=>true,
+	));
+	
 	register_post_type('product', array(
 		'label'=>'产品',
 		'labels'=>array(
@@ -88,63 +104,6 @@ add_action('init', function(){
 		'menu_icon'=>'dashicons-cart'
 	));
 	
-	add_action('add_meta_boxes', function(){
-		
-		add_meta_box('product_images_gallery', '相册', function($post){
-			$product_image_gallery = get_post_meta($post->ID, '_product_image_gallery', true);
-			$product_image_ids = $product_image_gallery ? explode(',', $product_image_gallery) : array();
-			$gallery_args = array(
-				'title_remove'=>'从相册删除',
-				'title_add'=>'添加图片到相册',
-				'insert_button_text'=>'添加',
-				'meta_key'=>'_product_image_gallery'
-			);
-			require plugin_dir_path(__FILE__) . 'templates/product-image-gallery-meta-box.php';
-		}, 'post', 'side', 'default');
-			
-	});
-	
-//	add_filter('manage_edit-product_columns', function($columns){
-//		$columns = array(
-//			'title'=>'产品名称',
-//			'price'=>'价格',
-//			'sells'=>'销量',
-//			'category'=>'分类'
-//		);
-//		return $columns;
-//	});
-//	
-	add_action('save_post', function($post_id){
-		
-		$metas = array(
-			'name_en',
-			'price',
-			'material',
-			'origin',
-			'sizes',
-			'_product_image_gallery',
-			'_mobile_list_thumbnail',
-			'_mobile_product_head',
-			
-			'province',
-			'address',
-			'zipcode',
-			'receiver',
-			'contact',
-			'product',
-			'amount',
-			'size',
-			'num',
-			'status',
-		);
-		
-		foreach($metas as $field){
-			if(isset($_POST[$field])){
-				update_post_meta($post_id, $field, $_POST[$field]);
-			}
-		}
-	});
-	
 	register_post_type('shop_order', array(
 		'label'=>'订单',
 		'labels'=>array(
@@ -184,6 +143,53 @@ add_action('init', function(){
 	
 });
 
+add_action('add_meta_boxes', function(){
+
+	add_meta_box('product_images_gallery', '相册', function($post){
+		$product_image_gallery = get_post_meta($post->ID, '_product_image_gallery', true);
+		$product_image_ids = $product_image_gallery ? explode(',', $product_image_gallery) : array();
+		$gallery_args = array(
+			'title_remove'=>'从相册删除',
+			'title_add'=>'添加图片到相册',
+			'insert_button_text'=>'添加',
+			'meta_key'=>'_product_image_gallery'
+		);
+		require plugin_dir_path(__FILE__) . 'templates/product-image-gallery-meta-box.php';
+	}, 'post', 'side', 'default');
+
+});
+
+add_action('save_post', function($post_id){
+
+	$metas = array(
+		'name_en',
+		'price',
+		'material',
+		'origin',
+		'sizes',
+		'_product_image_gallery',
+		'_mobile_list_thumbnail',
+		'_mobile_product_head',
+
+		'province',
+		'address',
+		'zipcode',
+		'receiver',
+		'contact',
+		'product',
+		'amount',
+		'size',
+		'num',
+		'status',
+	);
+
+	foreach($metas as $field){
+		if(isset($_POST[$field])){
+			update_post_meta($post_id, $field, $_POST[$field]);
+		}
+	}
+});
+	
 add_action('admin_enqueue_scripts', function(){
 	wp_register_style('circle-admin', plugin_dir_url(__FILE__).'admin.css');
 	wp_register_script('circle-admin', plugin_dir_url(__FILE__).'admin.js', array('jquery-ui-sortable'));
@@ -248,6 +254,45 @@ add_action('manage_shop_order_posts_custom_column', function ($column_name) {
 		case 'contact' :
 			echo get_post_meta($post->ID, 'contact', true);
 			break;
+    }
+});
+
+add_action('restrict_manage_posts', function(){
+    $screen = get_current_screen();
+    global $wp_query;
+    if ( $screen->post_type === 'product' ) {
+        wp_dropdown_categories( array(
+            'show_option_all' => '所有产品分类',
+            'taxonomy' => 'product_cat',
+            'name' => 'product_cat',
+            'orderby' => 'name',
+            'selected' => ( isset( $wp_query->query['product_cat'] ) ? $wp_query->query['product_cat'] : '' ),
+            'hierarchical' => false,
+            'show_count' => false,
+            'hide_empty' => false,
+        ) );
+        wp_dropdown_categories( array(
+            'show_option_all' => '所有产品系列',
+            'taxonomy' => 'product_series',
+            'name' => 'product_series',
+            'orderby' => 'name',
+            'selected' => ( isset( $wp_query->query['product_series'] ) ? $wp_query->query['product_series'] : '' ),
+            'hierarchical' => false,
+            'show_count' => false,
+            'hide_empty' => false,
+        ) );
+    }
+});
+
+add_filter('parse_query', function($query) {
+    $qv = &$query->query_vars;
+    if ( ( $qv['product_cat'] ) && is_numeric( $qv['product_cat'] ) ) {
+        $term = get_term_by( 'id', $qv['product_cat'], 'product_cat' );
+        $qv['product_cat'] = $term->slug;
+    }
+    if ( ( $qv['product_series'] ) && is_numeric( $qv['product_series'] ) ) {
+        $term = get_term_by( 'id', $qv['product_series'], 'product_series' );
+        $qv['product_series'] = $term->slug;
     }
 });
 
