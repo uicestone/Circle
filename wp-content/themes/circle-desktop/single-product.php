@@ -54,11 +54,6 @@ get_header();
 					<li class="last"><a href="javascript:;" data-toggle="modal" data-target="#modal-certificate">查看证书</a>
 					</li>
 				</ul>
-<!--				<ul class="thumbs">
-					<li>
-						<img src="<?=get_template_directory_uri()?>/img/photos/detail-thumb.jpg">
-					</li>
-				</ul>-->
 			</div>
 			<?php if($sizes){ ?>
 			<div class="select dblock">
@@ -71,9 +66,13 @@ get_header();
 				<a href="#" data-toggle="modal" data-target="#modal-guide" class="howto">戒指选择指南</a>
 			</div>
 			<?php } ?>
-			<div class="buy dblock last"><a href="#" id="buy" class="submit">点击购买</a>
+			<div class="buy dblock"><a href="#" id="buy" class="submit">点击购买</a>
 				<div class="hint">免运费
-					<br>7天无理由退货</div>
+					<br>7天无理由退货
+				</div>
+			</div>
+			<div class="buy dblock last">
+				<?=wpautop($post->post_excerpt)?>
 			</div>
 		</div>
 	</div>
