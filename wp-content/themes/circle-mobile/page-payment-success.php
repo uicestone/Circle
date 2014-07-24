@@ -20,7 +20,7 @@ get_header();
 	</div>
 	<div class="btns">
 		<div class="btn">
-			<div class="text"><a href="<?=$wx->oauth_redirect(site_url() . '/order/', '', 'snsapi_base', false)?>">查看订单</a></div>
+			<div class="text"><a href="<?=$wx->generate_oauth_url(site_url() . '/order/')?>">查看订单</a></div>
 		</div>
 	</div>
 </div>

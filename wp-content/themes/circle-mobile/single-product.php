@@ -20,7 +20,7 @@ get_header();
     <img src="<?=get_template_directory_uri()?>/img/new-nav.png" style="width:100%">
 </div>
 <div class="content">
-	<form action="<?=$wx->oauth_redirect(site_url() . '/buy/?buy_product=' . get_the_ID(), '', 'snsapi_base', false)?>" method="post" id="form-buy">
+	<form action="<?=$wx->generate_oauth_url(site_url() . '/buy/?buy_product=' . get_the_ID())?>" method="post" id="form-buy">
 	<div class="product">
 		<?php echo wp_get_attachment_image(get_post_meta(get_the_ID(), '_mobile_product_head', true), 'mobile-product-head'); ?>
 	</div>

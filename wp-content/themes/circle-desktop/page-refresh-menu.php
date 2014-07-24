@@ -36,11 +36,6 @@ $data = array(
 					'type'=>'view',
 					'url'=>'http://www.circlewava.com/brand/'
 				),
-				array(
-					'name'=>'品牌活动',
-					'type'=>'view',
-					'url'=>'#'
-				)
 			)
 		),
 		array(

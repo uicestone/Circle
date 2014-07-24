@@ -67,7 +67,7 @@ get_header();
 					<div class="row status">订单状态：<?=$status[get_post_meta(get_the_ID(), 'status', true)]?></div>
 					<div class="row func">订单操作：
 						<?php if(get_post_meta(get_the_ID(), 'status', true) === 'pending'){ ?>
-						<span><a href="<?=$wx->oauth_redirect(site_url() . '/wx/wxpay/?pay_order=' . get_the_ID(), '', 'snsapi_base', false)?>">【付款】</a></span>
+						<span><a href="<?=$wx->generate_oauth_url(site_url() . '/wx/wxpay/?pay_order=' . get_the_ID())?>">【付款】</a></span>
 						<?php } ?>
 					</div>
 				</div>

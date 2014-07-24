@@ -1,16 +1,20 @@
 <?php
 /**
- * 微信用户授权跳转回调页面
- * 利用open_id和access_token调用地址和支付接口
+ * 微信支付页面
+ * 调用收获地址共享和支付接口
  */
-if(!isset($_GET['code']) || !isset($_GET['state'])){
-	exit('Not redirected from weixin oauth.');
-}
 add_action('wp_enqueue_scripts', function(){
 	wp_enqueue_script('jquery');
 });
+
 $wx = new WeixinAPI();
+
+if(empty($_GET['pay_order'])){
+	exit('order not specified');
+}
+
 $order_id = $_GET['pay_order'];
+
 get_header();
 ?>
 
