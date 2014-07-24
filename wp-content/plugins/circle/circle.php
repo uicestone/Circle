@@ -59,7 +59,7 @@ add_action('init', function(){
 			'search_items'=>'搜索产品'
 		),
 		'public'=>true,
-		'supports'=>array('title','editor','excerpt','thumbnail','revisions','page-attributes'),
+		'supports'=>array('title','editor','excerpt','thumbnail','page-attributes'),
 		'has_archive'=>true,
 		'register_meta_box_cb'=>function($post){
 			add_meta_box('properties', '参数', function($post){
