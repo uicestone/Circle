@@ -59,7 +59,7 @@ $wx->onmessage('event', function($message){
 
 		update_option('wx_qrscene_' . $scene_id, json_encode($qrcode));
 		
-		$wx->reply_message('您已在桌面版登录，请在桌面浏览器中继续浏览', $message);
+		$wx->reply_message('亲爱的，您已经登录桌面版缘点彩宝，请查看你的电脑端挑选钟意的珠宝', $message);
 
 	}
 });
