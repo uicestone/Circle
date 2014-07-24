@@ -1,4 +1,4 @@
-<div id="order" class="tabbody">
+<div id="order" class="tabbody active">
   <div class="head">
     <h2 class="title">已完成的订单</h2>
     <p>在这里您可以查看过往的订单</p>

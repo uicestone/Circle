@@ -8,8 +8,8 @@
         <div class="modal-body">
           <div class="left">
             <div class="inner">
-              <p>请使用<strong>?手机微信扫一扫功能</strong>，</p>
-              <p>扫一下右边的二维码，进行登录。</p>
+              <p>亲爱的，您可以用微信</p>
+	      <p>“扫一扫”右边的二维码登录缘点彩宝，挑选您钟意的珠宝</p>
               <i class="cursor"></i>
             </div>
           </div>
