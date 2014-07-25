@@ -111,8 +111,15 @@
       // load orders
       loading.show();
       $.getJSON("/order/?t=" + (+ new Date()), function(data){
-        var html = render($("#modal-mine-tr").html(),{items:data});
-        $("#order-tbody").html(html);
+        if(!data.length){
+          $("#modal-mine .table").hide();
+          $("#no-order").show();
+        }else{
+          $("#no-order").hide();
+          $("#modal-mine .table").show();
+          var html = render($("#modal-mine-tr").html(),{items:data});
+          $("#order-tbody").html(html);
+        }
         loading.hide();
       });
     },

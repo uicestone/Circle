@@ -3,6 +3,7 @@
     <h2 class="title">已完成的订单</h2>
     <p>在这里您可以查看过往的订单</p>
   </div>
+  <div id="no-order" style="display:none">你暂时还没有订单</div>
   <table class="table">
     <thead>
     <tr>
