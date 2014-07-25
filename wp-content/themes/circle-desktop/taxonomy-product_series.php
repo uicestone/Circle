@@ -7,7 +7,6 @@ get_header();
 <div class="panel">
 	<div class="aside">
 		<div class="inner">
-			<div class="title">轻奢彩宝</div>
 			<?php wp_nav_menu(array('theme_location'=>'desktop-side', 'container'=>false));?>
 		</div>
 		<div class="ph"></div>
