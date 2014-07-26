@@ -5,7 +5,7 @@
 		?>
 		<?php wp_footer(); ?>
 	<script>
-		jQuery(function($){
+		(function($){
 			
 			$('.nav>li:has(.sub-menu)')
 				.on('touchend', function(e){
@@ -24,7 +24,8 @@
 			$('body').on('touchend', function(){
 				$('.nav>li>.sub-menu').hide();
 			});
-		});
+			
+		})(jQuery);
     </script>
 	</body>
 </html>
