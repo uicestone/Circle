@@ -469,10 +469,18 @@ class WeixinAPI {
 			$callback($message);
 		}
 		
+		return $this;
+		
 	}
 	
 	function reply_message($reply_message_content, $received_message){
 		require plugin_dir_path(__FILE__) . 'template/message_reply.php';
+	}
+	
+	function reply_post_message($reply_posts, $received_message){
+		!is_array($reply_posts) && $reply_posts = array($reply_posts);
+		$reply_posts_count = count($reply_posts);
+		require plugin_dir_path(__FILE__) . 'template/post_message_reply.php';
 	}
 	
 }

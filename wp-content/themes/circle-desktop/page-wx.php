@@ -62,5 +62,16 @@ $wx->onmessage('event', function($message){
 		$wx->reply_message('亲爱的，您已经登录桌面版缘点彩宝，请查看你的电脑端挑选钟意的珠宝', $message);
 
 	}
+})->onmessage('text', function($message){
+	
+	global $wx;
+	
+	$content = $message['CONTENT'];
+	
+	$reply_posts = get_posts(array('category_name'=>'消息', 'tag'=>$content));
+	
+	if($reply_posts){
+		$wx->reply_post_message($reply_posts, $message);
+	}
 });
 
