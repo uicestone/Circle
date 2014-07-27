@@ -73,5 +73,9 @@ $wx->onmessage('event', function($message){
 	if($reply_posts){
 		$wx->reply_post_message($reply_posts, $message);
 	}
+	else{
+		$wx->transfer_customer_service($message);
+	}
+	
 });
 

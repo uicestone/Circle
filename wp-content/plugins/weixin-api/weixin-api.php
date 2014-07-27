@@ -483,4 +483,8 @@ class WeixinAPI {
 		require plugin_dir_path(__FILE__) . 'template/post_message_reply.php';
 	}
 	
+	function transfer_customer_service($received_message){
+		require plugin_dir_path(__FILE__) . 'template/transfer_customer_service.php';
+	}
+	
 }
