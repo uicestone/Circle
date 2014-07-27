@@ -114,6 +114,45 @@ class WeixinAPI {
 	}
 	
 	/**
+	 * 根据open_id自动在系统中查找或注册用户，并获得微信用户信息
+	 * 仅在用户与公众账号发生消息交互的时候才可以使用
+	 */
+	function loggin($open_id){
+		
+		$users = get_users(array('meta_key'=>'wx_openid','meta_value'=>$open_id));
+
+		if(!$users){
+			$user_info = $this->get_user_info($open_id);
+			$user_id = wp_create_user($user_info->nickname, $open_id);
+			add_user_meta($user_id, 'wx_openid', $open_id, true);
+			add_user_meta($user_id, 'sex', $user_info->sex, true);
+			add_user_meta($user_id, 'country', $user_info->country, true);
+			add_user_meta($user_id, 'province', $user_info->province, true);
+			add_user_meta($user_id, 'language', $user_info->language, true);
+			add_user_meta($user_id, 'headimgurl', $user_info->headimgurl, true);
+			add_user_meta($user_id, 'subscribe_time', $user_info->subscribe_time, true);
+		}
+		else{
+			$user_id = $users[0]->ID;
+			if($users[0]->user_login === substr($open_id, -8, 8)){
+				$user_info = $this->get_user_info($open_id);
+				update_user_meta($user_id, 'nickname', $user_info->nickname);
+				add_user_meta($user_id, 'sex', $user_info->sex, true);
+				add_user_meta($user_id, 'country', $user_info->country, true);
+				add_user_meta($user_id, 'province', $user_info->province, true);
+				add_user_meta($user_id, 'language', $user_info->language, true);
+				add_user_meta($user_id, 'headimgurl', $user_info->headimgurl, true);
+				add_user_meta($user_id, 'subscribe_time', $user_info->subscribe_time, true);
+			}
+		}
+		
+		wp_set_current_user($user_id);
+		
+		return $user_id;
+		
+	}
+	
+	/**
 	 * 生成OAuth授权地址
 	 */
 	function generate_oauth_url($redirect_uri = null, $state = '', $scope = 'snsapi_base'){

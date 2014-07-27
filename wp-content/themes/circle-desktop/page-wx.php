@@ -28,32 +28,8 @@ $wx->onmessage('event', function($message){
 
 	if($qrcode->action_info->action === 'login'){
 
-		$users = get_users(array('meta_key'=>'wx_openid','meta_value'=>$message['FROMUSERNAME']));
-
-		if(!$users){
-			$user_info = $wx->get_user_info($message['FROMUSERNAME']);
-			$user_id = wp_create_user($user_info->nickname, $message['FROMUSERNAME']);
-			add_user_meta($user_id, 'wx_openid', $message['FROMUSERNAME'], true);
-			add_user_meta($user_id, 'sex', $user_info->sex, true);
-			add_user_meta($user_id, 'country', $user_info->country, true);
-			add_user_meta($user_id, 'province', $user_info->province, true);
-			add_user_meta($user_id, 'language', $user_info->language, true);
-			add_user_meta($user_id, 'headimgurl', $user_info->headimgurl, true);
-			add_user_meta($user_id, 'subscribe_time', $user_info->subscribe_time, true);
-		}else{
-			$user_id = $users[0]->ID;
-			if($users[0]->user_login === substr($message['FROMUSERNAME'], -8, 8)){
-				$user_info = $wx->get_user_info($message['FROMUSERNAME']);
-				update_user_meta($user_id, 'nickname', $user_info->nickname);
-				add_user_meta($user_id, 'sex', $user_info->sex, true);
-				add_user_meta($user_id, 'country', $user_info->country, true);
-				add_user_meta($user_id, 'province', $user_info->province, true);
-				add_user_meta($user_id, 'language', $user_info->language, true);
-				add_user_meta($user_id, 'headimgurl', $user_info->headimgurl, true);
-				add_user_meta($user_id, 'subscribe_time', $user_info->subscribe_time, true);
-			}
-		}
-
+		$user_id = $wx->loggin($message['FROMUSERNAME']);
+		
 		$qrcode->loggin_openid = $message['FROMUSERNAME'];
 		$qrcode->loggin_userid = $user_id;
 
@@ -66,7 +42,15 @@ $wx->onmessage('event', function($message){
 	
 	global $wx;
 	
+	$user_id = $wx->loggin($message['FROMUSERNAME']);
+	
 	$content = $message['CONTENT'];
+	
+	wp_insert_post(array(
+		'post_type'=>'message',
+		'post_title'=>$content,
+		'post_status'=>'private'
+	));
 	
 	$reply_posts = get_posts(array('category_name'=>'消息', 'tag'=>$content));
 	
