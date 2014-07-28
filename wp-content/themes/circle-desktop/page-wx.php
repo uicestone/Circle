@@ -17,7 +17,15 @@ $wx->onmessage('event', function($message){
 	
 	// 未关注用户扫带参数码
 	if($message['EVENT'] === 'subscribe'){
-		$scene_id = str_replace('qrscene_', '', $message['EVENTKEY']);
+		if(empty($message['EVENTKEY'])){
+			$reply_posts = get_posts(array('category_name'=>'消息', 'tag'=>'关注回复'));
+			if($reply_posts){
+				$wx->reply_post_message($reply_posts, $message);
+			}
+		}
+		else{
+			$scene_id = str_replace('qrscene_', '', $message['EVENTKEY']);
+		}
 	}
 	// 已关注用户扫带参数码
 	elseif($message['EVENT'] === 'SCAN'){

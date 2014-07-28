@@ -56,7 +56,7 @@ class WeixinAPI {
 	}
 	
 	function call($url){
-		error_log('Weixin API called: ' . $url);
+//		error_log('Weixin API called: ' . $url);
 		return file_get_contents($url);
 	}
 	
