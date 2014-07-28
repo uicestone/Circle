@@ -20,11 +20,8 @@ get_header();
     <img src="<?=get_template_directory_uri()?>/img/new-nav.png" style="width:100%">
 </div>
 <div class="content">
-	<div class="product">
-		<?php the_post_thumbnail('mobile-product-head'); ?>
-	</div>
 	<h1><?php the_title(); ?></h1>
-	<div class="detail" style="width:90%">
+	<div class="detail">
 		<?php the_content() ?>
 	</div>
 </div>
