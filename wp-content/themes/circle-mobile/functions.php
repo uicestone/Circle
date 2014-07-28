@@ -16,4 +16,5 @@ add_action('init', function(){
 add_action('wp_enqueue_scripts', function(){
 	wp_enqueue_style('base');
 	wp_enqueue_script('zepto');
+	wp_enqueue_script('jquery');
 });
