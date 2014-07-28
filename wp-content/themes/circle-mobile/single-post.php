@@ -16,6 +16,9 @@ $sizes = get_post_meta(get_the_ID(), 'sizes', true);
 
 get_header();
 ?>
+<div style="height:auto;background-image:url('<?=get_template_directory_uri()?>/img/tile.png');" class="head">
+    <img src="<?=get_template_directory_uri()?>/img/new-nav.png" style="width:100%">
+</div>
 <div class="content">
 	<div class="product">
 		<?php the_post_thumbnail('mobile-product-head'); ?>
