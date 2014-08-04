@@ -37,7 +37,9 @@ $data = array(
 					'url'=>'http://www.circlewava.com/brand/'
 				),
 				array(
-					'name'=>'七夕活动'
+					'name'=>'七夕活动',
+					'type'=>'view',
+					'url'=>'http://mp.weixin.qq.com/s?__biz=MzA4MTEyOTYyNw==&mid=200493447&idx=1&sn=6c6f6751e8777ce940238b4cef412a87#rd'
 				),
 			)
 		),
