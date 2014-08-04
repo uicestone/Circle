@@ -12,7 +12,7 @@ get_header();
 </div>
 <div class="content">
 	<div class="content-inner">
-		<img src="<?=get_template_directory_uri()?>/img/page-brand-1.jpg">
+		<img src="<?=get_template_directory_uri()?>/img/index.jpg">
 		<h3>品牌介绍</h3>
 		<p>彩色珠宝品牌Circle始创于2013年，以关注女性的生命状态为初衷，希望通过彩色珠宝倡导一种融通豁达的女性生活态度。</p>
 		<img src="<?=get_template_directory_uri()?>/img/page-brand-2.jpg">
