@@ -42,7 +42,7 @@ get_header();
 			
 			jQuery.post(siteUrl + '/order/?set_order=' + '<?=$order_id?>', shipInfo, function(response){
 				
-				WeixinJSBridge.invoke('getBrandWCPayRequest',<?=json_encode($wx->generate_js_pay_args(site_url() . '/wx/payment-confirm/', $order_id, get_post_meta($order_id, 'price', true), get_post($order_id)->post_title))?>, function(response) {
+				WeixinJSBridge.invoke('getBrandWCPayRequest',<?=json_encode($wx->generate_js_pay_args(get_post_meta($order_id, 'wx_prepay_id', true)))?>, function(response) {
 					switch(response.err_msg){
 						case 'get_brand_wcpay_request:ok':
 							window.location.href = siteUrl + '/payment-success/';
